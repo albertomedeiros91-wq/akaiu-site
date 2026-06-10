@@ -198,6 +198,8 @@ nav.stuck{
 .lang-btn.active{opacity:1;color:var(--gold);border-color:var(--gold);}
 .n-mobile-menu .lang-switch{margin-top:.5rem;gap:.6rem;}
 .n-mobile-menu .lang-btn{font-size:.7rem;padding:.5rem .7rem;}
+#langSwitchGate{justify-content:center;gap:.6rem;margin-bottom:2rem;}
+#langSwitchGate .lang-btn{font-size:.7rem;padding:.5rem .8rem;}
 
 /* ── MENU MOBILE (HAMBÚRGUER) ── */
 .n-burger{
@@ -616,6 +618,12 @@ footer { border-top: 1px solid rgba(184,146,42,.1); padding: 6rem 5rem 3rem; bac
 <!-- AGE GATE -->
 <div id="gate">
   <span class="gate-logo">AKAÎU</span>
+  <div class="lang-switch" id="langSwitchGate">
+    <button class="lang-btn" data-lang="pt" aria-label="Português" title="Português">PT</button>
+    <button class="lang-btn" data-lang="en" aria-label="English" title="English">EN</button>
+    <button class="lang-btn" data-lang="es" aria-label="Español" title="Español">ES</button>
+    <button class="lang-btn" data-lang="zh" aria-label="中文" title="中文">中</button>
+  </div>
   <div class="gate-line"></div>
   <span class="gate-tag" data-i18n="gate.tag">Verificação de Idade</span>
   <p class="gate-p" data-i18n="gate.p">Esta é uma experiência para adultos. Para continuar, confirme sua idade.</p>
