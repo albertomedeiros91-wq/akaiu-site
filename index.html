@@ -377,14 +377,18 @@ nav.stuck{
 }
 .slide-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
-.slider-controls { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-top: 1rem; }
-.slider-nav { display: flex; justify-content: center; align-items: center; gap: 1.5rem; }
+.slider-controls { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-top: .5rem; }
+.slider-frame { position: relative; }
 .slider-btn {
   background: rgba(184,146,42,0.05); border: 1px solid rgba(184,146,42,0.5); color: var(--gold);
   width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; padding-bottom: 2px;
   cursor: none; transition: all 0.3s ease;
 }
 .slider-btn:hover { background: var(--gold); color: var(--dark); transform: scale(1.1); }
+.slider-frame .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; }
+.slider-frame .slider-btn:hover { transform: translateY(-50%) scale(1.1); }
+.slider-frame .slider-btn.prev { left: 2rem; }
+.slider-frame .slider-btn.next { right: 2rem; }
 .slider-dots { display: flex; gap: 0.6rem; justify-content: center; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(184,146,42,0.25); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 .dot.active { background: var(--gold); transform: scale(1.5); }
@@ -572,7 +576,7 @@ footer { border-top: 1px solid rgba(184,146,42,.1); padding: 4rem 5rem 3rem; bac
   .proc-slide-info { padding: 1.8rem; }
   .proc-slide-info .proc-icon { margin-bottom: 1.2rem; }
   .slider-wrapper { padding: 1.5rem 10vw; }
-  .slider-nav { display: none; }
+  .slider-frame .slider-btn { display: none; }
   .swipe-hint { display: flex; padding-right: 3.5rem; }
   .mudanca-grid {
     display: flex; grid-template-columns: unset; overflow-x: auto; scroll-snap-type: x mandatory;
@@ -764,15 +768,19 @@ footer { border-top: 1px solid rgba(184,146,42,.1); padding: 4rem 5rem 3rem; bac
     <p class="galeria-sub" data-i18n="galeria.sub">O AKAÎU é um convite para celebrar encontros, paisagens, sabores e histórias que merecem ser brindadas.</p>
   </div>
 
-  <div class="slider-wrapper" id="slider">
-    <!-- Imagens ATMOSFERA-1 a ATMOSFERA-7 -->
-    <div class="slide-item"><img src="images/ATMOSFERA-1.jpg" alt="Atmosfera AKAÎU 1" loading="lazy"></div>
-    <div class="slide-item"><img src="images/ATMOSFERA-2.jpg" alt="Atmosfera AKAÎU 2" loading="lazy"></div>
-    <div class="slide-item"><img src="images/ATMOSFERA-3.jpg" alt="Atmosfera AKAÎU 3" loading="lazy"></div>
-    <div class="slide-item"><img src="images/ATMOSFERA-4.jpg" alt="Atmosfera AKAÎU 4" loading="lazy"></div>
-    <div class="slide-item"><img src="images/ATMOSFERA-5.jpg" alt="Atmosfera AKAÎU 5" loading="lazy"></div>
-    <div class="slide-item"><img src="images/ATMOSFERA-6.jpg" alt="Atmosfera AKAÎU 6" loading="lazy"></div>
-    <div class="slide-item"><img src="images/ATMOSFERA-7.jpg" alt="Atmosfera AKAÎU 7" loading="lazy"></div>
+  <div class="slider-frame">
+    <div class="slider-wrapper" id="slider">
+      <!-- Imagens ATMOSFERA-1 a ATMOSFERA-7 -->
+      <div class="slide-item"><img src="images/ATMOSFERA-1.jpg" alt="Atmosfera AKAÎU 1" loading="lazy"></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-2.jpg" alt="Atmosfera AKAÎU 2" loading="lazy"></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-3.jpg" alt="Atmosfera AKAÎU 3" loading="lazy"></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-4.jpg" alt="Atmosfera AKAÎU 4" loading="lazy"></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-5.jpg" alt="Atmosfera AKAÎU 5" loading="lazy"></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-6.jpg" alt="Atmosfera AKAÎU 6" loading="lazy"></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-7.jpg" alt="Atmosfera AKAÎU 7" loading="lazy"></div>
+    </div>
+    <button class="slider-btn prev" aria-label="Anterior" data-i18n-aria="aria.prev">⟨</button>
+    <button class="slider-btn next" aria-label="Próximo" data-i18n-aria="aria.next">⟩</button>
   </div>
 
   <div class="swipe-hint" aria-hidden="true">
@@ -781,18 +789,14 @@ footer { border-top: 1px solid rgba(184,146,42,.1); padding: 4rem 5rem 3rem; bac
   </div>
 
   <div class="slider-controls reveal d2">
-    <div class="slider-nav">
-      <button class="slider-btn prev" aria-label="Anterior" data-i18n-aria="aria.prev">⟨</button>
-      <div class="slider-dots">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-      <button class="slider-btn next" aria-label="Próximo" data-i18n-aria="aria.next">⟩</button>
+    <div class="slider-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
     </div>
   </div>
 </section>
