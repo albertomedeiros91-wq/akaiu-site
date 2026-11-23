@@ -1,18 +1,27 @@
 # Mapa de imagens (nomenclatura SEÇÃO-POSIÇÃO)
 
-| Arquivo | Uso no site | Tamanho |
-|---|---|---|
-| HERO-1.jpg | Fundo do Hero (topo do site) | 508KB |
-| PRODUTO-1.png | Garrafa AKAÎU (seção Produto) | 368KB |
-| PRODUTO-2.jpg | Macro da taça / perlage (Perfil Sensorial, dentro de Produto) | 54KB |
-| ATMOSFERA-1.jpg .. ATMOSFERA-9.jpg | Carrossel da seção Atmosfera (P1–P9) | ~80–200KB cada |
-| PROCESSO-1.jpg .. PROCESSO-4.jpg | Imagens da seção O Processo | ~106–155KB cada |
-| MARCA-1.jpg | Equipe AKAÎU no laboratório (texto institucional, seção A Marca) | 134KB |
-| MARCA-2.jpg | Fundo do card "Impacto Social" | 131KB |
-| MARCA-3.jpg | Fundo do card "Impacto Ambiental" | 106KB |
-| MARCA-4.jpg | Fundo do card "Impacto Cultural" | 134KB |
-| PARCEIROS-1.png .. PARCEIROS-10.png | Logos da seção Parceiros (IFSC, UFRN, EMBRAPA, SEBRAE, FINEP, SENAR, Centelha, TecNova, StartupNE, Regenera) | 11–384KB |
-| CONTATO-1.jpg | Garrafa elegante (seção Contato) | 54KB |
-| CONTATO-2.jpg | Logo AKAÎU (card "Acompanhe", seção Contato) | 51KB |
+Todas as fotos estão em **WebP** (bem mais leves que JPG/PNG). Para trocar uma foto,
+gere um `.webp` com o mesmo nome (ou altere o `src=` no `index.html`).
 
-Para trocar uma foto: substitua o arquivo na pasta `images/` mantendo o mesmo nome (ou troque o nome no `index.html` no `src=`/`background-image:`).
+| Arquivo | Uso no site | Origem (pasta site-novo1) |
+|---|---|---|
+| HERO-1.webp | Fundo do Hero (cajus no pé) | foto anterior do topo |
+| PRODUTO-1.webp | Garrafa recortada (seção Produto) | GARRAFA AKAÎU_2.png |
+| PRODUTO-2.webp | Perfil Sensorial | PERFIL SENSORIAL.png |
+| ATMOSFERA-1..7.webp | Carrossel "A Arte de Brindar" | P1, P3, P5, P4, P2, Z - FOTO 3, Z - FOTO |
+| PROCESSO-1.webp | Colheita Seletiva | PROCESSO - COLHEITA SELETIVA.jpeg |
+| PROCESSO-2.webp | Fermentação Base | POCESSO - FERMENTAÇÃO BASE.PNG |
+| PROCESSO-3.webp | Método Champenoise | PROCESSO - MÉTODO CHAMPENOISE.png |
+| PROCESSO-4.webp | Remuage & Dégorgement | PROCESSO - Remuage & Dégorgement.png |
+| MARCA-1.webp | Texto institucional (A Marca) | A MARCA - SEGUNDA PARTE.png |
+| MARCA-2..4.webp | Cards de Impacto Social/Ambiental/Cultural | A MARCA - SEGUNDA PARTE 1/2/3.PNG |
+| CONTATO-1.webp | Seção Fale Conosco | FALE CONOSCO - FINAL.png |
+| PARCEIROS-1..11.png | Logos dos parceiros | — |
+| og-akaiu.jpg | Imagem de compartilhamento (WhatsApp/redes) 1200×630 | gerada a partir da marca |
+
+## Identidade (pasta `images/brand/`)
+| Arquivo | O que é |
+|---|---|
+| akaiu-logo.svg | Logotipo oficial (vetor do arquivo `Marca Akaîu.ai`), dourado #A97816 |
+| akaiu-brasao.svg | Brasão das 5 folhas (extraído da arte da caixa); também é o favicon |
+| padrao-folhas.webp | Textura de folhas da caixa (reconstruída em bloco repetível) |
