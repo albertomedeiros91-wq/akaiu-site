@@ -618,13 +618,34 @@ footer { border-top: 1px solid rgba(178,132,32,.1); padding: 4rem 5rem 3rem; bac
 body{font-weight:300;letter-spacing:.01em}
 ::selection{background:var(--gold);color:var(--verde-deep)}
 
-/* Textura de folhas da caixa (superfícies verdes) */
+/* Textura viva de folhas (vetorial, desenhada via JS nas seções com data-leaves) */
 #produto,#processo,#parceiros,footer,.sensorial-wrapper{position:relative;isolation:isolate}
-#gate{isolation:isolate}
-#gate::before,#produto::before,#processo::before,#parceiros::before,footer::before{
-  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:url('images/brand/padrao-folhas.webp') center/300px auto repeat;
-  opacity:.22;
+#gate{isolation:isolate;overflow:hidden}
+.leaf-layer{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden}
+
+/* Traço das folhas (brasão animado e textura) */
+.ln{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.crest-anim{overflow:visible;color:var(--gold-brand)}
+.crest-anim .ln{stroke-dasharray:1;stroke-dashoffset:1}
+.crest-anim.done .ln{stroke-dashoffset:0}
+.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 5.5s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-1.8deg)}to{transform:rotate(1.8deg)}}
+
+/* Fotos e garrafa flutuando */
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.sobre-image img,.sensorial-img img,.cont-mid-img,.proc-visuals img{animation:floaty 7s ease-in-out infinite}
+.proc-visuals img:nth-child(2){animation-delay:-1.8s}
+.proc-visuals img:nth-child(3){animation-delay:-3.6s}
+.proc-visuals img:nth-child(4){animation-delay:-5.4s}
+.sensorial-img img{animation-delay:-2.5s}
+.cont-mid-img{animation-delay:-4s}
+.bottle-real-img{transition:rotate .8s cubic-bezier(.16,1,.3,1),translate .8s cubic-bezier(.16,1,.3,1)}
+.bottle-shadow{width:46%;max-width:220px;height:22px;margin:-6px auto 0;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 70%);
+  animation:shadowPulse 8s ease-in-out infinite;position:relative;z-index:1}
+@keyframes shadowPulse{0%,100%{transform:scaleX(1);opacity:.85}50%{transform:scaleX(.78);opacity:.45}}
+@media (prefers-reduced-motion: reduce){
+  .sway,.bottle-wrap,.bottle-shadow,.sobre-image img,.sensorial-img img,.cont-mid-img,.proc-visuals img{animation:none}
 }
 #produto,#processo,#parceiros{background:var(--verde)}
 #marca,#contato{background:var(--dark)}
@@ -634,11 +655,11 @@ footer{background:var(--verde-deep)}
 
 /* Logotipo e brasão */
 #gate{background:var(--verde)}
-.gate-crest{width:clamp(80px,11vw,120px);height:auto;margin-bottom:1.6rem}
+.gate-crest{width:clamp(150px,19vw,220px);height:auto;margin-bottom:1.2rem}
 .gate-logo{display:block;width:clamp(220px,42vw,420px);height:auto;margin:0 auto 2.2rem}
 .n-logo{display:flex;align-items:center}
 .n-logo img{height:22px;width:auto;display:block}
-.hero-crest{width:clamp(70px,8vw,110px);height:auto;margin-bottom:1.4rem;position:relative;z-index:2;opacity:0;animation:up 1s ease forwards .45s;filter:drop-shadow(0 8px 20px rgba(0,0,0,.4))}
+.hero-crest{width:clamp(130px,15vw,190px);height:auto;margin-bottom:.8rem;position:relative;z-index:2;filter:drop-shadow(0 8px 20px rgba(0,0,0,.4))}
 .hero-title img{display:block;width:clamp(260px,58vw,760px);height:auto;margin:0 auto;filter:drop-shadow(0 18px 36px rgba(0,0,0,.55))}
 .hero-bg{background:linear-gradient(rgba(27,36,29,.84),rgba(27,36,29,.97)),url('images/HERO-1.webp') center/cover no-repeat fixed}
 .manif-crest{display:block;width:84px;height:auto;margin:0 auto 1.6rem;opacity:.9}
@@ -679,9 +700,9 @@ footer{background:var(--verde-deep)}
   nav.stuck{padding:1rem 1.5rem}
 }
 @media(max-width:768px){
-  .gate-crest{width:72px;margin-bottom:1.2rem}
+  .gate-crest{width:130px;margin-bottom:.9rem}
   .gate-logo{width:220px;margin-bottom:1.6rem}
-  .hero-crest{width:64px;margin-bottom:1.4rem}
+  .hero-crest{width:115px;margin-bottom:.8rem}
   .hero-title img{width:min(78vw,340px)}
   .n-logo img{height:18px}
   .hero-bg{background-attachment:scroll}
@@ -719,8 +740,8 @@ footer{background:var(--verde-deep)}
 <button id="backToTop" onclick="scrollToTop()" aria-label="Voltar ao topo" data-i18n-aria="aria.backToTop">↑</button>
 
 <!-- AGE GATE -->
-<div id="gate">
-  <img class="gate-crest" src="images/brand/akaiu-brasao.svg" alt="" aria-hidden="true">
+<div id="gate" data-leaves>
+  <svg class="gate-crest crest-anim" data-fill="#313B2D" viewBox="-150 -80 300 170" aria-hidden="true"></svg>
   <img class="gate-logo" src="images/brand/akaiu-logo.svg" alt="AKAÎU">
   <div class="lang-switch" id="langSwitchGate">
     <button class="lang-btn" data-lang="pt" aria-label="Português" title="Português">PT</button>
@@ -780,7 +801,7 @@ footer{background:var(--verde-deep)}
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <img class="hero-crest" src="images/brand/akaiu-brasao.svg" alt="" aria-hidden="true">
+  <svg class="hero-crest crest-anim" data-fill="#1E271F" viewBox="-150 -80 300 170" aria-hidden="true"></svg>
   <span class="hero-pretitle" data-i18n="hero.pretitle">Espumante de Caju · Nature · Método Champenoise</span>
   <h1 class="hero-title"><img src="images/brand/akaiu-logo.svg" alt="AKAÎU"></h1>
   <p class="hero-tagline" data-i18n="hero.tagline">Terra, Tempo e Talento</p>
@@ -797,7 +818,7 @@ footer{background:var(--verde-deep)}
 </section>
 
 <!-- PRODUTO -->
-<section class="sec" id="produto">
+<section class="sec" id="produto" data-leaves>
   <div class="sec-inner">
     <div class="produto-header reveal">
       <span class="tag" data-i18n="produto.tag">— O Produto</span>
@@ -817,6 +838,7 @@ footer{background:var(--verde-deep)}
         <div class="bottle-wrap">
           <img src="images/PRODUTO-1.webp" class="bottle-real-img" alt="Garrafa de Espumante AKAÎU">
         </div>
+        <div class="bottle-shadow" aria-hidden="true"></div>
         <div class="bottle-label-text" data-i18n="produto.bottleLabel">Nature · 750ml · 9%vol</div>
       </div>
     </div>
@@ -891,7 +913,7 @@ footer{background:var(--verde-deep)}
 </section>
 
 <!-- PROCESSO -->
-<section class="sec" id="processo">
+<section class="sec" id="processo" data-leaves>
   <div class="sec-inner">
     <div class="proc-header">
       <span class="tag reveal" data-i18n="processo.tag">— O Processo</span>
@@ -1038,7 +1060,7 @@ footer{background:var(--verde-deep)}
 </section>
 
 <!-- PARCEIROS -->
-<section class="sec" id="parceiros">
+<section class="sec" id="parceiros" data-leaves>
   <div class="sec-inner">
     <div class="parcerias-section reveal d2">
       <span class="tag" style="margin-bottom:0.5rem" data-i18n="parceiros.tag">— Ecossistema</span>
@@ -1149,7 +1171,7 @@ footer{background:var(--verde-deep)}
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer data-leaves="deep">
   <div class="footer-inner">
     <div class="footer-brand">
       <a href="#" class="footer-logo" aria-label="AKAÎU — início"><img src="images/brand/akaiu-brasao.svg" alt="" aria-hidden="true" class="footer-crest"><img src="images/brand/akaiu-logo.svg" alt="AKAÎU" class="footer-wordmark"></a>
@@ -1557,6 +1579,183 @@ for(let i=0; i<50; i++) {
   vfx.appendChild(b);
 }
 
+// ════════════════════════════════════════════
+// FOLHAS DE CAJUEIRO (traço do brasão) — brasão animado + textura viva
+// ════════════════════════════════════════════
+const SVGNS = 'http://www.w3.org/2000/svg';
+const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const TOUCH = matchMedia('(pointer: coarse)').matches;
+const clamp01 = v => Math.max(0, Math.min(1, v));
+function svgEl(tag, attrs, parent) {
+  const e = document.createElementNS(SVGNS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+// Folha apontando para cima, centro em (0,0), altura 120
+function leafGeom(veins = 10) {
+  const rx = 38, ry = 60, k = 4 / 3;
+  const outline = `M0 ${ry} C${rx*k} ${ry} ${rx*k} ${-ry} 0 ${-ry} C${-rx*k} ${-ry} ${-rx*k} ${ry} 0 ${ry}Z`;
+  const midrib = `M0 ${ry-4} L0 ${-ry+6}`;
+  const vs = [];
+  for (let i = 0; i < veins; i++) {
+    const t = (i + .5) / veins, y0 = (ry - 8) - t * (2 * ry - 26), y1 = y0 - 26;
+    if (y1 < -ry + 6) continue;
+    const w = rx * Math.sqrt(1 - (y1 / ry) ** 2) * .93;
+    for (const s of [-1, 1]) vs.push(`M0 ${y0.toFixed(1)} C${(s*w*.3).toFixed(1)} ${(y0-2).toFixed(1)} ${(s*w*.75).toFixed(1)} ${(y0-8).toFixed(1)} ${(s*w).toFixed(1)} ${y1.toFixed(1)}`);
+  }
+  return { outline, midrib, veins: vs };
+}
+function buildLeaf(parent, { fill = 'none', sw = 2.4, swMid = 1.8, swVein = 1.25, veins = 10 } = {}) {
+  const G = leafGeom(veins);
+  const fillPath = svgEl('path', { d: G.outline, fill, stroke: 'none' }, parent);
+  const lines = [];
+  lines.push(Object.assign(svgEl('path', { d: G.outline, class: 'ln', pathLength: 1, 'stroke-width': sw }, parent), { _k: 'out' }));
+  lines.push(Object.assign(svgEl('path', { d: G.midrib, class: 'ln', pathLength: 1, 'stroke-width': swMid }, parent), { _k: 'mid' }));
+  G.veins.forEach((d, i) => lines.push(Object.assign(svgEl('path', { d, class: 'ln', pathLength: 1, 'stroke-width': swVein }, parent), { _k: 'vein', _i: i })));
+  return { fillPath, lines };
+}
+
+// ── Opção A: brasão que se desenha, abre em leque e "respira" ──
+function makeCrest(svg, hoverArea) {
+  const fill = svg.dataset.fill || '#313B2D';
+  const cfg = [ // de trás para frente
+    { x: -94, y: 34, r: -12, s: .8, o: 2, depth: 3 }, { x: 94, y: 34, r: 12, s: .8, o: 2, depth: 3 },
+    { x: -50, y: 14, r: -8, s: .9, o: 1, depth: 2 }, { x: 50, y: 14, r: 8, s: .9, o: 1, depth: 2 },
+    { x: 0, y: -10, r: 0, s: 1.04, o: 0, depth: 1 }];
+  const finalT = c => `translate(${c.x}px,${c.y}px) rotate(${c.r}deg) scale(${c.s})`;
+  const leaves = cfg.map(c => {
+    const wrap = svgEl('g', {}, svg), par = svgEl('g', {}, wrap), sway = svgEl('g', { class: 'sway' }, par);
+    sway.style.animationDelay = (-c.x / 40) + 's';
+    par.style.transition = 'transform .6s cubic-bezier(.16,1,.3,1)';
+    wrap.style.transform = finalT(c);
+    return { c, wrap, par, L: buildLeaf(sway, { fill, sw: 2.6, swMid: 1.8, swVein: 1.25 }) };
+  });
+  let played = false;
+  function play() {
+    if (played) return; played = true;
+    if (REDUCED_MOTION) { svg.classList.add('done'); return; }
+    leaves.forEach(o => {
+      const d = o.c.o * 260;
+      o.wrap.animate([{ transform: 'translate(0px,46px) rotate(0deg) scale(.35)', opacity: 0 }, { transform: finalT(o.c), opacity: 1 }],
+        { duration: 1500, delay: d, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'both' });
+      o.L.fillPath.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, delay: d + 150, fill: 'both' });
+      o.L.lines.forEach(p => {
+        const extra = p._k === 'out' ? 0 : p._k === 'mid' ? 350 : 650 + p._i * 45;
+        p.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
+          { duration: p._k === 'vein' ? 700 : 1300, delay: d + 250 + extra, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'both' });
+      });
+    });
+  }
+  if (hoverArea && !TOUCH) {
+    hoverArea.addEventListener('pointermove', e => {
+      const r = hoverArea.getBoundingClientRect(), dx = (e.clientX - r.left) / r.width * 2 - 1, dy = (e.clientY - r.top) / r.height * 2 - 1;
+      leaves.forEach(o => o.par.style.transform = `translate(${dx * o.c.depth * 4}px,${dy * o.c.depth * 3}px)`);
+    });
+    hoverArea.addEventListener('pointerleave', () => leaves.forEach(o => o.par.style.transform = ''));
+  }
+  return play;
+}
+const playGateCrest = makeCrest(document.querySelector('.gate-crest'), document.getElementById('gate'));
+const playHeroCrest = makeCrest(document.querySelector('.hero-crest'), document.getElementById('hero'));
+playGateCrest();
+
+// ── Opção B: textura viva (folhas se desenham, balançam e brilham perto do cursor) ──
+const leafFields = [];
+function buildLeafField(sec) {
+  let svg = sec.querySelector(':scope > .leaf-layer');
+  if (!svg) { svg = svgEl('svg', { class: 'leaf-layer', 'aria-hidden': 'true' }); sec.prepend(svg); }
+  const W = sec.clientWidth, H = sec.clientHeight;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML = '';
+  const symId = 'leafSym-' + (sec.id || 'f' + leafFields.length);
+  buildLeaf(svgEl('g', { id: symId }, svgEl('defs', {}, svg)), { sw: 2.4, swMid: 1.8, swVein: 1.3, veins: 7 });
+  const S = W < 700 ? 130 : 170, ros = [];
+  for (let r = 0, y = -S / 2; y < H + S / 2; r++, y += S / 2) {
+    const big = r % 2 === 0;
+    for (let x = big ? 0 : S / 2; x < W + S / 2; x += S) {
+      const g = svgEl('g', {}, svg);
+      const rot0 = big ? 45 : 0, sc = big ? .5 : .3, off = big ? -34 : -20;
+      for (let k = 0; k < 4; k++) svgEl('use', { href: '#' + symId, transform: `rotate(${rot0 + k * 90}) translate(0 ${off}) scale(${sc})` }, g);
+      if (big) svgEl('circle', { r: 3.2, fill: 'none', stroke: 'currentColor', 'stroke-width': 1 }, g);
+      g.style.strokeDasharray = 1;
+      ros.push({ g, x, y, big, ph: Math.random() * 6.28 });
+    }
+  }
+  return { svg, ros, W, H };
+}
+const LEAF_GOLD = [201, 154, 58];
+document.querySelectorAll('[data-leaves]').forEach(sec => {
+  const f = { sec, base: sec.dataset.leaves === 'deep' ? [40, 50, 37] : [39, 48, 36], visible: false, drawn: false,
+              ptr: { x: -999, y: -999, tx: -999, ty: -999 } };
+  Object.assign(f, buildLeafField(sec));
+  f.ros.forEach(o => o.g.style.strokeDashoffset = REDUCED_MOTION ? 0 : 1);
+  if (!TOUCH) {
+    sec.addEventListener('pointermove', e => { const r = sec.getBoundingClientRect(); f.ptr.tx = e.clientX - r.left; f.ptr.ty = e.clientY - r.top; });
+    sec.addEventListener('pointerleave', () => { f.ptr.tx = -999; f.ptr.ty = -999; });
+  }
+  leafFields.push(f);
+});
+function drawInField(f) {
+  if (f.drawn) return; f.drawn = true;
+  const r = f.sec.getBoundingClientRect();
+  const cx = f.W / 2, cy = clamp01((innerHeight / 2 - r.top) / f.H) * f.H, max = Math.hypot(f.W, innerHeight);
+  f.ros.forEach(o => {
+    const d = Math.hypot(o.x - cx, o.y - cy) / max;
+    o.g.style.transition = REDUCED_MOTION ? 'none' : `stroke-dashoffset 1.8s cubic-bezier(.65,0,.35,1) ${(d * 1.4).toFixed(2)}s`;
+    requestAnimationFrame(() => o.g.style.strokeDashoffset = 0);
+  });
+}
+const leafIO = new IntersectionObserver(es => es.forEach(e => {
+  const f = leafFields.find(x => x.sec === e.target);
+  f.visible = e.isIntersecting;
+  if (e.isIntersecting && e.intersectionRatio > .1) drawInField(f);
+}), { threshold: [0, .1, .25] });
+leafFields.forEach(f => leafIO.observe(f.sec));
+function leafTick(t) {
+  for (const f of leafFields) {
+    if (!f.visible || getComputedStyle(f.sec).display === 'none') continue;
+    const r = f.sec.getBoundingClientRect(), top = -r.top - 150, bottom = -r.top + innerHeight + 150;
+    const p = f.ptr;
+    if (TOUCH) { p.tx = f.W / 2; p.ty = innerHeight / 2 - r.top; }
+    if (p.x < -900 && p.tx > -900) { p.x = p.tx; p.y = p.ty; }
+    p.x += (p.tx - p.x) * .1; p.y += (p.ty - p.y) * .1;
+    const R = TOUCH ? 200 : 240;
+    const spot = TOUCH ? (f.sec.id === 'gate' ? 0 : .5) : 1;
+    for (const o of f.ros) {
+      if (o.y < top || o.y > bottom) continue;
+      const k = spot * clamp01(1 - Math.hypot(o.x - p.x, o.y - p.y) / R);
+      const wave = REDUCED_MOTION ? 0 : Math.sin(t * .0006 + o.x * .011 + o.y * .008 + o.ph * .2) * (o.big ? 4 : 7);
+      const a = wave + k * (o.x < p.x ? -14 : 14), s = 1 + k * .14;
+      o.g.setAttribute('transform', `translate(${o.x} ${o.y}) rotate(${a.toFixed(2)}) scale(${s.toFixed(3)})`);
+      const c = f.base.map((b, i) => Math.round(b + (LEAF_GOLD[i] - b) * k * .85));
+      o.g.style.color = `rgb(${c})`;
+    }
+  }
+  requestAnimationFrame(leafTick);
+}
+requestAnimationFrame(leafTick);
+let leafResizeT;
+addEventListener('resize', () => {
+  clearTimeout(leafResizeT);
+  leafResizeT = setTimeout(() => leafFields.forEach(f => {
+    if (f.W === f.sec.clientWidth) return;
+    Object.assign(f, buildLeafField(f.sec));
+    f.ros.forEach(o => o.g.style.strokeDashoffset = f.drawn || REDUCED_MOTION ? 0 : 1);
+  }), 250);
+});
+
+// Garrafa flutuando: inclina levemente acompanhando o mouse
+(function () {
+  const prod = document.getElementById('produto'), img = document.querySelector('.bottle-real-img');
+  if (!prod || !img || TOUCH || REDUCED_MOTION) return;
+  prod.addEventListener('pointermove', e => {
+    const r = img.getBoundingClientRect(), dx = clamp01((e.clientX - r.left) / r.width) * 2 - 1;
+    img.style.rotate = (dx * 3).toFixed(2) + 'deg';
+    img.style.translate = (dx * 10).toFixed(1) + 'px 0';
+  });
+  prod.addEventListener('pointerleave', () => { img.style.rotate = ''; img.style.translate = ''; });
+})();
+
 // Cursor personalizado
 const cur = document.getElementById('cur');
 document.addEventListener('mousemove', e => {
@@ -1575,6 +1774,7 @@ function enterSite() {
   gate.style.filter = 'blur(10px)';
   gate.style.opacity = '0';
   setTimeout(() => gate.style.display = 'none', 800);
+  setTimeout(playHeroCrest, 350);
 }
 
 // Botão Voltar ao Topo

@@ -24,4 +24,5 @@ gere um `.webp` com o mesmo nome (ou altere o `src=` no `index.html`).
 |---|---|
 | akaiu-logo.svg | Logotipo oficial (vetor do arquivo `Marca Akaîu.ai`), dourado #A97816 |
 | akaiu-brasao.svg | Brasão das 5 folhas (extraído da arte da caixa); também é o favicon |
-| padrao-folhas.webp | Textura de folhas da caixa (reconstruída em bloco repetível) |
+
+A textura de folhas e o brasão animado são desenhados em código (vetor) no index.html — não há arquivo de imagem para eles.
