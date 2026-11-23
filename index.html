@@ -1743,6 +1743,17 @@ document.querySelectorAll('[data-leaves]').forEach(sec => {
   const cv = document.createElement('canvas'); cv.className = 'leaf-layer'; cv.setAttribute('aria-hidden', 'true'); sec.prepend(cv);
   const f = { sec, cv, ctx: cv.getContext('2d'), visible: false, drawStart: 0, ptr: { x: -999, y: -999, tx: -999, ty: -999 } };
   layoutLeafField(f);
+  // Acompanhamento suave do mouse (só desktop); apaga quando o cursor está sobre texto/botões
+  f.ptr.on = 0; f.ptr.target = 0;
+  if (!TOUCH) {
+    const TEXT_SEL = 'h1,h2,h3,p,.tag,.spec-row,.proc-title,.proc-desc,.gate-tag,.lang-switch,button,a,.bottle-label-text,img';
+    sec.addEventListener('pointermove', e => {
+      const r = sec.getBoundingClientRect();
+      f.ptr.tx = e.clientX - r.left; f.ptr.ty = e.clientY - r.top;
+      f.ptr.target = e.target.closest(TEXT_SEL) ? 0 : 1;
+    });
+    sec.addEventListener('pointerleave', () => { f.ptr.target = 0; });
+  }
   leafFields.push(f);
 });
 function drawInField(f) {
@@ -1788,6 +1799,11 @@ function leafTick(now) {
     }
     f.spots = (f.spots || []).filter(sp => now - sp.t0 < sp.dur);
     const spotMax = TOUCH ? .5 : .8, R = 190;
+    const p = f.ptr;
+    if (p.x < -900 && p.tx > -900) { p.x = p.tx; p.y = p.ty; }
+    p.x += (p.tx - p.x) * .06; p.y += (p.ty - p.y) * .06;       // segue com atraso suave
+    p.on += (p.target - p.on) * (p.target > p.on ? .04 : .1);  // acende devagar, apaga mais rápido sobre o texto
+    const mouseMax = .5 * p.on, mouseR = 150;
     for (const o of f.items) {
       if (o.y < off - 90 || o.y > off + vh + 90) continue;
       let q = 1;
@@ -1797,6 +1813,10 @@ function leafTick(now) {
         const life = Math.sin(Math.PI * clamp01((now - sp.t0) / sp.dur)) ** 2;
         const d = clamp01(1 - Math.hypot(o.x - sp.x, o.y - sp.y) / R);
         k = Math.max(k, life * d * d * spotMax);
+      }
+      if (mouseMax > .01) {
+        const dm = clamp01(1 - Math.hypot(o.x - p.x, o.y - p.y) / mouseR);
+        k = Math.max(k, dm * dm * mouseMax);
       }
       const wave = REDUCED_MOTION ? 0 : Math.sin(now * .0009 + o.x * .011 + o.y * .008 + o.ph * .3) * o.amp;
       const a = (wave + k * 10) * Math.PI / 180, s = 1 + k * .12;
