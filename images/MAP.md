@@ -10,7 +10,7 @@ gere um `.webp` com o mesmo nome (ou altere o `src=` no `index.html`).
 | INTERLUDIO-1.webp | Faixa "O caju é símbolo de potencial…" (cajus no pé, recorte enviado pelo cliente, exibido inteiro) | foto enviada no chat (1536×599) |
 | PRODUTO-1.webp | Garrafa recortada (seção Produto) | GARRAFA AKAÎU_2.png |
 | PRODUTO-2.webp | Perfil Sensorial | PERFIL SENSORIAL.png |
-| ATMOSFERA-1,2,4,5,6,7.webp | Carrossel "A Arte de Brindar" (o 3 virou o topo) | P1, P3, P4, P2, Z - FOTO 3, Z - FOTO |
+| ATMOSFERA-1,5,7,4,2.webp (nesta ordem) | Carrossel "A Arte de Brindar": rótulo, gargalo, servindo, taças com garrafa, garrafa no pedestal | P1, P2, Z - FOTO, P4, P3 |
 | PROCESSO-1.webp | Colheita Seletiva | PROCESSO - COLHEITA SELETIVA.jpeg |
 | PROCESSO-2.webp | Fermentação Base | POCESSO - FERMENTAÇÃO BASE.PNG |
 | PROCESSO-3.webp | Método Champenoise | PROCESSO - MÉTODO CHAMPENOISE.png |
