@@ -5,7 +5,7 @@ gere um `.webp` com o mesmo nome (ou altere o `src=` no `index.html`).
 
 | Arquivo | Uso no site | Origem (pasta site-novo1) |
 |---|---|---|
-| HERO-2.webp | Topo do site (três garrafas, à direita) | P5.png |
+| HERO-2.webp | Topo do site: três garrafas recortadas (fundo transparente) | P5.png, fundo removido |
 | HERO-1.webp | Fundo do Manifesto (cajus no pé — destaque do pedúnculo) | foto anterior do topo |
 | INTERLUDIO-1.webp | Faixa "O caju é símbolo de potencial…" (cajueiro inteiro) | Topo do Site (Hero - Fundo da Tela).png |
 | PRODUTO-1.webp | Garrafa recortada (seção Produto) | GARRAFA AKAÎU_2.png |
