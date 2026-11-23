@@ -6,7 +6,8 @@ gere um `.webp` com o mesmo nome (ou altere o `src=` no `index.html`).
 | Arquivo | Uso no site | Origem (pasta site-novo1) |
 |---|---|---|
 | HERO-2.webp | Topo do site (três garrafas, à direita) | P5.png |
-| HERO-1.webp | Faixa "O caju é símbolo de potencial…" entre Processo e A Marca | foto anterior do topo |
+| HERO-1.webp | Fundo do Manifesto (cajus no pé — destaque do pedúnculo) | foto anterior do topo |
+| INTERLUDIO-1.webp | Faixa "O caju é símbolo de potencial…" (cajueiro inteiro) | Topo do Site (Hero - Fundo da Tela).png |
 | PRODUTO-1.webp | Garrafa recortada (seção Produto) | GARRAFA AKAÎU_2.png |
 | PRODUTO-2.webp | Perfil Sensorial | PERFIL SENSORIAL.png |
 | ATMOSFERA-1,2,4,5,6,7.webp | Carrossel "A Arte de Brindar" (o 3 virou o topo) | P1, P3, P4, P2, Z - FOTO 3, Z - FOTO |
