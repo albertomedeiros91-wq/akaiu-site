@@ -771,6 +771,59 @@ footer{background:var(--verde-deep)}
   .sensorial-seal{width:80px;height:80px;bottom:-26px}
   .sensorial-seal .foil{width:52px}
 }
+/* ── HERO: garrafas à direita fundindo no verde, marca à esquerda sobre as folhas ── */
+#hero{display:block;min-height:0;padding:0;text-align:left;background:var(--verde-deep);overflow:hidden;isolation:isolate}
+#hero .hero-bg{display:none}
+.hero-visual{position:absolute;top:78px;right:0;width:60%;height:calc(100vh - 78px);height:calc(100svh - 78px);z-index:0;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 42%),linear-gradient(to top,transparent 0%,#000 30%,#000 82%,transparent 100%);
+  -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0%,#000 42%),linear-gradient(to top,transparent 0%,#000 30%,#000 82%,transparent 100%);mask-composite:intersect}
+.hero-visual img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;animation:heroDrift 22s ease-in-out infinite alternate}
+@keyframes heroDrift{from{transform:scale(1.02) translateX(0)}to{transform:scale(1.09) translateX(-1.5%)}}
+.hero-main{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:8rem 2rem 5rem 8vw;max-width:min(720px,56vw)}
+.hero-main .hero-crest{margin:0 0 .6rem -18px}
+.hero-main .hero-pretitle{margin-bottom:1.4rem}
+.hero-main .hero-title .foil-logo{width:clamp(280px,40vw,620px);margin:0}
+.hero-main .hero-cta{justify-content:flex-start;margin-top:2.6rem}
+#hero .hero-manifesto{position:relative;z-index:2;margin:0 auto;padding:3rem 1.5rem 6rem;max-width:760px}
+
+/* ── Interlúdio (antiga foto do topo) ── */
+.interludio{position:relative;z-index:2;min-height:64vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem;overflow:hidden;isolation:isolate}
+.interludio-bg{position:absolute;inset:-14% 0;z-index:-2;background:url('images/HERO-1.webp') center/cover no-repeat;transform:translateY(var(--py,0px));will-change:transform}
+.interludio::after{content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(27,36,29,.82),rgba(27,36,29,.45) 70%),linear-gradient(rgba(27,36,29,.92),rgba(27,36,29,.35) 50%,rgba(27,36,29,.92))}
+.interludio-inner{max-width:860px}
+.interludio .foil-crest{width:74px;margin:0 auto 1.6rem}
+.interludio-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(1.9rem,4.2vw,3.4rem);line-height:1.25;
+  background:linear-gradient(100deg,#C99A3A 0%,#F1D58A 40%,#FFF3CC 50%,#E3BE66 60%,#B8862A 100%);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:foilShine 9s ease-in-out infinite;text-shadow:none}
+.interludio-sign{display:block;margin-top:1.6rem;font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;color:var(--cream);opacity:.85}
+
+/* ── Ícones flutuando (sutil) ── */
+@keyframes iconBob{0%,100%{translate:0 0;rotate:-4deg}50%{translate:0 -4px;rotate:4deg}}
+.proc-icon svg,.mudanca-icon svg,.taste-ico,.cont-ch-icon svg{animation:iconBob 4.6s ease-in-out infinite}
+.proc-step:nth-child(2) .proc-icon svg,.mudanca-card:nth-child(2) svg,.taste-note:nth-child(2) .taste-ico,.cont-channel:nth-child(2) svg{animation-delay:-1.2s}
+.proc-step:nth-child(3) .proc-icon svg,.mudanca-card:nth-child(3) svg,.taste-note:nth-child(3) .taste-ico,.cont-channel:nth-child(3) svg{animation-delay:-2.4s}
+.proc-step:nth-child(4) .proc-icon svg,.cont-channel:nth-child(4) svg{animation-delay:-3.5s}
+
+/* ── Enquadramento das fotos no arco ── */
+.cont-mid-img{object-position:30% 50%}
+.proc-visuals img:nth-child(1){object-position:50% 60%}
+.proc-visuals img:nth-child(3){object-position:32% 50%}
+.sobre-image img{aspect-ratio:4/5;object-fit:cover;object-position:50% 55%}
+
+@media (prefers-reduced-motion: reduce){
+  .hero-visual img,.proc-icon svg,.mudanca-icon svg,.taste-ico,.cont-ch-icon svg,.interludio-quote{animation:none}
+}
+@media(max-width:900px){
+  .hero-visual{top:64px;width:100%;height:48vh;-webkit-mask-image:linear-gradient(to top,transparent 0%,#000 48%,#000 85%,transparent 100%);mask-image:linear-gradient(to top,transparent 0%,#000 48%,#000 85%,transparent 100%);-webkit-mask-composite:source-over;mask-composite:add}
+  .hero-visual img{object-position:50% 30%}
+  .hero-main{max-width:none;min-height:0;align-items:center;text-align:center;padding:calc(64px + 45vh) 1.5rem 2rem}
+  .hero-main .hero-crest{display:none}
+  .hero-main .hero-title .foil-logo{width:min(78vw,340px);margin:0 auto}
+  .hero-main .hero-cta{justify-content:center;margin-top:1.8rem}
+  #hero .hero-manifesto{padding:2rem 1.5rem 4rem}
+  .interludio{min-height:52vh;padding:4.5rem 1.5rem}
+}
 @media(max-width:1100px){
   nav.stuck{padding:1rem 1.5rem}
 }
@@ -888,21 +941,20 @@ footer{background:var(--verde-deep)}
 </div>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <svg class="hero-crest crest-anim" data-fill="#1E271F" viewBox="-150 -80 300 170" aria-hidden="true"></svg>
-  <span class="hero-pretitle" data-i18n="hero.pretitle">Espumante de Caju · Nature · Método Champenoise</span>
-  <h1 class="hero-title"><span class="foil foil-logo" role="img" aria-label="AKAÎU"></span></h1>
-  <p class="hero-tagline" data-i18n="hero.tagline">Terra, Tempo e Talento</p>
-  <span class="hero-sub" data-i18n="hero.sub">Rio Grande do Norte · Brasil · 750ml · 9% vol</span>
+<section id="hero" data-leaves>
+  <div class="hero-visual" aria-hidden="true"><img src="images/HERO-2.webp" alt="" fetchpriority="high"></div>
+  <div class="hero-main">
+    <svg class="hero-crest crest-anim" data-fill="#1B241D" viewBox="-150 -80 300 170" aria-hidden="true"></svg>
+    <span class="hero-pretitle" data-i18n="hero.pretitle">Espumante de Caju · Nature · Método Champenoise</span>
+    <h1 class="hero-title"><span class="foil foil-logo" role="img" aria-label="AKAÎU"></span></h1>
+    <p class="hero-tagline" data-i18n="hero.tagline">Terra, Tempo e Talento</p>
+    <span class="hero-sub" data-i18n="hero.sub">Rio Grande do Norte · Brasil · 750ml · 9% vol</span>
+    <div class="hero-cta">
+      <a href="#produto" class="btn-g" data-i18n="hero.cta">Conheça o Produto</a>
+    </div>
+  </div>
   <div class="hero-manifesto">
     <p data-i18n-html="hero.manifesto">Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera. Unimos ciência e tradição, campo e arte,<br>para transformar o que antes era desperdíçio em um símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há tempo e talento. Há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é mais que um espumante, é uma celebração que nasce do povo e volta para o povo.<br>Um brinde à terra, ao tempo e ao talento de quem acredita que sofisticação também pode ser partilha.<br><br><em>Porque da terra fértil, o tempo colhe. E com talento, brindamos!</em></p>
-  </div>
-  <div class="hero-cta">
-    <a href="#produto" class="btn-g" data-i18n="hero.cta">Conheça o Produto</a>
-  </div>
-  <div class="scroll-cue">
-    <div class="scroll-bar"></div>
   </div>
 </section>
 
@@ -992,7 +1044,6 @@ footer{background:var(--verde-deep)}
       <!-- Imagens ATMOSFERA-1 a ATMOSFERA-7 -->
       <div class="slide-item"><img src="images/ATMOSFERA-1.webp" alt="Atmosfera AKAÎU 1" loading="lazy"></div>
       <div class="slide-item"><img src="images/ATMOSFERA-2.webp" alt="Atmosfera AKAÎU 2" loading="lazy"></div>
-      <div class="slide-item"><img src="images/ATMOSFERA-3.webp" alt="Atmosfera AKAÎU 3" loading="lazy"></div>
       <div class="slide-item"><img src="images/ATMOSFERA-4.webp" alt="Atmosfera AKAÎU 4" loading="lazy"></div>
       <div class="slide-item"><img src="images/ATMOSFERA-5.webp" alt="Atmosfera AKAÎU 5" loading="lazy"></div>
       <div class="slide-item"><img src="images/ATMOSFERA-6.webp" alt="Atmosfera AKAÎU 6" loading="lazy"></div>
@@ -1010,7 +1061,6 @@ footer{background:var(--verde-deep)}
   <div class="slider-controls reveal d2">
     <div class="slider-dots">
       <div class="dot active"></div>
-      <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
@@ -1101,6 +1151,16 @@ footer{background:var(--verde-deep)}
       <span data-i18n="aria.swipe">Deslize para ver mais</span>
       <span class="swipe-arrow">⟩</span>
     </div>
+  </div>
+</section>
+
+<!-- INTERLÚDIO: foto dos cajus no pé (antigo fundo do topo) -->
+<section class="interludio" aria-label="Crença AKAÎU">
+  <div class="interludio-bg" aria-hidden="true"></div>
+  <div class="interludio-inner reveal">
+    <span class="foil foil-crest" aria-hidden="true"></span>
+    <p class="interludio-quote" data-i18n="interludio.quote">O caju é símbolo de potencial, não de desperdício.</p>
+    <span class="interludio-sign" data-i18n="interludio.sign">Terra, tempo e talento.</span>
   </div>
 </section>
 
@@ -1330,6 +1390,7 @@ const translations = {
       harmonizacao_label:"HARMONIZAÇÃO", harmonizacao_val:"Pratos leves, frutos do mar e clima tropical",
       temperatura_label:"TEMPERATURA DE SERVIÇO", temperatura_val:"4°C a 6°C"
     },
+    interludio: { quote:"O caju é símbolo de potencial, não de desperdício.", sign:"Terra, tempo e talento." },
     galeria: {
       tag:"— Atmosfera",
       title:"A Arte de <em>Brindar</em>",
@@ -1415,6 +1476,7 @@ const translations = {
       harmonizacao_label:"PAIRING", harmonizacao_val:"Light dishes, seafood and tropical settings",
       temperatura_label:"SERVING TEMPERATURE", temperatura_val:"4°C to 6°C"
     },
+    interludio: { quote:"Cashew is a symbol of potential, not of waste.", sign:"Land, time and talent." },
     galeria: {
       tag:"— Atmosphere",
       title:"The Art of <em>Toasting</em>",
@@ -1500,6 +1562,7 @@ const translations = {
       harmonizacao_label:"MARIDAJE", harmonizacao_val:"Platos ligeros, mariscos y clima tropical",
       temperatura_label:"TEMPERATURA DE SERVICIO", temperatura_val:"4°C a 6°C"
     },
+    interludio: { quote:"El anacardo es símbolo de potencial, no de desperdicio.", sign:"Tierra, tiempo y talento." },
     galeria: {
       tag:"— Atmósfera",
       title:"El Arte de <em>Brindar</em>",
@@ -1585,6 +1648,7 @@ const translations = {
       harmonizacao_label:"搭配建议", harmonizacao_val:"清淡菜肴、海鲜及热带氛围",
       temperatura_label:"饮用温度", temperatura_val:"4°C 至 6°C"
     },
+    interludio: { quote:"腰果是潜力的象征，而非浪费。", sign:"土地、时光与匠心。" },
     galeria: {
       tag:"— 氛围",
       title:"<em>举杯</em>的艺术",
@@ -1938,6 +2002,15 @@ addEventListener('resize', () => {
   clearTimeout(leafResizeT);
   leafResizeT = setTimeout(() => leafFields.forEach(f => { if (f.W !== f.sec.clientWidth) layoutLeafField(f); }), 250);
 });
+
+// Interlúdio: a foto dos cajus se move mais devagar que a página (profundidade)
+(function () {
+  const sec = document.querySelector('.interludio'), bg = sec && sec.querySelector('.interludio-bg');
+  if (!sec || REDUCED_MOTION) return;
+  const upd = () => { const r = sec.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+    bg.style.setProperty('--py', ((r.top + r.height / 2 - innerHeight / 2) * -0.18).toFixed(1) + 'px'); };
+  addEventListener('scroll', () => requestAnimationFrame(upd), { passive: true }); upd();
+})();
 
 // Garrafa flutuando: inclina levemente acompanhando o mouse
 (function () {
