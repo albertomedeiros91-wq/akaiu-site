@@ -780,11 +780,11 @@ footer{background:var(--verde-deep)}
 .hero-visual img{width:100%;height:100%;object-fit:cover;object-position:50% 88%;animation:heroDrift 22s ease-in-out infinite alternate}
 @keyframes heroDrift{from{transform:scale(1.02) translateX(0)}to{transform:scale(1.09) translateX(-1.5%)}}
 .hero-main{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
-  padding:8rem 2rem 5rem 8vw;max-width:min(720px,56vw)}
-.hero-main .hero-crest{margin:0 0 .6rem -18px}
+  padding:8rem 2rem 5rem 8vw;max-width:min(720px,56vw);width:fit-content;align-items:center;text-align:center}
+.hero-main .hero-crest{margin:0 auto 1.2rem}
 .hero-main .hero-pretitle{margin-bottom:1.4rem}
-.hero-main .hero-title .foil-logo{width:clamp(280px,33vw,540px);margin:0}
-.hero-main .hero-cta{justify-content:flex-start;margin-top:2.6rem}
+.hero-main .hero-title .foil-logo{width:clamp(280px,33vw,540px);margin:0 auto}
+.hero-main .hero-cta{justify-content:center;margin-top:2.6rem}
 #hero .hero-manifesto{position:relative;z-index:2;margin:0 auto;padding:3rem 1.5rem 6rem;max-width:760px}
 
 /* ── Manifesto: cajus no pé à direita, texto à esquerda ── */
@@ -962,7 +962,6 @@ footer{background:var(--verde-deep)}
   <div class="hero-visual" aria-hidden="true"><img src="images/HERO-2.webp" alt="" fetchpriority="high"></div>
   <div class="hero-main">
     <svg class="hero-crest crest-anim" data-fill="#1B241D" viewBox="-150 -80 300 170" aria-hidden="true"></svg>
-    <span class="hero-pretitle" data-i18n="hero.pretitle">Espumante de Caju · Nature · Método Champenoise</span>
     <h1 class="hero-title"><span class="foil foil-logo" role="img" aria-label="AKAÎU"></span></h1>
     <p class="hero-tagline" data-i18n="hero.tagline">Terra, Tempo e Talento</p>
     <span class="hero-sub" data-i18n="hero.sub">Rio Grande do Norte · Brasil · 750ml · 9% vol</span>
