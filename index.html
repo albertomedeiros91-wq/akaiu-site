@@ -619,7 +619,7 @@ body{font-weight:300;letter-spacing:.01em}
 ::selection{background:var(--gold);color:var(--verde-deep)}
 
 /* Textura viva de folhas (vetorial, desenhada via JS nas seções com data-leaves) */
-#produto,#processo,#parceiros,footer,.sensorial-wrapper{position:relative;isolation:isolate}
+#produto,#processo,#parceiros,#marca,#contato,footer,.sensorial-wrapper{position:relative;isolation:isolate}
 #gate{isolation:isolate;overflow:hidden}
 .leaf-layer{position:absolute;left:0;top:0;width:100%;height:100vh;z-index:-1;pointer-events:none;will-change:transform}
 
@@ -1199,7 +1199,7 @@ footer{background:var(--verde-deep)}
 </section>
 
 <!-- A MARCA: TEXTO INSTITUCIONAL + MISSÃO/VISÃO/VALORES + IMPACTOS -->
-<section id="marca">
+<section id="marca" data-leaves>
   <div class="sec-inner">
     <div class="sobre-intro">
       <div class="sobre-intro-text">
@@ -1290,7 +1290,7 @@ footer{background:var(--verde-deep)}
 </section>
 
 <!-- CONTATO -->
-<section id="contato">
+<section id="contato" data-leaves>
   <div class="cont-inner">
     <div class="cont-left">
       <div class="cont-text">
@@ -1969,28 +1969,13 @@ function leafTick(now) {
     }
     if (REDUCED_MOTION) continue;
 
-    // 2) pontos de luz alternados (lugares vazios, longe dos textos)
-    if (q >= 1 && now - f.lastSpot > 2000 && f.spots.length < 3) {
-      f.lastSpot = now;
-      const texts = [...f.sec.querySelectorAll('h1,h2,h3,p,.tag,.spec-row,.proc-title,.proc-desc,.gate-tag,.lang-switch,.hero-cta,button,a,.bottle-label-text,.crest-anim,.foil-logo,.foil-crest')]
-        .map(e => e.getBoundingClientRect()).filter(b => b.width && b.bottom > 0 && b.top < innerHeight)
-        .map(b => ({ l: b.left - r.left, t: b.top - r.top, rr: b.right - r.left, bb: b.bottom - r.top }));
-      const gap = TOUCH ? 70 : 170;
-      for (let tries = 0; tries < 24; tries++) {
-        const x = Math.random() * f.W, y = off + vh * (.1 + Math.random() * .8);
-        const far = texts.every(b => x < b.l - gap || x > b.rr + gap || y < b.t - gap || y > b.bb + gap);
-        const apart = f.spots.every(sp => Math.hypot(sp.x - x, sp.y - y) > 340);
-        if (far && apart) { f.spots.push({ x, y, t0: now, dur: 5200 }); break; }
-      }
-    }
-    f.spots = f.spots.filter(sp => now - sp.t0 < sp.dur);
+    // 2) brilho sutil que acompanha o mouse (só desktop; apaga sobre textos e botões)
     const p = f.ptr;
     if (p.x < -900 && p.tx > -900) { p.x = p.tx; p.y = p.ty; }
-    p.x += (p.tx - p.x) * .06; p.y += (p.ty - p.y) * .06;
-    p.on += (p.target - p.on) * (p.target > p.on ? .04 : .1);
-    const lights = f.spots.map(sp => ({ x: sp.x, y: sp.y, a: Math.sin(Math.PI * clamp01((now - sp.t0) / sp.dur)) ** 2 * (TOUCH ? .7 : 1), R: 220 }));
-    if (p.on > .01 && p.x > -900) lights.push({ x: p.x, y: p.y, a: .6 * p.on, R: 170 });
-    if (!lights.length) continue;
+    p.x += (p.tx - p.x) * .07; p.y += (p.ty - p.y) * .07;
+    p.on += (p.target - p.on) * (p.target > p.on ? .05 : .12);
+    if (p.on < .01 || p.x < -900) continue;
+    const lights = [{ x: p.x, y: p.y, a: .5 * p.on, R: 190 }];
 
     // 3) linhas douradas só dentro das luzes
     const m = f.mask.getContext('2d');
