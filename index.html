@@ -803,11 +803,15 @@ footer{background:var(--verde-deep)}
 #manifesto .manifesto-text em{font-size:1.2em}
 
 /* ── Interlúdio (antiga foto do topo) ── */
-.interludio{position:relative;z-index:2;min-height:64vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem;overflow:hidden;isolation:isolate}
-.interludio-bg{position:absolute;inset:-14% 0;z-index:-2;background:url('images/INTERLUDIO-1.webp') center 40%/cover no-repeat;transform:translateY(var(--py,0px));will-change:transform}
-.interludio::after{content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 45% 40% at 50% 50%,rgba(27,36,29,.8),rgba(27,36,29,0) 100%),linear-gradient(rgba(27,36,29,.85),rgba(27,36,29,.15) 50%,rgba(27,36,29,.85))}
-.interludio-inner{max-width:860px}
-.interludio .foil-crest{width:74px;margin:0 auto 1.6rem}
+.interludio{position:relative;z-index:2;display:grid;grid-template-columns:auto minmax(0,560px);justify-content:center;align-items:center;gap:6rem;
+  padding:7rem 8vw;overflow:hidden;isolation:isolate;background:var(--verde)}
+.interludio-photo{position:relative;width:min(360px,30vw);padding:10px}
+.interludio-photo::before{content:'';position:absolute;inset:-12% -22%;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(214,150,62,.35),rgba(150,92,30,.12) 45%,transparent 70%);filter:blur(18px)}
+.interludio-photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:30% 55%;
+  border-radius:999px 999px 12px 12px;outline:1px solid rgba(201,154,58,.55);outline-offset:8px;animation:floaty 7s ease-in-out infinite;animation-delay:-1.5s}
+.interludio-inner{max-width:560px;text-align:left}
+.interludio .foil-crest{width:70px;margin:0 0 1.6rem}
 .interludio-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(1.9rem,4.2vw,3.4rem);line-height:1.25;
   background:linear-gradient(100deg,#C99A3A 0%,#F1D58A 40%,#FFF3CC 50%,#E3BE66 60%,#B8862A 100%);background-size:250% 100%;
   -webkit-background-clip:text;background-clip:text;color:transparent;animation:foilShine 9s ease-in-out infinite;text-shadow:none}
@@ -837,7 +841,10 @@ footer{background:var(--verde-deep)}
   .hero-main .hero-title .foil-logo{width:min(78vw,340px);margin:0 auto}
   .hero-main .hero-cta{justify-content:center;margin-top:1.8rem}
   #hero .hero-manifesto{padding:2rem 1.5rem 4rem}
-  .interludio{min-height:52vh;padding:4.5rem 1.5rem}
+  .interludio{grid-template-columns:1fr;gap:3rem;padding:4.5rem 1.5rem;justify-items:center}
+  .interludio-photo{width:min(270px,72vw)}
+  .interludio-inner{text-align:center}
+  .interludio .foil-crest{margin:0 auto 1.2rem}
   .manifesto-band{min-height:0;padding:22rem 1.5rem 4rem;align-items:flex-end}
   .manifesto-bg{inset:0 0 auto 0;height:62%;background-position:60% center}
   .manifesto-band::after{background:linear-gradient(to bottom,rgba(27,36,29,.35) 0%,rgba(27,36,29,.2) 25%,rgba(27,36,29,.92) 52%,rgba(27,36,29,1) 62%)}
@@ -1183,9 +1190,11 @@ footer{background:var(--verde-deep)}
 </section>
 
 <!-- INTERLÚDIO: foto dos cajus no pé (antigo fundo do topo) -->
-<section class="interludio" aria-label="Crença AKAÎU">
-  <div class="interludio-bg" aria-hidden="true"></div>
-  <div class="interludio-inner reveal">
+<section class="interludio" aria-label="Crença AKAÎU" data-leaves>
+  <div class="interludio-photo reveal">
+    <img src="images/INTERLUDIO-1.webp" alt="Mão segurando um caju maduro, com o pedúnculo e a castanha, no pomar" loading="lazy">
+  </div>
+  <div class="interludio-inner reveal d1">
     <span class="foil foil-crest" aria-hidden="true"></span>
     <p class="interludio-quote" data-i18n="interludio.quote">O caju é símbolo de potencial, não de desperdício.</p>
     <span class="interludio-sign" data-i18n="interludio.sign">Terra, tempo e talento.</span>
@@ -2034,7 +2043,7 @@ addEventListener('resize', () => {
 // Interlúdio: a foto dos cajus se move mais devagar que a página (profundidade)
 (function () {
   if (REDUCED_MOTION) return;
-  const pairs = [['.interludio', '.interludio-bg'], ['.manifesto-band', '.manifesto-bg']]
+  const pairs = [['.manifesto-band', '.manifesto-bg']]
     .map(([s, b]) => [document.querySelector(s), document.querySelector(b)]).filter(p => p[0] && p[1]);
   const upd = () => pairs.forEach(([sec, bg]) => { const r = sec.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
     bg.style.setProperty('--py', ((r.top + r.height / 2 - innerHeight / 2) * -0.15).toFixed(1) + 'px'); });
