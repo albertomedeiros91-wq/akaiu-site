@@ -621,18 +621,18 @@ body{font-weight:300;letter-spacing:.01em}
 /* Textura viva de folhas (vetorial, desenhada via JS nas seções com data-leaves) */
 #produto,#processo,#parceiros,footer,.sensorial-wrapper{position:relative;isolation:isolate}
 #gate{isolation:isolate;overflow:hidden}
-.leaf-layer{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden}
+.leaf-layer{position:absolute;left:0;top:0;width:100%;height:100vh;z-index:-1;pointer-events:none;will-change:transform}
 
 /* Traço das folhas (brasão animado e textura) */
 .ln{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
 .crest-anim{overflow:visible;color:var(--gold-brand)}
 .crest-anim .ln{stroke-dasharray:1;stroke-dashoffset:1}
 .crest-anim.done .ln{stroke-dashoffset:0}
-.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 5.5s ease-in-out infinite alternate}
-@keyframes sway{from{transform:rotate(-1.8deg)}to{transform:rotate(1.8deg)}}
+.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 3.8s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-3.5deg) translateY(1px)}to{transform:rotate(3.5deg) translateY(-4px)}}
 
 /* Fotos e garrafa flutuando */
-@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes floaty{0%,100%{translate:0 0;rotate:-.4deg}50%{translate:0 -16px;rotate:.4deg}}
 .sobre-image img,.sensorial-img img,.cont-mid-img,.proc-visuals img{animation:floaty 7s ease-in-out infinite}
 .proc-visuals img:nth-child(2){animation-delay:-1.8s}
 .proc-visuals img:nth-child(3){animation-delay:-3.6s}
@@ -658,15 +658,36 @@ footer{background:var(--verde-deep)}
 .gate-crest{width:clamp(150px,19vw,220px);height:auto;margin-bottom:1.2rem}
 .gate-logo{display:block;width:clamp(220px,42vw,420px);height:auto;margin:0 auto 2.2rem}
 .n-logo{display:flex;align-items:center}
-.n-logo img{height:22px;width:auto;display:block}
+.n-logo .foil-logo{width:86px}
 .hero-crest{width:clamp(130px,15vw,190px);height:auto;margin-bottom:.8rem;position:relative;z-index:2;filter:drop-shadow(0 8px 20px rgba(0,0,0,.4))}
-.hero-title img{display:block;width:clamp(260px,58vw,760px);height:auto;margin:0 auto;filter:drop-shadow(0 18px 36px rgba(0,0,0,.55))}
+.hero-title{filter:drop-shadow(0 18px 36px rgba(0,0,0,.55))}
+.hero-title .foil-logo{width:clamp(260px,58vw,760px);margin:0 auto}
 .hero-bg{background:linear-gradient(rgba(27,36,29,.84),rgba(27,36,29,.97)),url('images/HERO-1.webp') center/cover no-repeat fixed}
-.manif-crest{display:block;width:84px;height:auto;margin:0 auto 1.6rem;opacity:.9}
+.manif-crest{width:96px;margin:0 auto 1.6rem}
 .footer-logo{display:inline-flex;align-items:center;gap:1rem;text-decoration:none}
-.footer-crest{width:52px;height:auto}
-.footer-wordmark{height:26px;width:auto}
+.footer-crest{width:52px}
+.footer-wordmark{width:100px}
 .footer-sign{margin-top:.8rem;font-family:'Roboto Condensed',sans-serif;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-lt)}
+
+/* ── Dourado metálico (acabamento hot-stamping do rótulo) ── */
+:root{--foil:linear-gradient(105deg,#7E5609 0%,#A97816 16%,#D9AE52 30%,#FFF1C4 38%,#E3BE66 44%,#A97816 58%,#C9973A 74%,#8C6210 88%,#7E5609 100%)}
+.foil{display:block;background:var(--foil);background-size:300% 100%;background-position:100% 0;animation:foilShine 7s ease-in-out infinite;
+  -webkit-mask:var(--foil-mask) center/contain no-repeat;mask:var(--foil-mask) center/contain no-repeat}
+.foil-logo{--foil-mask:url('images/brand/akaiu-logo.svg');aspect-ratio:431.25/111.75}
+.foil-crest{--foil-mask:url('images/brand/akaiu-brasao.svg');aspect-ratio:158.25/123.25}
+@keyframes foilShine{0%,12%{background-position:100% 0}55%,100%{background-position:0 0}}
+.h2 em,.hero-tagline{background:linear-gradient(100deg,#B8862A 0%,#E9C877 35%,#FFF0C2 45%,#E3BE66 55%,#B8862A 80%);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
+.h2 em{animation:foilShine 8s ease-in-out infinite}
+.hero-tagline{animation:up 1s ease forwards .9s,foilShine 8s ease-in-out 2s infinite}
+.g-yes,.btn-g,.form-btn{background:linear-gradient(105deg,#8C6210 0%,#C99A3A 28%,#F6DC98 48%,#C99A3A 66%,#8C6210 100%);background-size:220% 100%;background-position:100% 0;
+  box-shadow:inset 0 1px 0 rgba(255,242,205,.5),inset 0 -1px 0 rgba(90,60,5,.35),0 10px 24px rgba(0,0,0,.28);transition:background-position .8s ease,transform .3s,box-shadow .3s}
+.g-yes:hover,.btn-g:hover,.form-btn:hover{background:linear-gradient(105deg,#8C6210 0%,#C99A3A 28%,#F6DC98 48%,#C99A3A 66%,#8C6210 100%);background-size:220% 100%;background-position:0 0;
+  box-shadow:inset 0 1px 0 rgba(255,242,205,.6),0 14px 30px rgba(178,132,32,.35)}
+.n-cta,.g-no{border-color:#C99A3A}
+.rule,.gate-line{background:linear-gradient(to right,transparent,#F0D48A 20%,#B8862A 60%,transparent);height:1px}
+.manif-rule-v,.scroll-bar{background:linear-gradient(to bottom,#F0D48A,#B8862A 50%,transparent)}
+@media (prefers-reduced-motion: reduce){.foil,.h2 em,.hero-tagline{animation:none}.hero-tagline{opacity:1}}
 
 /* Títulos em Marcellus */
 .h2,.proc-title,.mudanca-title,.prod-feature-title,.sensorial-title,.spec-val,.cont-ch-val{font-family:'Marcellus',serif;font-weight:400}
@@ -703,8 +724,8 @@ footer{background:var(--verde-deep)}
   .gate-crest{width:130px;margin-bottom:.9rem}
   .gate-logo{width:220px;margin-bottom:1.6rem}
   .hero-crest{width:115px;margin-bottom:.8rem}
-  .hero-title img{width:min(78vw,340px)}
-  .n-logo img{height:18px}
+  .hero-title .foil-logo{width:min(78vw,340px)}
+  .n-logo .foil-logo{width:70px}
   .hero-bg{background-attachment:scroll}
   .footer-logo{flex-direction:column;gap:.8rem}
 }
@@ -742,7 +763,7 @@ footer{background:var(--verde-deep)}
 <!-- AGE GATE -->
 <div id="gate" data-leaves>
   <svg class="gate-crest crest-anim" data-fill="#313B2D" viewBox="-150 -80 300 170" aria-hidden="true"></svg>
-  <img class="gate-logo" src="images/brand/akaiu-logo.svg" alt="AKAÎU">
+  <span class="gate-logo foil foil-logo" role="img" aria-label="AKAÎU"></span>
   <div class="lang-switch" id="langSwitchGate">
     <button class="lang-btn" data-lang="pt" aria-label="Português" title="Português">PT</button>
     <button class="lang-btn" data-lang="en" aria-label="English" title="English">EN</button>
@@ -760,7 +781,7 @@ footer{background:var(--verde-deep)}
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="n-logo" href="#" aria-label="AKAÎU — início"><img src="images/brand/akaiu-logo.svg" alt="AKAÎU"></a>
+  <a class="n-logo" href="#" aria-label="AKAÎU — início"><span class="foil foil-logo"></span></a>
   <ul class="n-links">
     <li><a href="#hero" data-i18n="nav.manifesto">Manifesto</a></li>
     <li><a href="#produto" data-i18n="nav.produto">O Produto</a></li>
@@ -803,7 +824,7 @@ footer{background:var(--verde-deep)}
   <div class="hero-bg"></div>
   <svg class="hero-crest crest-anim" data-fill="#1E271F" viewBox="-150 -80 300 170" aria-hidden="true"></svg>
   <span class="hero-pretitle" data-i18n="hero.pretitle">Espumante de Caju · Nature · Método Champenoise</span>
-  <h1 class="hero-title"><img src="images/brand/akaiu-logo.svg" alt="AKAÎU"></h1>
+  <h1 class="hero-title"><span class="foil foil-logo" role="img" aria-label="AKAÎU"></span></h1>
   <p class="hero-tagline" data-i18n="hero.tagline">Terra, Tempo e Talento</p>
   <span class="hero-sub" data-i18n="hero.sub">Rio Grande do Norte · Brasil · 750ml · 9% vol</span>
   <div class="hero-manifesto">
@@ -1013,7 +1034,7 @@ footer{background:var(--verde-deep)}
     </div>
 
     <div class="manif-top">
-      <img class="manif-crest reveal" src="images/brand/akaiu-brasao.svg" alt="" aria-hidden="true" loading="lazy">
+      <span class="manif-crest foil foil-crest reveal" aria-hidden="true"></span>
       <h2 class="manif-headline reveal d1" data-i18n="marca.manifHeadline">
         Transformar o caju em um símbolo brasileiro de inovação, sustentabilidade e celebração.
       </h2>
@@ -1174,7 +1195,7 @@ footer{background:var(--verde-deep)}
 <footer data-leaves="deep">
   <div class="footer-inner">
     <div class="footer-brand">
-      <a href="#" class="footer-logo" aria-label="AKAÎU — início"><img src="images/brand/akaiu-brasao.svg" alt="" aria-hidden="true" class="footer-crest"><img src="images/brand/akaiu-logo.svg" alt="AKAÎU" class="footer-wordmark"></a>
+      <a href="#" class="footer-logo" aria-label="AKAÎU — início"><span class="footer-crest foil foil-crest" aria-hidden="true"></span><span class="footer-wordmark foil foil-logo"></span></a>
       <p class="footer-sign">Terra, tempo e talento.</p>
       <p style="margin-top:1rem;color:var(--muted);font-size:.8rem;" data-i18n="footer.responsabilidade">Beba com responsabilidade · Proibida a venda a menores de 18 anos</p>
     </div>
@@ -1624,12 +1645,21 @@ function makeCrest(svg, hoverArea) {
     { x: -50, y: 14, r: -8, s: .9, o: 1, depth: 2 }, { x: 50, y: 14, r: 8, s: .9, o: 1, depth: 2 },
     { x: 0, y: -10, r: 0, s: 1.04, o: 0, depth: 1 }];
   const finalT = c => `translate(${c.x}px,${c.y}px) rotate(${c.r}deg) scale(${c.s})`;
+  // Dourado metálico: gradiente com um brilho que percorre o brasão
+  const gid = 'foilGrad-' + Math.random().toString(36).slice(2, 7);
+  const grad = svgEl('linearGradient', { id: gid, gradientUnits: 'userSpaceOnUse', x1: -150, y1: -70, x2: 150, y2: 70, spreadMethod: 'reflect' },
+    svgEl('defs', {}, svg));
+  [[0, '#7E5609'], [.3, '#B8862A'], [.46, '#F0D48A'], [.5, '#FFF3CC'], [.54, '#F0D48A'], [.7, '#B8862A'], [1, '#7E5609']]
+    .forEach(([o, c]) => svgEl('stop', { offset: o, 'stop-color': c }, grad));
+  if (!REDUCED_MOTION) svgEl('animateTransform', { attributeName: 'gradientTransform', type: 'translate', values: '-300 0;300 0', dur: '4.5s', repeatCount: 'indefinite' }, grad);
   const leaves = cfg.map(c => {
     const wrap = svgEl('g', {}, svg), par = svgEl('g', {}, wrap), sway = svgEl('g', { class: 'sway' }, par);
-    sway.style.animationDelay = (-c.x / 40) + 's';
+    sway.style.animationDelay = (-c.x / 30) + 's';
     par.style.transition = 'transform .6s cubic-bezier(.16,1,.3,1)';
     wrap.style.transform = finalT(c);
-    return { c, wrap, par, L: buildLeaf(sway, { fill, sw: 2.6, swMid: 1.8, swVein: 1.25 }) };
+    const L = buildLeaf(sway, { fill, sw: 2.8, swMid: 2, swVein: 1.35 });
+    L.lines.forEach(p => p.style.stroke = `url(#${gid})`);
+    return { c, wrap, par, L };
   });
   let played = false;
   function play() {
@@ -1650,7 +1680,7 @@ function makeCrest(svg, hoverArea) {
   if (hoverArea && !TOUCH) {
     hoverArea.addEventListener('pointermove', e => {
       const r = hoverArea.getBoundingClientRect(), dx = (e.clientX - r.left) / r.width * 2 - 1, dy = (e.clientY - r.top) / r.height * 2 - 1;
-      leaves.forEach(o => o.par.style.transform = `translate(${dx * o.c.depth * 4}px,${dy * o.c.depth * 3}px)`);
+      leaves.forEach(o => o.par.style.transform = `translate(${dx * o.c.depth * 8}px,${dy * o.c.depth * 6}px) rotate(${dx * o.c.depth * 2}deg)`);
     });
     hoverArea.addEventListener('pointerleave', () => leaves.forEach(o => o.par.style.transform = ''));
   }
@@ -1660,35 +1690,59 @@ const playGateCrest = makeCrest(document.querySelector('.gate-crest'), document.
 const playHeroCrest = makeCrest(document.querySelector('.hero-crest'), document.getElementById('hero'));
 playGateCrest();
 
-// ── Opção B: textura viva (folhas se desenham, balançam e brilham perto do cursor) ──
-const leafFields = [];
-function buildLeafField(sec) {
-  let svg = sec.querySelector(':scope > .leaf-layer');
-  if (!svg) { svg = svgEl('svg', { class: 'leaf-layer', 'aria-hidden': 'true' }); sec.prepend(svg); }
-  const W = sec.clientWidth, H = sec.clientHeight;
-  svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.innerHTML = '';
-  const symId = 'leafSym-' + (sec.id || 'f' + leafFields.length);
-  buildLeaf(svgEl('g', { id: symId }, svgEl('defs', {}, svg)), { sw: 2.4, swMid: 1.8, swVein: 1.3, veins: 7 });
-  const S = W < 700 ? 130 : 170, ros = [];
-  for (let r = 0, y = -S / 2; y < H + S / 2; r++, y += S / 2) {
-    const big = r % 2 === 0;
-    for (let x = big ? 0 : S / 2; x < W + S / 2; x += S) {
-      const g = svgEl('g', {}, svg);
-      const rot0 = big ? 45 : 0, sc = big ? .5 : .3, off = big ? -34 : -20;
-      for (let k = 0; k < 4; k++) svgEl('use', { href: '#' + symId, transform: `rotate(${rot0 + k * 90}) translate(0 ${off}) scale(${sc})` }, g);
-      if (big) svgEl('circle', { r: 3.2, fill: 'none', stroke: 'currentColor', 'stroke-width': 1 }, g);
-      g.style.strokeDasharray = 1;
-      ros.push({ g, x, y, big, ph: Math.random() * 6.28 });
+// ── Opção B: textura viva em <canvas> (folhas se desenham, balançam, onda dourada e brilho perto do cursor) ──
+const LEAF_DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+const LEAF_FRAMES = 10, LEAF_SS = 1.3; // quadros do "desenho" e supersampling p/ o zoom do brilho
+const LEAF_BASE = 'rgb(39,48,36)', LEAF_GOLD = 'rgb(232,190,100)';
+const LEAF_TYPES = {
+  star:   { r: 72, amp: 6,  ring: 3.4, leaves: [45, 135, 225, 315].map(a => [a, -33, .5]).concat([0, 90, 180, 270].map(a => [a, -38, .26])) },
+  flower: { r: 46, amp: 11, dot: 2.2,  leaves: [0, 90, 180, 270].map(a => [a, -22, .33]) },
+  pairV:  { r: 32, amp: 18, leaves: [[0, -15, .2], [180, -15, .2]] },
+  pairH:  { r: 32, amp: 18, leaves: [[90, -15, .2], [270, -15, .2]] }
+};
+const LEAF_PATHS = (() => {
+  const G = leafGeom(7), tmp = svgEl('svg', { width: 0, height: 0, style: 'position:absolute;left:-9999px' });
+  document.body.appendChild(tmp);
+  const mk = (d, w) => ({ p2d: new Path2D(d), len: svgEl('path', { d }, tmp).getTotalLength(), w });
+  const res = [mk(G.outline, 2.4), mk(G.midrib, 1.8), ...G.veins.map(d => mk(d, 1.3))];
+  tmp.remove(); return res;
+})();
+function makeLeafSprites(color, finalOnly) {
+  const out = {}, sc = LEAF_DPR * LEAF_SS;
+  for (const [name, T] of Object.entries(LEAF_TYPES)) {
+    out[name] = [];
+    for (let fi = finalOnly ? LEAF_FRAMES : 1; fi <= LEAF_FRAMES; fi++) {
+      const q = fi / LEAF_FRAMES, size = Math.ceil(T.r * 2 * sc);
+      const c = document.createElement('canvas'); c.width = c.height = size;
+      const x = c.getContext('2d');
+      x.strokeStyle = x.fillStyle = color; x.lineCap = 'round'; x.lineJoin = 'round';
+      x.translate(size / 2, size / 2); x.scale(sc, sc);
+      for (const [rot, off, s] of T.leaves) {
+        x.save(); x.rotate(rot * Math.PI / 180); x.translate(0, off); x.scale(s, s);
+        for (const P of LEAF_PATHS) { x.lineWidth = P.w; x.setLineDash([P.len * q, P.len + 1]); x.stroke(P.p2d); }
+        x.restore();
+      }
+      x.setLineDash([]); x.globalAlpha = q;
+      if (T.ring) { x.lineWidth = 1; x.beginPath(); x.arc(0, 0, T.ring, 0, 7); x.stroke(); }
+      if (T.dot) { x.beginPath(); x.arc(0, 0, T.dot, 0, 7); x.fill(); }
+      c._css = T.r * 2; out[name].push(c);
     }
   }
-  return { svg, ros, W, H };
+  return out;
 }
-const LEAF_GOLD = [201, 154, 58];
+let LEAF_SPR = null;
+const leafFields = [];
+function layoutLeafField(f) {
+  const W = f.sec.clientWidth, H = f.sec.clientHeight, S = W < 700 ? 120 : 150, items = [];
+  for (let y = 0; y < H + S; y += S) for (let x = 0; x < W + S; x += S)
+    items.push({ x, y, t: 'star' }, { x: x + S / 2, y: y + S / 2, t: 'flower' }, { x: x + S / 2, y, t: 'pairV' }, { x, y: y + S / 2, t: 'pairH' });
+  items.forEach(o => { o.ph = Math.random() * 6.28; o.amp = LEAF_TYPES[o.t].amp; o.delay = 0; });
+  Object.assign(f, { W, H, items });
+}
 document.querySelectorAll('[data-leaves]').forEach(sec => {
-  const f = { sec, base: sec.dataset.leaves === 'deep' ? [40, 50, 37] : [39, 48, 36], visible: false, drawn: false,
-              ptr: { x: -999, y: -999, tx: -999, ty: -999 } };
-  Object.assign(f, buildLeafField(sec));
-  f.ros.forEach(o => o.g.style.strokeDashoffset = REDUCED_MOTION ? 0 : 1);
+  const cv = document.createElement('canvas'); cv.className = 'leaf-layer'; cv.setAttribute('aria-hidden', 'true'); sec.prepend(cv);
+  const f = { sec, cv, ctx: cv.getContext('2d'), visible: false, drawStart: 0, ptr: { x: -999, y: -999, tx: -999, ty: -999 } };
+  layoutLeafField(f);
   if (!TOUCH) {
     sec.addEventListener('pointermove', e => { const r = sec.getBoundingClientRect(); f.ptr.tx = e.clientX - r.left; f.ptr.ty = e.clientY - r.top; });
     sec.addEventListener('pointerleave', () => { f.ptr.tx = -999; f.ptr.ty = -999; });
@@ -1696,14 +1750,10 @@ document.querySelectorAll('[data-leaves]').forEach(sec => {
   leafFields.push(f);
 });
 function drawInField(f) {
-  if (f.drawn) return; f.drawn = true;
+  if (f.drawStart) return; f.drawStart = performance.now();
   const r = f.sec.getBoundingClientRect();
-  const cx = f.W / 2, cy = clamp01((innerHeight / 2 - r.top) / f.H) * f.H, max = Math.hypot(f.W, innerHeight);
-  f.ros.forEach(o => {
-    const d = Math.hypot(o.x - cx, o.y - cy) / max;
-    o.g.style.transition = REDUCED_MOTION ? 'none' : `stroke-dashoffset 1.8s cubic-bezier(.65,0,.35,1) ${(d * 1.4).toFixed(2)}s`;
-    requestAnimationFrame(() => o.g.style.strokeDashoffset = 0);
-  });
+  const cx = f.W / 2, cy = Math.max(0, Math.min(f.H, innerHeight / 2 - r.top)), max = Math.hypot(f.W, innerHeight);
+  f.items.forEach(o => o.delay = Math.hypot(o.x - cx, o.y - cy) / max * 1500);
 }
 const leafIO = new IntersectionObserver(es => es.forEach(e => {
   const f = leafFields.find(x => x.sec === e.target);
@@ -1711,24 +1761,42 @@ const leafIO = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting && e.intersectionRatio > .1) drawInField(f);
 }), { threshold: [0, .1, .25] });
 leafFields.forEach(f => leafIO.observe(f.sec));
-function leafTick(t) {
+const easeIO = q => q < .5 ? 4 * q * q * q : 1 - Math.pow(-2 * q + 2, 3) / 2;
+function leafTick(now) {
+  if (!LEAF_SPR) LEAF_SPR = { base: makeLeafSprites(LEAF_BASE), gold: makeLeafSprites(LEAF_GOLD, true) };
   for (const f of leafFields) {
-    if (!f.visible || getComputedStyle(f.sec).display === 'none') continue;
-    const r = f.sec.getBoundingClientRect(), top = -r.top - 150, bottom = -r.top + innerHeight + 150;
+    if (!f.visible) continue;
+    const r = f.sec.getBoundingClientRect(), vh = Math.min(innerHeight, f.H);
+    const off = Math.max(0, Math.min(-r.top, f.H - vh));
+    const cw = Math.round(f.W * LEAF_DPR), ch = Math.round(vh * LEAF_DPR);
+    if (f.cv.width !== cw || f.cv.height !== ch) { f.cv.width = cw; f.cv.height = ch; f.cv.style.height = vh + 'px'; }
+    f.cv.style.transform = `translateY(${off}px)`;
+    const ctx = f.ctx;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cw, ch);
+    if (!f.drawStart && !REDUCED_MOTION) continue;
+    ctx.setTransform(LEAF_DPR, 0, 0, LEAF_DPR, 0, -off * LEAF_DPR);
     const p = f.ptr;
     if (TOUCH) { p.tx = f.W / 2; p.ty = innerHeight / 2 - r.top; }
     if (p.x < -900 && p.tx > -900) { p.x = p.tx; p.y = p.ty; }
     p.x += (p.tx - p.x) * .1; p.y += (p.ty - p.y) * .1;
-    const R = TOUCH ? 200 : 240;
-    const spot = TOUCH ? (f.sec.id === 'gate' ? 0 : .5) : 1;
-    for (const o of f.ros) {
-      if (o.y < top || o.y > bottom) continue;
-      const k = spot * clamp01(1 - Math.hypot(o.x - p.x, o.y - p.y) / R);
-      const wave = REDUCED_MOTION ? 0 : Math.sin(t * .0006 + o.x * .011 + o.y * .008 + o.ph * .2) * (o.big ? 4 : 7);
-      const a = wave + k * (o.x < p.x ? -14 : 14), s = 1 + k * .14;
-      o.g.setAttribute('transform', `translate(${o.x} ${o.y}) rotate(${a.toFixed(2)}) scale(${s.toFixed(3)})`);
-      const c = f.base.map((b, i) => Math.round(b + (LEAF_GOLD[i] - b) * k * .85));
-      o.g.style.color = `rgb(${c})`;
+    const R = TOUCH ? 220 : 300, spot = TOUCH ? (f.sec.id === 'gate' ? 0 : .55) : 1;
+    // onda dourada que atravessa a textura na diagonal
+    const span = f.W + f.H * .7 + 700, band = REDUCED_MOTION ? -1e5 : ((now * .16) % span) - 350;
+    const bandK = TOUCH && f.sec.id === 'gate' ? .35 : .6, breath = REDUCED_MOTION ? 0 : Math.sin(now * .0011) * .03;
+    for (const o of f.items) {
+      if (o.y < off - 90 || o.y > off + vh + 90) continue;
+      let q = 1;
+      if (!REDUCED_MOTION) { q = clamp01((now - f.drawStart - o.delay) / 1800); if (q <= 0) continue; q = easeIO(q); }
+      const k1 = spot * clamp01(1 - Math.hypot(o.x - p.x, o.y - p.y) / R);
+      const k2 = Math.exp(-((((o.x + o.y * .7) - band) / 110) ** 2)) * bandK;
+      const k = Math.max(k1, k2);
+      const wave = REDUCED_MOTION ? 0 : Math.sin(now * .0009 + o.x * .011 + o.y * .008 + o.ph * .3) * o.amp;
+      const a = (wave + k1 * (o.x < p.x ? -32 : 32) + k2 * 12) * Math.PI / 180, s = 1 + k * .28 + breath;
+      const spr = LEAF_SPR.base[o.t][Math.max(0, Math.ceil(q * LEAF_FRAMES) - 1)], sz = spr._css;
+      ctx.save(); ctx.translate(o.x, o.y); ctx.rotate(a); ctx.scale(s, s);
+      ctx.drawImage(spr, -sz / 2, -sz / 2, sz, sz);
+      if (k > .02) { ctx.globalAlpha = Math.min(1, k * 1.15) * q; ctx.drawImage(LEAF_SPR.gold[o.t][0], -sz / 2, -sz / 2, sz, sz); }
+      ctx.restore();
     }
   }
   requestAnimationFrame(leafTick);
@@ -1737,11 +1805,7 @@ requestAnimationFrame(leafTick);
 let leafResizeT;
 addEventListener('resize', () => {
   clearTimeout(leafResizeT);
-  leafResizeT = setTimeout(() => leafFields.forEach(f => {
-    if (f.W === f.sec.clientWidth) return;
-    Object.assign(f, buildLeafField(f.sec));
-    f.ros.forEach(o => o.g.style.strokeDashoffset = f.drawn || REDUCED_MOTION ? 0 : 1);
-  }), 250);
+  leafResizeT = setTimeout(() => leafFields.forEach(f => { if (f.W !== f.sec.clientWidth) layoutLeafField(f); }), 250);
 });
 
 // Garrafa flutuando: inclina levemente acompanhando o mouse
