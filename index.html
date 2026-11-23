@@ -1891,61 +1891,32 @@ const playGateCrest = makeCrest(document.querySelector('.gate-crest'), document.
 const playHeroCrest = makeCrest(document.querySelector('.hero-crest'), document.getElementById('hero'));
 playGateCrest();
 
-// ── Opção B: textura viva em <canvas> (folhas se desenham, balançam, onda dourada e brilho perto do cursor) ──
+// ── Textura de folhas da caixa (padrão vetorial original, linhas contínuas) ──
+// Preenche a seção com as linhas em tom mais escuro; ao entrar, o padrão se revela a partir do centro;
+// pontos de luz alternados (longe dos textos) e um brilho suave no mouse acendem as linhas em dourado.
 const LEAF_DPR = Math.min(window.devicePixelRatio || 1, 1.5);
-const LEAF_FRAMES = 10, LEAF_SS = 1.3; // quadros do "desenho" e supersampling p/ o zoom do brilho
-const LEAF_BASE = 'rgb(39,48,36)', LEAF_GOLD = 'rgb(232,190,100)';
-const LEAF_TYPES = {
-  star:   { r: 72, amp: 4,  ring: 3.4, leaves: [45, 135, 225, 315].map(a => [a, -33, .5]).concat([0, 90, 180, 270].map(a => [a, -38, .26])) },
-  flower: { r: 46, amp: 8,  dot: 2.2,  leaves: [0, 90, 180, 270].map(a => [a, -22, .33]) },
-  pairV:  { r: 32, amp: 12, leaves: [[0, -15, .2], [180, -15, .2]] },
-  pairH:  { r: 32, amp: 12, leaves: [[90, -15, .2], [270, -15, .2]] }
-};
-const LEAF_PATHS = (() => {
-  const G = leafGeom(7), tmp = svgEl('svg', { width: 0, height: 0, style: 'position:absolute;left:-9999px' });
-  document.body.appendChild(tmp);
-  const mk = (d, w) => ({ p2d: new Path2D(d), len: svgEl('path', { d }, tmp).getTotalLength(), w });
-  const res = [mk(G.outline, 2.4), mk(G.midrib, 1.8), ...G.veins.map(d => mk(d, 1.3))];
-  tmp.remove(); return res;
-})();
-function makeLeafSprites(color, finalOnly) {
-  const out = {}, sc = LEAF_DPR * LEAF_SS;
-  for (const [name, T] of Object.entries(LEAF_TYPES)) {
-    out[name] = [];
-    for (let fi = finalOnly ? LEAF_FRAMES : 1; fi <= LEAF_FRAMES; fi++) {
-      const q = fi / LEAF_FRAMES, size = Math.ceil(T.r * 2 * sc);
-      const c = document.createElement('canvas'); c.width = c.height = size;
-      const x = c.getContext('2d');
-      x.strokeStyle = x.fillStyle = color; x.lineCap = 'round'; x.lineJoin = 'round';
-      x.translate(size / 2, size / 2); x.scale(sc, sc);
-      for (const [rot, off, s] of T.leaves) {
-        x.save(); x.rotate(rot * Math.PI / 180); x.translate(0, off); x.scale(s, s);
-        for (const P of LEAF_PATHS) { x.lineWidth = P.w; x.setLineDash([P.len * q, P.len + 1]); x.stroke(P.p2d); }
-        x.restore();
-      }
-      x.setLineDash([]); x.globalAlpha = q;
-      if (T.ring) { x.lineWidth = 1; x.beginPath(); x.arc(0, 0, T.ring, 0, 7); x.stroke(); }
-      if (T.dot) { x.beginPath(); x.arc(0, 0, T.dot, 0, 7); x.fill(); }
-      c._css = T.r * 2; out[name].push(c);
-    }
-  }
-  return out;
-}
-let LEAF_SPR = null;
+const LEAF_TILE = 300;                                   // tamanho do bloco na tela (px)
+const LEAF_LINE = 'rgba(8,12,6,.42)';                    // linhas escuras sobre o verde (como na caixa)
+const LEAF_GOLD = 'rgb(232,190,100)';
 const leafFields = [];
-function layoutLeafField(f) {
-  const W = f.sec.clientWidth, H = f.sec.clientHeight, S = W < 700 ? 120 : 150, items = [];
-  for (let y = 0; y < H + S; y += S) for (let x = 0; x < W + S; x += S)
-    items.push({ x, y, t: 'star' }, { x: x + S / 2, y: y + S / 2, t: 'flower' }, { x: x + S / 2, y, t: 'pairV' }, { x, y: y + S / 2, t: 'pairH' });
-  items.forEach(o => { o.ph = Math.random() * 6.28; o.amp = LEAF_TYPES[o.t].amp; o.delay = 0; });
-  Object.assign(f, { W, H, items });
-}
+let LEAF_PAT = null;                                     // { base: canvas, gold: canvas, w }
+const leafTileImg = new Image();
+leafTileImg.src = 'images/brand/padrao-folhas.png';
+leafTileImg.onload = () => {
+  const tint = color => {
+    const c = document.createElement('canvas'); c.width = leafTileImg.width; c.height = leafTileImg.height;
+    const x = c.getContext('2d'); x.drawImage(leafTileImg, 0, 0);
+    x.globalCompositeOperation = 'source-in'; x.fillStyle = color; x.fillRect(0, 0, c.width, c.height);
+    return c;
+  };
+  LEAF_PAT = { base: tint(LEAF_LINE), gold: tint(LEAF_GOLD), w: leafTileImg.width };
+};
+function leafLayout(f) { f.W = f.sec.clientWidth; f.H = f.sec.clientHeight; }
 document.querySelectorAll('[data-leaves]').forEach(sec => {
   const cv = document.createElement('canvas'); cv.className = 'leaf-layer'; cv.setAttribute('aria-hidden', 'true'); sec.prepend(cv);
-  const f = { sec, cv, ctx: cv.getContext('2d'), visible: false, drawStart: 0, ptr: { x: -999, y: -999, tx: -999, ty: -999 } };
-  layoutLeafField(f);
-  // Acompanhamento suave do mouse (só desktop); apaga quando o cursor está sobre texto/botões
-  f.ptr.on = 0; f.ptr.target = 0;
+  const f = { sec, cv, ctx: cv.getContext('2d'), gold: document.createElement('canvas'), mask: document.createElement('canvas'),
+              visible: false, drawStart: 0, spots: [], lastSpot: 0, ptr: { x: -999, y: -999, tx: -999, ty: -999, on: 0, target: 0 } };
+  leafLayout(f);
   if (!TOUCH) {
     const TEXT_SEL = 'h1,h2,h3,p,.tag,.spec-row,.proc-title,.proc-desc,.gate-tag,.lang-switch,button,a,.bottle-label-text,img';
     sec.addEventListener('pointermove', e => {
@@ -1957,85 +1928,90 @@ document.querySelectorAll('[data-leaves]').forEach(sec => {
   }
   leafFields.push(f);
 });
-function drawInField(f) {
-  if (f.drawStart) return; f.drawStart = performance.now();
-  const r = f.sec.getBoundingClientRect();
-  const cx = f.W / 2, cy = Math.max(0, Math.min(f.H, innerHeight / 2 - r.top)), max = Math.hypot(f.W, innerHeight);
-  f.items.forEach(o => o.delay = Math.hypot(o.x - cx, o.y - cy) / max * 1500);
-}
 const leafIO = new IntersectionObserver(es => es.forEach(e => {
   const f = leafFields.find(x => x.sec === e.target);
   f.visible = e.isIntersecting;
-  if (e.isIntersecting && e.intersectionRatio > .1) drawInField(f);
+  if (e.isIntersecting && e.intersectionRatio > .1 && !f.drawStart) {
+    const r = f.sec.getBoundingClientRect();
+    f.drawStart = performance.now(); f.cx = f.W / 2; f.cy = Math.max(0, Math.min(f.H, innerHeight / 2 - r.top));
+  }
 }), { threshold: [0, .1, .25] });
 leafFields.forEach(f => leafIO.observe(f.sec));
-const easeIO = q => q < .5 ? 4 * q * q * q : 1 - Math.pow(-2 * q + 2, 3) / 2;
+const easeOutCubic = q => 1 - Math.pow(1 - q, 3);
+function leafPattern(ctx, src) {
+  const p = ctx.createPattern(src, 'repeat');
+  p.setTransform(new DOMMatrix().scaleSelf(LEAF_TILE / LEAF_PAT.w));
+  return p;
+}
 function leafTick(now) {
-  if (!LEAF_SPR) LEAF_SPR = { base: makeLeafSprites(LEAF_BASE), gold: makeLeafSprites(LEAF_GOLD, true) };
-  for (const f of leafFields) {
+  if (LEAF_PAT) for (const f of leafFields) {
     if (!f.visible) continue;
     const r = f.sec.getBoundingClientRect(), vh = Math.min(innerHeight, f.H);
     const off = Math.max(0, Math.min(-r.top, f.H - vh));
     const cw = Math.round(f.W * LEAF_DPR), ch = Math.round(vh * LEAF_DPR);
-    if (f.cv.width !== cw || f.cv.height !== ch) { f.cv.width = cw; f.cv.height = ch; f.cv.style.height = vh + 'px'; }
-    f.cv.style.transform = `translateY(${off}px)`;
-    const ctx = f.ctx;
+    for (const c of [f.cv, f.gold, f.mask]) if (c.width !== cw || c.height !== ch) { c.width = cw; c.height = ch; }
+    f.cv.style.height = vh + 'px'; f.cv.style.transform = `translateY(${off}px)`;
+    const ctx = f.ctx, T = [LEAF_DPR, 0, 0, LEAF_DPR, 0, -off * LEAF_DPR];
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cw, ch);
     if (!f.drawStart && !REDUCED_MOTION) continue;
-    ctx.setTransform(LEAF_DPR, 0, 0, LEAF_DPR, 0, -off * LEAF_DPR);
-    // Pontos de luz: acendem e apagam devagar, um de cada vez, só nas laterais (longe dos textos)
-    if (!REDUCED_MOTION && f.drawStart && now - (f.lastSpot || 0) > 2000 && (f.spots || []).length < 3) {
+
+    // 1) linhas escuras preenchendo tudo, reveladas a partir do centro ao entrar na seção
+    ctx.setTransform(...T);
+    ctx.fillStyle = f.basePat || (f.basePat = leafPattern(ctx, LEAF_PAT.base));
+    ctx.fillRect(0, off, f.W, vh);
+    const q = REDUCED_MOTION ? 1 : clamp01((now - f.drawStart) / 2200);
+    if (q < 1) {
+      const R = easeOutCubic(q) * Math.hypot(f.W, f.H) * .75;
+      const g = ctx.createRadialGradient(f.cx, f.cy, 0, f.cx, f.cy, Math.max(1, R));
+      g.addColorStop(0, '#000'); g.addColorStop(.82, '#000'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.globalCompositeOperation = 'destination-in'; ctx.fillStyle = g; ctx.fillRect(0, off, f.W, vh);
+      ctx.globalCompositeOperation = 'source-over';
+    }
+    if (REDUCED_MOTION) continue;
+
+    // 2) pontos de luz alternados (lugares vazios, longe dos textos)
+    if (q >= 1 && now - f.lastSpot > 2000 && f.spots.length < 3) {
       f.lastSpot = now;
-      // procura um lugar vazio: longe de qualquer texto/botão visível da seção
-      const texts = [...f.sec.querySelectorAll('h1,h2,h3,p,.tag,.spec-row,.proc-title,.proc-desc,.gate-tag,.lang-switch,.hero-cta,button,a,.bottle-label-text')]
+      const texts = [...f.sec.querySelectorAll('h1,h2,h3,p,.tag,.spec-row,.proc-title,.proc-desc,.gate-tag,.lang-switch,.hero-cta,button,a,.bottle-label-text,.crest-anim,.foil-logo,.foil-crest')]
         .map(e => e.getBoundingClientRect()).filter(b => b.width && b.bottom > 0 && b.top < innerHeight)
         .map(b => ({ l: b.left - r.left, t: b.top - r.top, rr: b.right - r.left, bb: b.bottom - r.top }));
-      const gap = TOUCH ? 50 : 110;
-      for (let tries = 0; tries < 14; tries++) {
+      const gap = TOUCH ? 70 : 170;
+      for (let tries = 0; tries < 24; tries++) {
         const x = Math.random() * f.W, y = off + vh * (.1 + Math.random() * .8);
         const far = texts.every(b => x < b.l - gap || x > b.rr + gap || y < b.t - gap || y > b.bb + gap);
-        const apart = (f.spots || []).every(sp => Math.hypot(sp.x - x, sp.y - y) > 340);
-        if (far && apart) { f.spots = (f.spots || []).concat({ x, y, t0: now, dur: 5200 }); break; }
+        const apart = f.spots.every(sp => Math.hypot(sp.x - x, sp.y - y) > 340);
+        if (far && apart) { f.spots.push({ x, y, t0: now, dur: 5200 }); break; }
       }
     }
-    f.spots = (f.spots || []).filter(sp => now - sp.t0 < sp.dur);
-    const spotMax = TOUCH ? .65 : 1, R = 235;
+    f.spots = f.spots.filter(sp => now - sp.t0 < sp.dur);
     const p = f.ptr;
     if (p.x < -900 && p.tx > -900) { p.x = p.tx; p.y = p.ty; }
-    p.x += (p.tx - p.x) * .06; p.y += (p.ty - p.y) * .06;       // segue com atraso suave
-    p.on += (p.target - p.on) * (p.target > p.on ? .04 : .1);  // acende devagar, apaga mais rápido sobre o texto
-    const mouseMax = .5 * p.on, mouseR = 150;
-    for (const o of f.items) {
-      if (o.y < off - 90 || o.y > off + vh + 90) continue;
-      let q = 1;
-      if (!REDUCED_MOTION) { q = clamp01((now - f.drawStart - o.delay) / 1800); if (q <= 0) continue; q = easeIO(q); }
-      let k = 0;
-      for (const sp of f.spots) {
-        const life = Math.sin(Math.PI * clamp01((now - sp.t0) / sp.dur)) ** 2;
-        const d = clamp01(1 - Math.hypot(o.x - sp.x, o.y - sp.y) / R);
-        k = Math.max(k, life * d * d * spotMax);
-      }
-      if (mouseMax > .01) {
-        const dm = clamp01(1 - Math.hypot(o.x - p.x, o.y - p.y) / mouseR);
-        k = Math.max(k, dm * dm * mouseMax);
-      }
-      const wave = REDUCED_MOTION ? 0 : Math.sin(now * .0009 + o.x * .011 + o.y * .008 + o.ph * .3) * o.amp;
-      const a = (wave + k * 14) * Math.PI / 180, s = 1 + k * .18;
-      const spr = LEAF_SPR.base[o.t][Math.max(0, Math.ceil(q * LEAF_FRAMES) - 1)], sz = spr._css;
-      ctx.save(); ctx.translate(o.x, o.y); ctx.rotate(a); ctx.scale(s, s);
-      ctx.drawImage(spr, -sz / 2, -sz / 2, sz, sz);
-      if (k > .02) { ctx.globalAlpha = Math.min(1, k * 1.15) * q; ctx.drawImage(LEAF_SPR.gold[o.t][0], -sz / 2, -sz / 2, sz, sz); }
-      ctx.restore();
+    p.x += (p.tx - p.x) * .06; p.y += (p.ty - p.y) * .06;
+    p.on += (p.target - p.on) * (p.target > p.on ? .04 : .1);
+    const lights = f.spots.map(sp => ({ x: sp.x, y: sp.y, a: Math.sin(Math.PI * clamp01((now - sp.t0) / sp.dur)) ** 2 * (TOUCH ? .7 : 1), R: 220 }));
+    if (p.on > .01 && p.x > -900) lights.push({ x: p.x, y: p.y, a: .6 * p.on, R: 170 });
+    if (!lights.length) continue;
+
+    // 3) linhas douradas só dentro das luzes
+    const m = f.mask.getContext('2d');
+    m.setTransform(1, 0, 0, 1, 0, 0); m.clearRect(0, 0, cw, ch); m.setTransform(...T);
+    for (const L of lights) {
+      const g = m.createRadialGradient(L.x, L.y, 0, L.x, L.y, L.R);
+      g.addColorStop(0, `rgba(0,0,0,${L.a})`); g.addColorStop(.45, `rgba(0,0,0,${L.a * .7})`); g.addColorStop(1, 'rgba(0,0,0,0)');
+      m.fillStyle = g; m.fillRect(L.x - L.R, L.y - L.R, L.R * 2, L.R * 2);
     }
+    const gx = f.gold.getContext('2d');
+    gx.setTransform(1, 0, 0, 1, 0, 0); gx.clearRect(0, 0, cw, ch);
+    gx.setTransform(...T); gx.fillStyle = f.goldPat || (f.goldPat = leafPattern(gx, LEAF_PAT.gold)); gx.fillRect(0, off, f.W, vh);
+    gx.setTransform(1, 0, 0, 1, 0, 0); gx.globalCompositeOperation = 'destination-in'; gx.drawImage(f.mask, 0, 0);
+    gx.globalCompositeOperation = 'source-over';
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.drawImage(f.gold, 0, 0);
   }
   requestAnimationFrame(leafTick);
 }
 requestAnimationFrame(leafTick);
 let leafResizeT;
-addEventListener('resize', () => {
-  clearTimeout(leafResizeT);
-  leafResizeT = setTimeout(() => leafFields.forEach(f => { if (f.W !== f.sec.clientWidth) layoutLeafField(f); }), 250);
-});
+addEventListener('resize', () => { clearTimeout(leafResizeT); leafResizeT = setTimeout(() => leafFields.forEach(leafLayout), 250); });
 
 // Interlúdio: a foto dos cajus se move mais devagar que a página (profundidade)
 (function () {
