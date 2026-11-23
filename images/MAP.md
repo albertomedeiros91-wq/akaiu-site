@@ -7,7 +7,7 @@ gere um `.webp` com o mesmo nome (ou altere o `src=` no `index.html`).
 |---|---|---|
 | HERO-2.webp | Topo do site: três garrafas recortadas (fundo transparente) | P5.png, fundo removido |
 | HERO-1.webp | Fundo do Manifesto (cajus no pé — destaque do pedúnculo) | foto anterior do topo |
-| INTERLUDIO-1.webp | Faixa "O caju é símbolo de potencial…" (cajus no pé, largura total) | foto enviada no chat (1200×673) |
+| INTERLUDIO-1.webp | Faixa "O caju é símbolo de potencial…" (cajus no pé sobre o pomar, largura total) | foto enviada no chat (1536×1024) |
 | PRODUTO-1.webp | Garrafa recortada (seção Produto) | GARRAFA AKAÎU_2.png |
 | PRODUTO-2.webp | Perfil Sensorial | PERFIL SENSORIAL.png |
 | ATMOSFERA-1,2,4,5,6,7.webp | Carrossel "A Arte de Brindar" (o 3 virou o topo) | P1, P3, P4, P2, Z - FOTO 3, Z - FOTO |
