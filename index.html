@@ -930,8 +930,11 @@ footer{background:var(--verde-deep)}
 #hero.hero-enter .hero-sub{animation-delay:.52s}
 
 /* ── Transição de abertura ── */
-#perlageIntro{position:fixed;inset:0;z-index:9500;pointer-events:none;visibility:hidden}
-#perlageIntro.on{visibility:visible}
+#leafPortal{position:fixed;inset:0;z-index:9500;pointer-events:none;perspective:900px;perspective-origin:50% 50%;overflow:hidden;visibility:hidden}
+#leafPortal.on{visibility:visible}
+.portal-leaf{position:absolute;left:50%;top:50%;width:var(--w);aspect-ratio:57.6/88.4;background:url('images/brand/akaiu-folha.svg') center/contain no-repeat;opacity:0;will-change:transform,opacity;backface-visibility:visible}
+.portal-glow{position:absolute;left:50%;top:50%;width:70vmin;height:70vmin;border-radius:50%;opacity:0;
+  background:radial-gradient(circle,rgba(255,236,190,.55) 0%,rgba(201,154,58,.22) 38%,transparent 70%);filter:blur(12px)}
 
 /* ── Produto: três garrafas preenchendo a coluna ── */
 /* três garrafas: paradas (sem flutuar/inclinar) e maiores */
@@ -1059,7 +1062,7 @@ footer{background:var(--verde-deep)}
 </svg>
 
 <!-- VFX: BORBULHAS EM TODO O SITE -->
-<div id="vfx-bubbles" class="vfx-bubbles"></div>
+
 
 <!-- CURSOR -->
 <div id="cur"></div>
@@ -1086,8 +1089,8 @@ footer{background:var(--verde-deep)}
   </div>
 </div>
 
-<!-- ABERTURA: efervescência do espumante subindo pela tela -->
-<div id="perlageIntro" aria-hidden="true"></div>
+<!-- TRANSIÇÃO DE ABERTURA: folhas do brasão atravessando a tela em 3D -->
+<div id="leafPortal" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -1954,198 +1957,6 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 
 applyLanguage(currentLang);
 
-// ════════════════════════════════════════════
-// PERLAGE — o site imerso no espumante
-// (bolhas lentas espalhadas em várias profundidades; abertura em primeira pessoa: garrafa → taça → mergulho)
-// ════════════════════════════════════════════
-const BUB_DPR = Math.min(window.devicePixelRatio || 1, 1.5);
-const PERL_REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const perlClamp = v => Math.max(0, Math.min(1, v));
-const perlEase = q => q < .5 ? 4 * q * q * q : 1 - Math.pow(-2 * q + 2, 3) / 2;
-const perlRnd = (a, b) => a + Math.random() * (b - a);
-function perlSprite(R, stops) {
-  const c = document.createElement('canvas'); c.width = c.height = R * 2;
-  const x = c.getContext('2d'), g = x.createRadialGradient(R, R, 0, R, R, R);
-  stops.forEach(([o, col]) => g.addColorStop(o, col)); x.fillStyle = g; x.fillRect(0, 0, R * 2, R * 2);
-  return c;
-}
-// ponto de luz (centro quase branco, halo dourado)
-const GLINT = perlSprite(24, [[0, 'rgba(255,252,236,1)'], [.18, 'rgba(255,226,150,.95)'], [.42, 'rgba(232,170,60,.4)'], [1, 'rgba(200,130,30,0)']]);
-// esfera de luz desfocada (bokeh), borda levemente mais clara como numa lente
-const BOKEH = perlSprite(64, [[0, 'rgba(255,226,160,.32)'], [.62, 'rgba(245,190,95,.28)'], [.82, 'rgba(255,228,165,.42)'], [.92, 'rgba(240,185,90,.18)'], [1, 'rgba(230,170,70,0)']]);
-// bolha: aro claro, centro transparente e reflexo
-const RING = (() => {
-  const R = 48, c = document.createElement('canvas'); c.width = c.height = R * 2 + 4;
-  const x = c.getContext('2d'), m = R + 2;
-  const g = x.createRadialGradient(m, m, R * .55, m, m, R);
-  g.addColorStop(0, 'rgba(255,240,205,0)'); g.addColorStop(.8, 'rgba(255,232,180,.14)'); g.addColorStop(1, 'rgba(255,236,190,.5)');
-  x.fillStyle = g; x.beginPath(); x.arc(m, m, R, 0, 7); x.fill();
-  x.lineWidth = R * .08; x.strokeStyle = 'rgba(255,244,215,.8)'; x.beginPath(); x.arc(m, m, R * .95, 0, 7); x.stroke();
-  x.fillStyle = 'rgba(255,255,255,.9)'; x.beginPath(); x.ellipse(m - R * .36, m - R * .42, R * .2, R * .11, -.7, 0, 7); x.fill();
-  return c;
-})();
-const sprite = (ctx, img, x, y, r, a) => { if (a <= .003 || r <= 0) return; ctx.globalAlpha = Math.min(1, a); ctx.drawImage(img, x - r, y - r, r * 2, r * 2); };
-
-// ── Fundo: bolhas lentas e tranquilas, espalhadas ao acaso, em várias profundidades ──
-(function () {
-  const host = document.getElementById('vfx-bubbles');
-  if (!host || PERL_REDUCED) return;
-  host.innerHTML = '';
-  const cv = document.createElement('canvas'); cv.style.cssText = 'position:absolute;inset:0;width:100%;height:100%';
-  host.appendChild(cv);
-  const ctx = cv.getContext('2d');
-  let W = 0, H = 0, parts = [], last = performance.now();
-  function newPart(initial) {
-    const k = Math.random();
-    const type = k < .6 ? 'glint' : k < .94 ? 'ring' : 'bokeh';
-    const depth = Math.random();                         // 0 = longe, 1 = perto
-    const p = { type, x: Math.random() * W, y: initial ? Math.random() * H : H + 30, ph: Math.random() * 6.28, sway: perlRnd(.15, .45) };
-    if (type === 'glint') Object.assign(p, { r: perlRnd(.8, 2.1) * (1 + depth * .6), v: perlRnd(28, 60) * (.7 + depth * .6), a: perlRnd(.45, .85) });
-    if (type === 'ring')  Object.assign(p, { r: perlRnd(1.8, 4.8) * (1 + depth * .8), v: perlRnd(32, 70) * (.7 + depth * .6), a: perlRnd(.3, .6) });
-    if (type === 'bokeh') Object.assign(p, { r: perlRnd(12, 30), v: perlRnd(10, 22), a: perlRnd(.05, .1) });
-    return p;
-  }
-  function size() {
-    W = innerWidth; H = innerHeight; cv.width = Math.round(W * BUB_DPR); cv.height = Math.round(H * BUB_DPR);
-    ctx.setTransform(BUB_DPR, 0, 0, BUB_DPR, 0, 0);
-    parts = Array.from({ length: Math.round(Math.max(45, Math.min(95, W * H / 16000))) }, () => newPart(true));
-  }
-  size(); addEventListener('resize', size);
-  function tick(now) {
-    const dt = Math.min(50, now - last); last = now;
-    ctx.clearRect(0, 0, W, H);
-    for (const p of parts) {
-      p.y -= p.v * dt / 1000;
-      p.x += Math.sin(now * .0012 + p.ph) * p.sway * dt / 16;
-      if (p.y < -p.r * 3 - 10) Object.assign(p, newPart(false));
-      const edge = perlClamp(p.y / (H * .18)) * perlClamp((H + 30 - p.y) / 80);   // surge embaixo, some no topo
-      if (p.type === 'glint') {
-        ctx.globalCompositeOperation = 'lighter';
-        sprite(ctx, GLINT, p.x, p.y, p.r * 3, p.a * edge * (.75 + Math.sin(now * .004 + p.ph * 5) * .25));
-      } else {
-        ctx.globalCompositeOperation = 'source-over';
-        sprite(ctx, p.type === 'ring' ? RING : BOKEH, p.x, p.y, p.r, p.a * edge);
-      }
-    }
-    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-})();
-
-// ── Abertura em primeira pessoa: dentro do gargalo → caindo na taça → mergulho no espumante ──
-function playPerlageIntro(cb = {}) {
-  const P = document.getElementById('perlageIntro');
-  if (!P) { cb.covered && cb.covered(); cb.reveal && cb.reveal(); return; }
-  P.innerHTML = ''; P.classList.add('on');
-  const W = innerWidth, H = innerHeight, cx = W / 2, cy = H / 2, D = Math.hypot(W, H) / 2;
-  const cv = document.createElement('canvas'); cv.width = Math.round(W * BUB_DPR); cv.height = Math.round(H * BUB_DPR);
-  cv.style.cssText = 'width:100%;height:100%;display:block'; P.appendChild(cv);
-  const ctx = cv.getContext('2d');
-  const T_IN = 220, T_A = 1050, T_B = 1800, T_C = 2650, T_END = 3450;
-  // A) anéis do gargalo
-  const necks = Array.from({ length: 24 }, (_, i) => ({ z: .12 + i * .13 }));
-  // B) luzes quentes desfocadas ao redor da taça (vista de cima) e brilhos no líquido
-  const room = Array.from({ length: 30 }, () => ({ x: perlRnd(-1, 1), y: perlRnd(-1, 1), r: perlRnd(14, 46), a: perlRnd(.18, .5) }));
-  const sparkles = Array.from({ length: 70 }, () => ({ ang: perlRnd(0, 6.28), d: Math.sqrt(Math.random()) * .9, s: perlRnd(.6, 1.8), ph: perlRnd(0, 6.28) }));
-  // C) dentro do líquido
-  const orbs = Array.from({ length: 46 }, () => ({ x: perlRnd(-1.1, 1.1) * D, y: perlRnd(-1.1, 1.1) * D, z: perlRnd(.6, 3), r: perlRnd(18, 70), a: perlRnd(.25, .6) }));
-  const specks = [], rings = [];
-  const t0 = performance.now(); let last = t0, covered = false, revealed = false;
-  function frame(now) {
-    const t = now - t0, dt = Math.min(120, now - last); last = now;
-    ctx.setTransform(BUB_DPR, 0, 0, BUB_DPR, 0, 0); ctx.clearRect(0, 0, W, H);
-    const fadeIn = perlClamp(t / T_IN);
-    // ───── A) dentro do gargalo, indo em direção à luz da boca da garrafa
-    if (t < T_A + 250) {
-      const a = fadeIn * (1 - perlClamp((t - T_A + 50) / 300));
-      const p = perlClamp(t / T_A), open = p * p;
-      ctx.globalAlpha = a;
-      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, D);
-      const lr = .05 + open * .95;
-      g.addColorStop(0, 'rgb(255,246,214)'); g.addColorStop(Math.min(.97, lr * .45), 'rgb(244,206,120)');
-      g.addColorStop(Math.min(.985, lr * .85 + .02), 'rgb(46,74,40)'); g.addColorStop(1, 'rgb(6,14,8)');
-      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-      for (const n of necks) {
-        n.z -= dt * .0014 * (1 + p * 2.2);
-        if (n.z < .06) n.z += 3.1;
-        const R = D * .2 / n.z; if (R > D * 1.6) continue;
-        const vis = perlClamp((3.1 - n.z) / 1.2) * a, lw = Math.max(1, 3.2 / n.z);
-        ctx.globalAlpha = vis * .6; ctx.lineWidth = lw; ctx.strokeStyle = 'rgb(62,98,56)';
-        ctx.beginPath(); ctx.ellipse(cx, cy, R, R * .97, 0, 0, 7); ctx.stroke();
-        ctx.globalAlpha = vis * .55; ctx.strokeStyle = 'rgb(255,214,128)'; ctx.lineWidth = lw * .7;         // reflexo no vidro
-        ctx.beginPath(); ctx.ellipse(cx, cy, R, R * .97, 0, -2.5, -1.7); ctx.stroke();
-        ctx.globalAlpha = vis * .65; ctx.strokeStyle = 'rgb(214,160,60)'; ctx.lineWidth = lw * 2.4;      // espumante correndo no fundo do gargalo
-        ctx.beginPath(); ctx.ellipse(cx, cy, R * .98, R * .95, 0, .55, 2.6); ctx.stroke();
-      }
-      ctx.globalAlpha = 1;
-    }
-    // ───── B) saindo da garrafa e caindo em direção à taça (vista de cima, câmera girando)
-    if (t > T_A - 250 && t < T_B + 200) {
-      const a = perlClamp((t - (T_A - 250)) / 320) * (1 - perlClamp((t - T_B + 30) / 200));
-      const p = perlClamp((t - T_A + 250) / (T_B - T_A + 250)), fall = p * p * p;
-      ctx.save(); ctx.globalAlpha = a;
-      ctx.translate(cx, cy); ctx.rotate(-.35 + p * .9);
-      ctx.fillStyle = '#140d06'; ctx.fillRect(-D * 1.2, -D * 1.2, D * 2.4, D * 2.4);
-      ctx.globalCompositeOperation = 'lighter';
-      for (const o of room) sprite(ctx, BOKEH, o.x * D * (1 + fall * 2.5), o.y * D * (1 + fall * 2.5), o.r * (1 + fall * 2), o.a * a);
-      ctx.globalCompositeOperation = 'source-over';
-      const gr = Math.min(W, H) * .18 + fall * D * 2.4;            // a taça se aproxima
-      const lg = ctx.createRadialGradient(-gr * .2, -gr * .25, 0, 0, 0, gr);
-      lg.addColorStop(0, 'rgba(255,236,170,.98)'); lg.addColorStop(.55, 'rgba(226,170,64,.96)'); lg.addColorStop(1, 'rgba(150,102,28,.98)');
-      ctx.globalAlpha = a; ctx.fillStyle = lg; ctx.beginPath(); ctx.arc(0, 0, gr, 0, 7); ctx.fill();
-      ctx.lineWidth = 2 + fall * 10; ctx.strokeStyle = 'rgba(255,246,222,.85)'; ctx.beginPath(); ctx.arc(0, 0, gr * 1.04, 0, 7); ctx.stroke();
-      ctx.globalCompositeOperation = 'lighter';
-      for (const s of sparkles) sprite(ctx, GLINT, Math.cos(s.ang + p * 2) * s.d * gr, Math.sin(s.ang + p * 2) * s.d * gr, s.s * (3 + fall * 10), a * (.6 + Math.sin(t * .02 + s.ph) * .4));
-      ctx.globalCompositeOperation = 'source-over';
-      // fio de espumante caindo na taça
-      const sw = 3 + fall * 34, sx = gr * .9 + D * .6;
-      const sg = ctx.createLinearGradient(sx, -D, 0, 0); sg.addColorStop(0, 'rgba(255,236,180,.2)'); sg.addColorStop(1, 'rgba(255,226,150,.95)');
-      ctx.strokeStyle = sg; ctx.lineWidth = sw; ctx.lineCap = 'round';
-      ctx.beginPath(); ctx.moveTo(sx, -D * 1.1); ctx.quadraticCurveTo(sx * .3, -D * .2, 0, 0); ctx.stroke();
-      ctx.restore(); ctx.globalAlpha = 1;
-    }
-    // clarão do impacto ao entrar no líquido
-    const flash = Math.exp(-Math.pow((t - T_B) / 130, 2));
-    if (flash > .01) { ctx.globalAlpha = flash * .85; ctx.fillStyle = 'rgb(255,242,205)'; ctx.fillRect(0, 0, W, H); ctx.globalAlpha = 1; }
-    // ───── C) dentro do espumante: bokeh vindo em nossa direção, bolhas subindo; depois clareia revelando o site
-    if (t > T_B - 120) {
-      const fade = perlClamp((t - (T_B - 120)) / 180) * (1 - perlClamp((t - T_C) / (T_END - T_C)));
-      const dive = perlEase(perlClamp((t - T_B) / (T_END - T_B)));
-      const g = ctx.createRadialGradient(cx, cy * .8, 0, cx, cy, D * 1.1);
-      g.addColorStop(0, `rgba(250,222,150,${.96 * fade})`); g.addColorStop(.45, `rgba(214,160,62,${.94 * fade})`); g.addColorStop(1, `rgba(92,62,14,${.97 * fade})`);
-      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-      ctx.save(); ctx.translate(cx, cy); ctx.rotate(.55 + dive * .35); ctx.scale(1 + dive * .2, 1 + dive * .2);
-      ctx.globalCompositeOperation = 'lighter';
-      for (const o of orbs) {
-        o.z -= dt * .0014;
-        if (o.z < .25) { if (t < T_C) Object.assign(o, { x: perlRnd(-1.1, 1.1) * D, y: perlRnd(-1.1, 1.1) * D, z: perlRnd(2.2, 3), r: perlRnd(18, 70) }); else continue; }
-        const s = 1 / o.z;
-        sprite(ctx, BOKEH, o.x * s, o.y * s, o.r * s, o.a * fade * perlClamp((3 - o.z) / .8));
-      }
-      if (t < T_C + 300) for (let k = 0; k < Math.round(dt * .3); k++)
-        specks.push({ x: perlRnd(-.6, .6) * W, y: H * .7, z: perlRnd(.5, 2), v: perlRnd(320, 760), a: perlRnd(.5, 1), ph: perlRnd(0, 6.28) });
-      for (let i = specks.length - 1; i >= 0; i--) {
-        const b = specks[i]; b.y -= b.v * dt / 1000 / b.z;
-        if (b.y < -H) { specks.splice(i, 1); continue; }
-        sprite(ctx, GLINT, b.x / b.z + Math.sin(b.ph + b.y * .03) * 2, b.y, 3.2 / b.z, b.a * fade);
-      }
-      ctx.globalCompositeOperation = 'source-over';
-      if (t < T_C && Math.random() < dt / 150) rings.push({ x: perlRnd(-.5, .5) * W, y: H * .55, r: perlRnd(14, 46), v: perlRnd(200, 380), ph: perlRnd(0, 6.28) });
-      for (let i = rings.length - 1; i >= 0; i--) {
-        const b = rings[i]; b.y -= b.v * dt / 1000; b.r += dt * .02;
-        if (b.y < -H * .75) { rings.splice(i, 1); continue; }
-        sprite(ctx, RING, b.x + Math.sin(b.ph + b.y * .01) * 8, b.y, b.r, .85 * fade);
-      }
-      ctx.restore(); ctx.globalAlpha = 1;
-    }
-    if (!covered && t >= T_IN) { covered = true; cb.covered && cb.covered(); }
-    if (!revealed && t >= T_C) { revealed = true; cb.reveal && cb.reveal(); }
-    if (t < T_END) requestAnimationFrame(frame);
-    else { P.classList.remove('on'); P.innerHTML = ''; if (!revealed) cb.reveal && cb.reveal(); }
-  }
-  requestAnimationFrame(frame);
-}
 
 // ════════════════════════════════════════════
 // FOLHAS DE CAJUEIRO (traço do brasão) — brasão animado + textura viva
@@ -2239,7 +2050,40 @@ function leafPattern(ctx, src) {
   p.setTransform(new DOMMatrix().scaleSelf(LEAF_TILE / LEAF_PAT.w));
   return p;
 }
+// Bolhas de fundo: sutis, numa cor só e mais escura, surgem e somem em qualquer ponto (sem fonte na base)
+const BG_BUB = (() => {
+  const R = 32, c = document.createElement('canvas'); c.width = c.height = R * 2;
+  const x = c.getContext('2d'), g = x.createRadialGradient(R, R, 0, R, R, R);
+  g.addColorStop(0, 'rgba(150,108,34,.9)'); g.addColorStop(.45, 'rgba(130,92,28,.55)'); g.addColorStop(1, 'rgba(110,78,22,0)');
+  x.fillStyle = g; x.fillRect(0, 0, R * 2, R * 2); return c;
+})();
+const bgBubbles = [];
+function bgBubble(b, now) {
+  return Object.assign(b || {}, { x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+    r: Math.random() * 3 + 1.5, v: Math.random() * 14 + 8, born: now, life: Math.random() * 9000 + 8000,
+    a: Math.random() * .35 + .3, ph: Math.random() * 6.28 });
+}
+let bgBubLast = 0;
+function bgBubblesStep(now) {
+  const want = Math.round(Math.max(30, Math.min(60, innerWidth * innerHeight / 26000)));
+  while (bgBubbles.length < want) { const b = bgBubble(null, now); b.born = now - Math.random() * b.life; bgBubbles.push(b); }
+  bgBubbles.length = want;
+  const dt = Math.min(50, now - (bgBubLast || now)); bgBubLast = now;
+  for (const b of bgBubbles) {
+    b.y -= b.v * dt / 1000; b.x += Math.sin(now * .0008 + b.ph) * .12 * dt / 16;
+    if (now - b.born > b.life || b.y < -10) bgBubble(b, now);
+  }
+}
+function drawBgBubbles(ctx, top, now) {           // top = posição da seção na tela
+  for (const b of bgBubbles) {
+    const k = (now - b.born) / b.life, env = Math.sin(Math.PI * Math.max(0, Math.min(1, k)));
+    const a = b.a * env; if (a < .01) continue;
+    ctx.globalAlpha = a; ctx.drawImage(BG_BUB, b.x - b.r, b.y - top - b.r, b.r * 2, b.r * 2);
+  }
+  ctx.globalAlpha = 1;
+}
 function leafTick(now) {
+  if (!REDUCED_MOTION) bgBubblesStep(now);
   if (LEAF_PAT) for (const f of leafFields) {
     if (!f.visible) continue;
     const r = f.sec.getBoundingClientRect(), vh = Math.min(innerHeight, f.H);
@@ -2264,6 +2108,7 @@ function leafTick(now) {
       ctx.globalCompositeOperation = 'source-over';
     }
     if (REDUCED_MOTION) continue;
+    ctx.setTransform(...T); drawBgBubbles(ctx, r.top, now);
 
     // 2) brilho sutil que acompanha o mouse (só desktop; apaga sobre textos e botões)
     const p = f.ptr;
@@ -2336,15 +2181,50 @@ function enterSite() {
   if (gate.dataset.leaving) return;
   gate.dataset.leaving = '1';
   gate.style.pointerEvents = 'none';
-  const hideGate = () => { gate.style.opacity = '0'; gate.style.display = 'none'; };
-  const reveal = () => {
-    // o padrão de folhas do topo se revela do centro enquanto o espumante clareia
-    const hf = leafFields.find(f => f.sec === hero);
-    if (hf) { hf.drawStart = performance.now() + 150; hf.cx = hf.W / 2; hf.cy = Math.min(hf.H, innerHeight) / 2; }
-    setTimeout(() => hero.classList.add('hero-enter'), REDUCED_MOTION ? 0 : 120);
-  };
-  if (REDUCED_MOTION) { hideGate(); reveal(); return; }
-  playPerlageIntro({ covered: hideGate, reveal });
+  if (!REDUCED_MOTION) {
+    playLeafPortal();
+    gate.style.transition = 'transform 1.3s cubic-bezier(.7,0,.2,1), opacity 1.05s ease .12s, filter 1.1s ease';
+    gate.style.transform = 'perspective(1000px) translateZ(380px)';
+    gate.style.filter = 'blur(8px)';
+  }
+  gate.style.opacity = '0';
+  // o padrão de folhas do topo se revela a partir do centro junto com a entrada
+  const hf = leafFields.find(f => f.sec === hero);
+  if (hf) { hf.drawStart = performance.now() + 450; hf.cx = hf.W / 2; hf.cy = Math.min(hf.H, innerHeight) / 2; }
+  setTimeout(() => hero.classList.add('hero-enter'), REDUCED_MOTION ? 0 : 520);
+  setTimeout(() => gate.style.display = 'none', REDUCED_MOTION ? 50 : 1400);
+}
+
+// Folhas do brasão vindo do fundo e atravessando a tela (sensação de entrar na copa do cajueiro)
+function playLeafPortal() {
+  const P = document.getElementById('leafPortal');
+  if (!P) return;
+  P.innerHTML = ''; P.classList.add('on');
+  const n = innerWidth < 700 ? 22 : 44, base = Math.min(innerWidth, innerHeight);
+  let longest = 0;
+  for (let i = 0; i < n; i++) {
+    const el = document.createElement('div');
+    el.className = 'portal-leaf';
+    el.style.setProperty('--w', (base * (.08 + Math.random() * .16)).toFixed(0) + 'px');
+    el.style.filter = 'brightness(' + (.55 + Math.random() * .65).toFixed(2) + ')';
+    const th = Math.random() * Math.PI * 2, rad = base * (.18 + Math.random() * .62);
+    const x = Math.cos(th) * rad, y = Math.sin(th) * rad;
+    const rz = th * 180 / Math.PI + 90 + (Math.random() * 40 - 20), ry = Math.random() * 60 - 30, spin = (Math.random() < .5 ? -1 : 1) * (80 + Math.random() * 80);
+    const dur = 1500 + Math.random() * 700, delay = Math.random() * 450;
+    longest = Math.max(longest, dur + delay);
+    P.appendChild(el);
+    el.animate([
+      { transform: `translate(-50%,-50%) translate3d(${x * .7}px,${y * .7}px,-1400px) rotateZ(${rz}deg) rotateY(${ry}deg)`, opacity: 0 },
+      { opacity: 1, offset: .25 },
+      { opacity: .9, offset: .7 },
+      { transform: `translate(-50%,-50%) translate3d(${x * 2.3}px,${y * 2.3}px,650px) rotateZ(${rz + spin}deg) rotateY(${ry + 170}deg)`, opacity: 0 }
+    ], { duration: dur, delay, easing: 'cubic-bezier(.55,0,.35,1)', fill: 'both' });
+  }
+  const glow = document.createElement('div');
+  glow.className = 'portal-glow'; P.appendChild(glow);
+  glow.animate([{ transform: 'translate(-50%,-50%) scale(.2)', opacity: 0 }, { opacity: .9, offset: .35 }, { transform: 'translate(-50%,-50%) scale(2.6)', opacity: 0 }],
+    { duration: 1500, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'both' });
+  setTimeout(() => { P.classList.remove('on'); P.innerHTML = ''; }, longest + 120);
 }
 
 // Botão Voltar ao Topo
