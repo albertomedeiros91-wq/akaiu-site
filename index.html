@@ -937,7 +937,12 @@ footer{background:var(--verde-deep)}
   background:radial-gradient(circle,rgba(255,236,190,.55) 0%,rgba(201,154,58,.22) 38%,transparent 70%);filter:blur(12px)}
 
 /* ── Produto: três garrafas preenchendo a coluna ── */
-.bottle-real-img.bottles-trio{max-width:100%;max-height:min(66vh,620px);width:auto}
+/* três garrafas: paradas (sem flutuar/inclinar) e maiores */
+.prod-bottle:has(.bottles-trio) .bottle-wrap{animation:none}
+.prod-bottle:has(.bottles-trio) .bottle-shadow{animation:none;opacity:.8;width:86%;max-width:520px;margin-top:-10px}
+.bottle-real-img.bottles-trio{max-width:100%;max-height:min(calc(100vh - 150px),720px);width:auto;transition:none}
+.prod-bottle:has(.bottles-trio) .bottle-label-text{margin-top:.6rem}
+@media(min-width:1025px){.prod-inner{grid-template-columns:1fr 1.05fr;gap:3rem}}
 .prod-bottle::before{width:min(760px,110%)}
 .bottle-shadow{width:78%;max-width:440px}
 
@@ -2115,7 +2120,7 @@ document.querySelectorAll('.parceiro-logo img').forEach(i => i.parentElement.sty
 // Garrafa flutuando: inclina levemente acompanhando o mouse
 (function () {
   const prod = document.getElementById('produto'), img = document.querySelector('.bottle-real-img');
-  if (!prod || !img || TOUCH || REDUCED_MOTION) return;
+  if (!prod || !img || TOUCH || REDUCED_MOTION || img.classList.contains('bottles-trio')) return;
   prod.addEventListener('pointermove', e => {
     const r = img.getBoundingClientRect(), dx = clamp01((e.clientX - r.left) / r.width) * 2 - 1;
     img.style.rotate = (dx * 3).toFixed(2) + 'deg';
