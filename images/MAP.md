@@ -15,7 +15,7 @@ gere um `.webp` com o mesmo nome (ou altere o `src=` no `index.html`).
 | PROCESSO-2.webp | Fermentação Base | POCESSO - FERMENTAÇÃO BASE.PNG |
 | PROCESSO-3.webp | Método Champenoise | PROCESSO - MÉTODO CHAMPENOISE.png |
 | PROCESSO-4.webp | Remuage & Dégorgement | PROCESSO - Remuage & Dégorgement.png |
-| MARCA-1.webp | Texto institucional (A Marca) | A MARCA - SEGUNDA PARTE.png |
+| MARCA-GARRAFA.webp | Garrafa sem fundo na seção A Marca | GARRAFA AKAÎU_2.png (recortada) |
 | MARCA-2..4.webp | Cards de Impacto Social/Ambiental/Cultural | A MARCA - SEGUNDA PARTE 1/2/3.PNG |
 | CONTATO-1.webp | Seção Fale Conosco | FALE CONOSCO - FINAL.png |
 | PARCEIROS-1..11.png | Logos dos parceiros | — |

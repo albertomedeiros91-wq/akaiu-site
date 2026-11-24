@@ -953,6 +953,17 @@ footer{background:var(--verde-deep)}
 }
 @media (prefers-reduced-motion: reduce){#hero .hero-main > *{opacity:1!important;animation:none!important}}
 
+/* ── A Marca: garrafa sem fundo, grande, com halo âmbar ── */
+.sobre-image:has(.marca-garrafa){position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;isolation:isolate}
+.sobre-image:has(.marca-garrafa)::before{content:"";position:absolute;left:50%;top:46%;width:min(620px,120%);height:92%;transform:translate(-50%,-50%);z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(214,150,62,.5) 0%,rgba(150,92,30,.22) 40%,transparent 70%);filter:blur(28px)}
+.sobre-image img.marca-garrafa{display:block;width:auto;max-width:100%;height:min(calc(100vh - 150px),680px);max-height:none;aspect-ratio:auto;object-fit:contain;
+  border:none;border-radius:0;outline:none;margin:0 auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6));animation:floaty 8s ease-in-out infinite}
+.marca-garrafa-sombra{width:46%;max-width:240px;height:22px;margin-top:-8px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.6) 0%,transparent 70%);animation:shadowPulse 8s ease-in-out infinite}
+@media(max-width:1024px){.sobre-image img.marca-garrafa{height:min(70vh,560px)}}
+@media(max-width:768px){.sobre-image img.marca-garrafa{height:min(62vh,460px)}}
+@media (prefers-reduced-motion: reduce){.sobre-image img.marca-garrafa,.marca-garrafa-sombra{animation:none}}
+
 /* ── Interlúdio (antiga foto do topo) ── */
 .interludio{position:relative;z-index:2;aspect-ratio:1536/599;min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;
   padding:3rem 1.5rem;overflow:hidden;isolation:isolate;background:var(--verde-deep)}
@@ -1366,7 +1377,8 @@ footer{background:var(--verde-deep)}
         <p class="body-p reveal d3" style="margin-top:1.2rem;" data-i18n="marca.p2">Unimos ciência, tradição e sensibilidade para criar bebidas de excelência que respeitam a terra, valorizam as pessoas e demonstram que inovação e impacto positivo podem caminhar lado a lado.</p>
       </div>
       <div class="sobre-image reveal d3">
-        <img src="images/MARCA-1.webp" alt="Garrafa AKAÎU com taças de espumante">
+        <img class="marca-garrafa" src="images/MARCA-GARRAFA.webp" alt="Garrafa do espumante AKAÎU">
+        <div class="marca-garrafa-sombra" aria-hidden="true"></div>
       </div>
     </div>
 
