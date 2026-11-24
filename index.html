@@ -668,11 +668,13 @@ footer{background:var(--verde-deep)}
 
 /* ── Dourado metálico (acabamento hot-stamping do rótulo) ── */
 :root{--foil:linear-gradient(105deg,#7E5609 0%,#A97816 16%,#D9AE52 30%,#FFF1C4 38%,#E3BE66 44%,#A97816 58%,#C9973A 74%,#8C6210 88%,#7E5609 100%)}
-.foil{display:block;background:var(--foil);background-size:300% 100%;background-position:100% 0;animation:foilShine 7s ease-in-out infinite;
+.foil{display:block;background:var(--foil);background-size:300% 100%;background-position:0 0;animation:foilLoop 7s linear infinite;
   -webkit-mask:var(--foil-mask) center/contain no-repeat;mask:var(--foil-mask) center/contain no-repeat}
 .foil-logo{--foil-mask:url('images/brand/akaiu-logo.svg');aspect-ratio:431.25/111.75}
 .foil-crest{--foil-mask:url('images/brand/akaiu-brasao.svg');aspect-ratio:158.25/123.25}
 @keyframes foilShine{0%,12%{background-position:100% 0}55%,100%{background-position:0 0}}
+/* brilho contínuo: o dourado desliza exatamente um ciclo do gradiente e emenda sem voltar ao início */
+@keyframes foilLoop{from{background-position:0 0}to{background-position:-150% 0}}
 .h2 em,.hero-tagline{background:linear-gradient(100deg,#B8862A 0%,#E9C877 35%,#FFF0C2 45%,#E3BE66 55%,#B8862A 80%);background-size:250% 100%;
   -webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
 .h2 em{animation:none}
@@ -926,8 +928,9 @@ footer{background:var(--verde-deep)}
 #hero:not(.hero-enter) .hero-main > *{opacity:0;animation:none}
 #hero.hero-enter .hero-main > *{animation:heroRise 1.5s cubic-bezier(.16,1,.3,1) both}
 #hero.hero-enter .hero-title{animation-delay:.18s}
-#hero.hero-enter .hero-crest{animation:heroRise 1.5s cubic-bezier(.16,1,.3,1) both,foilShine 7s ease-in-out .5s infinite}
+#hero.hero-enter .hero-crest{animation:heroRise 1.5s cubic-bezier(.16,1,.3,1) both,foilLoop 7s linear .5s infinite}
 .foil-logo,#hero .hero-title .foil-logo{animation:none}
+.n-logo .foil-logo{animation:foilLoop 7s linear infinite}
 #hero.hero-enter .hero-tagline{animation:heroRise 1.5s cubic-bezier(.16,1,.3,1) .36s both}
 #hero.hero-enter .hero-sub{animation-delay:.52s}
 
