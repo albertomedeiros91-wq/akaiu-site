@@ -2019,10 +2019,10 @@ leafTileImg.onload = () => {
   LEAF_PAT = { base: tint(LEAF_LINE), gold: tint(LEAF_GOLD), w: leafTileImg.width };
 };
 function leafLayout(f) { f.W = f.sec.clientWidth; f.H = f.sec.clientHeight; }
-document.querySelectorAll('[data-leaves]').forEach(sec => {
+document.querySelectorAll('[data-leaves], #manifesto, #galeria, .interludio').forEach(sec => {
   const cv = document.createElement('canvas'); cv.className = 'leaf-layer'; cv.setAttribute('aria-hidden', 'true'); sec.prepend(cv);
   const f = { sec, cv, ctx: cv.getContext('2d'), gold: document.createElement('canvas'), mask: document.createElement('canvas'),
-              visible: false, drawStart: 0, spots: [], lastSpot: 0, ptr: { x: -999, y: -999, tx: -999, ty: -999, on: 0, target: 0 } };
+              bubOnly: !sec.hasAttribute('data-leaves'), visible: false, drawStart: 0, spots: [], lastSpot: 0, ptr: { x: -999, y: -999, tx: -999, ty: -999, on: 0, target: 0 } };
   leafLayout(f);
   if (!TOUCH) {
     const TEXT_SEL = 'h1,h2,h3,p,.tag,.spec-row,.proc-title,.proc-desc,.gate-tag,.lang-switch,button,a,.bottle-label-text,img';
@@ -2053,19 +2053,21 @@ function leafPattern(ctx, src) {
 // Bolhas de fundo: sutis, numa cor só e mais escura, surgem e somem em qualquer ponto (sem fonte na base)
 const BG_BUB = (() => {
   const R = 32, c = document.createElement('canvas'); c.width = c.height = R * 2;
-  const x = c.getContext('2d'), g = x.createRadialGradient(R, R, 0, R, R, R);
-  g.addColorStop(0, 'rgba(150,108,34,.9)'); g.addColorStop(.45, 'rgba(130,92,28,.55)'); g.addColorStop(1, 'rgba(110,78,22,0)');
-  x.fillStyle = g; x.fillRect(0, 0, R * 2, R * 2); return c;
+  const x = c.getContext('2d'), g = x.createRadialGradient(R * .8, R * .75, 0, R, R, R * .9);
+  g.addColorStop(0, 'rgba(196,148,52,.55)'); g.addColorStop(.7, 'rgba(178,132,32,.38)'); g.addColorStop(.9, 'rgba(204,158,62,.85)'); g.addColorStop(1, 'rgba(178,132,32,0)');
+  x.fillStyle = g; x.beginPath(); x.arc(R, R, R, 0, 7); x.fill();
+  x.fillStyle = 'rgba(236,200,120,.75)'; x.beginPath(); x.arc(R * .68, R * .64, R * .16, 0, 7); x.fill();
+  return c;
 })();
 const bgBubbles = [];
 function bgBubble(b, now) {
   return Object.assign(b || {}, { x: Math.random() * innerWidth, y: Math.random() * innerHeight,
-    r: Math.random() * 3 + 1.5, v: Math.random() * 14 + 8, born: now, life: Math.random() * 9000 + 8000,
-    a: Math.random() * .35 + .3, ph: Math.random() * 6.28 });
+    r: Math.random() * 3.5 + 1.5, v: Math.random() * 22 + 14, born: now, life: Math.random() * 8000 + 7000,
+    a: Math.random() * .35 + .55, ph: Math.random() * 6.28 });
 }
 let bgBubLast = 0;
 function bgBubblesStep(now) {
-  const want = Math.round(Math.max(30, Math.min(60, innerWidth * innerHeight / 26000)));
+  const want = Math.round(Math.max(35, Math.min(75, innerWidth * innerHeight / 18000)));
   while (bgBubbles.length < want) { const b = bgBubble(null, now); b.born = now - Math.random() * b.life; bgBubbles.push(b); }
   bgBubbles.length = want;
   const dt = Math.min(50, now - (bgBubLast || now)); bgBubLast = now;
@@ -2084,8 +2086,8 @@ function drawBgBubbles(ctx, top, now) {           // top = posição da seção 
 }
 function leafTick(now) {
   if (!REDUCED_MOTION) bgBubblesStep(now);
-  if (LEAF_PAT) for (const f of leafFields) {
-    if (!f.visible) continue;
+  for (const f of leafFields) {
+    if (!f.visible || (!LEAF_PAT && !f.bubOnly)) continue;
     const r = f.sec.getBoundingClientRect(), vh = Math.min(innerHeight, f.H);
     const off = Math.max(0, Math.min(-r.top, f.H - vh));
     const cw = Math.round(f.W * LEAF_DPR), ch = Math.round(vh * LEAF_DPR);
@@ -2093,6 +2095,7 @@ function leafTick(now) {
     f.cv.style.height = vh + 'px'; f.cv.style.transform = `translateY(${off}px)`;
     const ctx = f.ctx, T = [LEAF_DPR, 0, 0, LEAF_DPR, 0, -off * LEAF_DPR];
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cw, ch);
+    if (f.bubOnly) { if (!REDUCED_MOTION) { ctx.setTransform(...T); drawBgBubbles(ctx, r.top, now); } continue; }
     if (!f.drawStart && !REDUCED_MOTION) continue;
 
     // 1) linhas escuras preenchendo tudo, reveladas a partir do centro ao entrar na seção
