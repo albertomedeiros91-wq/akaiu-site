@@ -1025,8 +1025,12 @@ footer{background:var(--verde-deep)}
 }
 /* ── Fotos estáveis: só a garrafa da seção A Marca flutua ── */
 .sobre-image img:not(.marca-garrafa),.sensorial-img img,.cont-mid-img,.proc-visuals img,.arch-ext,.bottle-wrap,.bottle-shadow,.hero-visual img{animation:none}
-.manifesto-bg{transform:none!important}
-.proc-card:hover img,.proc-card:focus-within img,.mudanca-card:hover .mudanca-img img,.proc-visuals img:hover{transform:none}
+/* ── Atmosfera no computador: as cinco fotos lado a lado, sem setas, pontos ou rolagem (no celular continua o carrossel) ── */
+@media(min-width:1025px){
+  .slider-wrapper{overflow:hidden;justify-content:center;scroll-snap-type:none;padding:1rem 4vw 2rem;cursor:default}
+  .slide-item,.slide-item.focused{flex:1 1 0;width:auto;max-width:340px;transform:none;opacity:1;filter:none;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+  .slider-frame .slider-btn,.slider-controls,.swipe-hint{display:none}
+}
 </style>
 </head>
 <body>
@@ -2147,7 +2151,7 @@ addEventListener('resize', () => { clearTimeout(leafResizeT); leafResizeT = setT
 // Interlúdio: a foto dos cajus se move mais devagar que a página (profundidade)
 (function () {
   if (REDUCED_MOTION) return;
-  const pairs = [] // foto do manifesto fica parada
+  const pairs = [['.manifesto-band', '.manifesto-bg']]
     .map(([s, b]) => [document.querySelector(s), document.querySelector(b)]).filter(p => p[0] && p[1]);
   const upd = () => pairs.forEach(([sec, bg]) => { const r = sec.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
     bg.style.setProperty('--py', ((r.top + r.height / 2 - innerHeight / 2) * -0.15).toFixed(1) + 'px'); });
