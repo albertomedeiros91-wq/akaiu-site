@@ -1090,8 +1090,20 @@ footer{background:var(--verde-deep)}
 #fontPick button{all:unset;cursor:pointer;padding:6px 10px;border-radius:999px;border:1px solid rgba(201,154,58,.35)}
 #fontPick button[aria-pressed="true"]{background:#C99A3A;color:#141b12;border-color:#C99A3A}
 /* Manifesto: coluna mais estreita para não invadir os cajus da foto */
-@media(min-width:1011px){.manifesto-inner{max-width:560px}#manifesto .manifesto-text{line-height:1.85}}
+
 #produto .prod-left .produto-header{margin-bottom:1.8rem}
+/* ── Cada tela cabe na área visível (altura da janela menos o menu fixo) ── */
+@media(min-width:1025px){
+  .manifesto-band{min-height:100vh;padding-top:calc(72px + 3vh);padding-bottom:4vh}
+  .manifesto-inner{max-width:720px}
+  #manifesto .manifesto-text{line-height:1.75}
+  .manifesto-inner .foil-crest{width:54px;margin-bottom:1.1rem}
+  .manifesto-cta{margin-top:1.6rem}
+  #processo{padding-top:2rem;padding-bottom:2rem}
+  .proc-card{max-height:calc(100vh - 410px);min-height:280px}
+  .proc-cards{justify-content:center;grid-template-columns:repeat(4,minmax(0,calc((100vh - 410px) / 1.43)))}
+  #galeria{padding-top:2.6rem;padding-bottom:2rem}
+}
 </style>
 </head>
 <body>
@@ -1217,7 +1229,7 @@ footer{background:var(--verde-deep)}
     <span class="chapter" data-i18n="chapter.terra">Terra</span>
     <span class="foil foil-crest" aria-hidden="true"></span>
     <div class="hero-manifesto manifesto-text">
-    <p data-i18n-html="hero.manifesto">Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto:<br>vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera.<br>Unimos ciência e tradição, campo e arte, para transformar<br>uma parte desse fruto, por muito tempo subvalorizada,<br>em símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é uma celebração que nasce do povo e volta para o povo.<br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em></p>
+    <p data-i18n-html="hero.manifesto">Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera.<br>Unimos ciência e tradição, campo e arte, para transformar uma parte desse fruto,<br>por muito tempo subvalorizada, em símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é uma celebração que nasce do povo e volta para o povo.<br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em></p>
   </div>
     <div class="hero-cta manifesto-cta">
       <a href="#produto" class="btn-g" data-i18n="hero.cta">Conheça o Produto</a>
@@ -1656,7 +1668,7 @@ const translations = {
       pretitle: "Espumante de Caju · Nature · Método Champenoise",
       tagline: "Terra, Tempo e Talento",
       sub: "Rio Grande do Norte · Brasil · 750ml · 9% vol",
-      manifesto: "Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto:<br>vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera.<br>Unimos ciência e tradição, campo e arte, para transformar<br>uma parte desse fruto, por muito tempo subvalorizada,<br>em símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é uma celebração que nasce do povo e volta para o povo.<br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em>",
+      manifesto: "Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera.<br>Unimos ciência e tradição, campo e arte, para transformar uma parte desse fruto,<br>por muito tempo subvalorizada, em símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é uma celebração que nasce do povo e volta para o povo.<br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em>",
       cta: "Conheça o Produto"
     },
     produto: {
