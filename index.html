@@ -1042,22 +1042,13 @@ footer{background:var(--verde-deep)}
 @media (hover:none){.mudanca-card .mudanca-desc{max-height:12rem;opacity:1;margin-top:.6rem}.mudanca-card::before{opacity:1}}
 /* ícones do Processo sem o círculo em volta */
 .proc-icon,.proc-card .proc-icon{border:none;background:none;border-radius:0;justify-content:flex-start}
-/* ── Fase 2: capítulos, legenda do pedúnculo e ficha técnica ── */
+/* ── Fase 2: capítulos e legenda do pedúnculo ── */
 .chapter{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;letter-spacing:.12em;color:var(--gold);opacity:.85;margin-bottom:.5rem}
 .manifesto-inner .chapter{margin-bottom:.8rem}
 #galeria .chapter,.proc-header .chapter,.parcerias-header .chapter,#parceiros .chapter{text-align:center}
 .interludio-note{max-width:640px;margin:1.2rem auto 1.4rem;font-size:clamp(.92rem,1.2vw,1.02rem);line-height:1.75;color:var(--text);opacity:.92}
-.ficha{max-width:980px;margin:clamp(3rem,7vh,5rem) auto 0;padding:clamp(1.8rem,4vw,2.8rem) clamp(1.4rem,4vw,3.2rem);
-  border:1px solid rgba(201,154,58,.35);border-radius:18px;background:rgba(14,20,13,.55);backdrop-filter:blur(2px)}
-.ficha-head{text-align:center;margin-bottom:1.6rem}
-.ficha-head .tag{margin-bottom:.4rem}
-.ficha-title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(1.7rem,3vw,2.3rem);color:var(--text-lt,#f3ead8)}
-.ficha-title em{color:var(--gold-lt)}
-.ficha-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:3rem;margin:0}
-.ficha-row{display:grid;grid-template-columns:minmax(140px,.9fr) 1.4fr;gap:1rem;align-items:baseline;padding:.85rem 0;border-bottom:1px solid rgba(201,154,58,.18)}
-.ficha-row dt{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt)}
-.ficha-row dd{margin:0;color:var(--text);font-size:.98rem;line-height:1.5}
-@media(max-width:768px){.ficha-grid{grid-template-columns:1fr}.ficha-row{grid-template-columns:1fr;gap:.25rem}}
+.sensorial-specs{grid-template-columns:1.15fr .8fr .85fr 1fr 1.3fr}
+.sensorial-specs .spec-row{padding-left:.6rem;padding-right:.6rem}
 </style>
 </head>
 <body>
@@ -1246,16 +1237,24 @@ footer{background:var(--verde-deep)}
         </div>
         <div class="sensorial-specs">
           <div class="spec-row">
+            <span class="spec-label" data-i18n="sensorial.metodo_label">MÉTODO</span>
+            <span class="spec-val" data-i18n="sensorial.metodo_val">Tradicional (Champenoise)</span>
+          </div>
+          <div class="spec-row">
             <span class="spec-label" data-i18n="sensorial.classificacao_label">CLASSIFICAÇÃO</span>
             <span class="spec-val" data-i18n="sensorial.classificacao_val">Nature</span>
           </div>
           <div class="spec-row">
-            <span class="spec-label" data-i18n="sensorial.harmonizacao_label">HARMONIZAÇÃO</span>
-            <span class="spec-val" data-i18n="sensorial.harmonizacao_val">Pratos leves, peixes e frutos do mar</span>
+            <span class="spec-label" data-i18n="sensorial.teor_label">TEOR ALCOÓLICO</span>
+            <span class="spec-val" data-i18n="sensorial.teor_val">9% vol</span>
           </div>
           <div class="spec-row">
             <span class="spec-label" data-i18n="sensorial.temperatura_label">TEMPERATURA DE SERVIÇO</span>
             <span class="spec-val" data-i18n="sensorial.temperatura_val">4°C a 6°C</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label" data-i18n="sensorial.harmonizacao_label">HARMONIZAÇÃO</span>
+            <span class="spec-val" data-i18n="sensorial.harmonizacao_val">Pratos leves, peixes e frutos do mar</span>
           </div>
         </div>
       </div>
@@ -1390,24 +1389,6 @@ footer{background:var(--verde-deep)}
       <span class="swipe-arrow">⟩</span>
     </div>
 
-    <!-- Ficha técnica: O Espumante -->
-    <div class="ficha reveal">
-      <div class="ficha-head">
-        <span class="tag" data-i18n="ficha.tag">— O Espumante</span>
-        <h3 class="ficha-title" data-i18n-html="ficha.title">Ficha <em>Técnica</em></h3>
-      </div>
-      <dl class="ficha-grid">
-        <div class="ficha-row"><dt data-i18n="ficha.materia_l">Matéria-prima</dt><dd data-i18n="ficha.materia_v">Pedúnculo do caju</dd></div>
-        <div class="ficha-row"><dt data-i18n="ficha.origem_l">Origem</dt><dd data-i18n="ficha.origem_v">Rio Grande do Norte, Nordeste do Brasil</dd></div>
-        <div class="ficha-row"><dt data-i18n="ficha.metodo_l">Método</dt><dd data-i18n="ficha.metodo_v">Tradicional (Champenoise), segunda fermentação na garrafa</dd></div>
-        <div class="ficha-row"><dt data-i18n="ficha.leveduras_l">Tempo sobre as leveduras</dt><dd data-i18n="ficha.leveduras_v">Mínimo de 2 meses</dd></div>
-        <div class="ficha-row"><dt data-i18n="ficha.classif_l">Classificação</dt><dd data-i18n="ficha.classif_v">Nature, sem licor de expedição</dd></div>
-        <div class="ficha-row"><dt data-i18n="ficha.teor_l">Teor alcoólico</dt><dd data-i18n="ficha.teor_v">9% vol</dd></div>
-        <div class="ficha-row"><dt data-i18n="ficha.volume_l">Volume</dt><dd data-i18n="ficha.volume_v">750 ml</dd></div>
-        <div class="ficha-row"><dt data-i18n="ficha.temp_l">Temperatura de serviço</dt><dd data-i18n="ficha.temp_v">4 °C a 6 °C</dd></div>
-        <div class="ficha-row"><dt data-i18n="ficha.harm_l">Harmonização</dt><dd data-i18n="ficha.harm_v">Pratos leves, peixes e frutos do mar</dd></div>
-      </dl>
-    </div>
   </div>
 </section>
 
@@ -1660,6 +1641,10 @@ const translations = {
       aroma_val: "Fresco e delicado, com notas adocicadas de cajuína e compota.",
       boca_label: "Boca",
       boca_val: "Seco e refrescante, de acidez equilibrada, toque mineral e final prolongado, que convida a um novo gole.",
+      metodo_label: "MÉTODO",
+      metodo_val: "Tradicional (Champenoise)",
+      teor_label: "TEOR ALCOÓLICO",
+      teor_val: "9% vol",
       classificacao_label: "CLASSIFICAÇÃO",
       classificacao_val: "Nature",
       harmonizacao_label: "HARMONIZAÇÃO",
@@ -1765,31 +1750,9 @@ const translations = {
       swipe: "Deslize para ver mais"
     },
     chapter: {
-      terra: "I · Terra",
-      tempo: "II · Tempo",
-      talento: "III · Talento"
-    },
-    ficha: {
-      tag: "— O Espumante",
-      title: "Ficha <em>Técnica</em>",
-      materia_l: "Matéria-prima",
-      materia_v: "Pedúnculo do caju",
-      origem_l: "Origem",
-      origem_v: "Rio Grande do Norte, Nordeste do Brasil",
-      metodo_l: "Método",
-      metodo_v: "Tradicional (Champenoise), segunda fermentação na garrafa",
-      leveduras_l: "Tempo sobre as leveduras",
-      leveduras_v: "Mínimo de 2 meses",
-      classif_l: "Classificação",
-      classif_v: "Nature, sem licor de expedição",
-      teor_l: "Teor alcoólico",
-      teor_v: "9% vol",
-      volume_l: "Volume",
-      volume_v: "750 ml",
-      temp_l: "Temperatura de serviço",
-      temp_v: "4 °C a 6 °C",
-      harm_l: "Harmonização",
-      harm_v: "Pratos leves, peixes e frutos do mar"
+      terra: "Terra",
+      tempo: "Tempo",
+      talento: "Talento"
     }
   },
   en: {
@@ -1837,6 +1800,10 @@ const translations = {
       aroma_val: "Fresh and delicate, with sweet notes of cajuína and cashew preserves.",
       boca_label: "Palate",
       boca_val: "Dry and refreshing, with balanced acidity, a mineral touch and a long finish that invites another sip.",
+      metodo_label: "METHOD",
+      metodo_val: "Traditional (Champenoise)",
+      teor_label: "ALCOHOL",
+      teor_val: "9% vol",
       classificacao_label: "CLASSIFICATION",
       classificacao_val: "Nature",
       harmonizacao_label: "PAIRING",
@@ -1942,31 +1909,9 @@ const translations = {
       swipe: "Swipe to see more"
     },
     chapter: {
-      terra: "I · Land",
-      tempo: "II · Time",
-      talento: "III · Talent"
-    },
-    ficha: {
-      tag: "— The Sparkling Wine",
-      title: "Technical <em>Sheet</em>",
-      materia_l: "Raw material",
-      materia_v: "Cashew apple",
-      origem_l: "Origin",
-      origem_v: "Rio Grande do Norte, Northeast Brazil",
-      metodo_l: "Method",
-      metodo_v: "Traditional (Champenoise), second fermentation in the bottle",
-      leveduras_l: "Time on lees",
-      leveduras_v: "At least 2 months",
-      classif_l: "Style",
-      classif_v: "Nature, no added dosage",
-      teor_l: "Alcohol",
-      teor_v: "9% vol",
-      volume_l: "Volume",
-      volume_v: "750 ml",
-      temp_l: "Serving temperature",
-      temp_v: "4 °C to 6 °C",
-      harm_l: "Pairing",
-      harm_v: "Light dishes, fish and seafood"
+      terra: "Land",
+      tempo: "Time",
+      talento: "Talent"
     }
   },
   es: {
@@ -2014,6 +1959,10 @@ const translations = {
       aroma_val: "Fresco y delicado, con notas dulces de cajuína y compota.",
       boca_label: "Boca",
       boca_val: "Seco y refrescante, de acidez equilibrada, toque mineral y final prolongado, que invita a un nuevo sorbo.",
+      metodo_label: "MÉTODO",
+      metodo_val: "Tradicional (Champenoise)",
+      teor_label: "GRADUACIÓN",
+      teor_val: "9% vol",
       classificacao_label: "CLASIFICACIÓN",
       classificacao_val: "Nature",
       harmonizacao_label: "MARIDAJE",
@@ -2119,31 +2068,9 @@ const translations = {
       swipe: "Desliza para ver más"
     },
     chapter: {
-      terra: "I · Tierra",
-      tempo: "II · Tiempo",
-      talento: "III · Talento"
-    },
-    ficha: {
-      tag: "— El Espumoso",
-      title: "Ficha <em>Técnica</em>",
-      materia_l: "Materia prima",
-      materia_v: "Manzana de anacardo",
-      origem_l: "Origen",
-      origem_v: "Rio Grande do Norte, Nordeste de Brasil",
-      metodo_l: "Método",
-      metodo_v: "Tradicional (Champenoise), segunda fermentación en botella",
-      leveduras_l: "Tiempo sobre lías",
-      leveduras_v: "Mínimo 2 meses",
-      classif_l: "Clasificación",
-      classif_v: "Nature, sin licor de expedición",
-      teor_l: "Graduación",
-      teor_v: "9% vol",
-      volume_l: "Volumen",
-      volume_v: "750 ml",
-      temp_l: "Temperatura de servicio",
-      temp_v: "4 °C a 6 °C",
-      harm_l: "Maridaje",
-      harm_v: "Platos ligeros, pescados y mariscos"
+      terra: "Tierra",
+      tempo: "Tiempo",
+      talento: "Talento"
     }
   },
   zh: {
@@ -2191,6 +2118,10 @@ const translations = {
       aroma_val: "清新细腻，带有腰果汁与腰果蜜饯的甜美气息。",
       boca_label: "口感",
       boca_val: "干爽清新，酸度平衡，带有矿物气息，余味悠长，让人忍不住再饮一口。",
+      metodo_label: "工艺",
+      metodo_val: "传统法（香槟法）",
+      teor_label: "酒精度",
+      teor_val: "9% vol",
       classificacao_label: "分类",
       classificacao_val: "Nature",
       harmonizacao_label: "搭配建议",
@@ -2296,31 +2227,9 @@ const translations = {
       swipe: "滑动查看更多"
     },
     chapter: {
-      terra: "壹 · 土地",
-      tempo: "贰 · 时间",
-      talento: "叁 · 才华"
-    },
-    ficha: {
-      tag: "— 起泡酒",
-      title: "技术<em>参数</em>",
-      materia_l: "原料",
-      materia_v: "腰果苹果",
-      origem_l: "产地",
-      origem_v: "巴西东北部 · 北里奥格兰德州",
-      metodo_l: "工艺",
-      metodo_v: "传统法（香槟法），瓶中二次发酵",
-      leveduras_l: "酒泥陈酿时间",
-      leveduras_v: "至少 2 个月",
-      classif_l: "类型",
-      classif_v: "Nature，不添加补液",
-      teor_l: "酒精度",
-      teor_v: "9% vol",
-      volume_l: "容量",
-      volume_v: "750 ml",
-      temp_l: "饮用温度",
-      temp_v: "4 °C 至 6 °C",
-      harm_l: "餐酒搭配",
-      harm_v: "清淡菜肴、鱼类与海鲜"
+      terra: "土地",
+      tempo: "时间",
+      talento: "才华"
     }
   }
 };
