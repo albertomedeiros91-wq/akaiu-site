@@ -16,7 +16,7 @@
 <meta name="theme-color" content="#252D22">
 <link rel="icon" type="image/svg+xml" href="images/brand/akaiu-brasao.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Marcellus&family=Roboto+Condensed:wght@300;400;500&family=Jost:wght@300;400;500&family=Tenor+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Marcellus&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
@@ -612,7 +612,7 @@ footer { border-top: 1px solid rgba(178,132,32,.1); padding: 4rem 5rem 3rem; bac
 /* ═══════════════════════════════════════════════
    REBRANDING 2026 — identidade do rótulo verde
    Tipografia: Marcellus (títulos, ≈ serifada do rótulo)
-               Roboto Condensed (textos/rótulos, ≈ sans da gravata)
+               Jost (textos e etiquetas)
                Cormorant Garamond itálico (voz poética)
    ═══════════════════════════════════════════════ */
 body{font-weight:300;letter-spacing:.01em}
@@ -1072,52 +1072,14 @@ footer{background:var(--verde-deep)}
 .interludio-inner{max-width:760px;margin:0 auto}
 .interludio-quote{font-size:clamp(1.8rem,3.6vw,3rem)}
 .interludio-note{max-width:600px;margin:1.2rem auto 0}
-/* ── Tipografia: variáveis e opções em comparação (?fontes=a|b|c) ── */
-:root{--f-title:"Marcellus",serif;--f-accent:"Cormorant Garamond",serif;--f-body:"Roboto Condensed",sans-serif;--f-label:"Roboto Condensed",sans-serif}
-/* B · Refinada: títulos Marcellus, destaques Cormorant, textos e etiquetas em Jost */
-:root[data-fonts="b"]{--f-body:"Jost",sans-serif;--f-label:"Jost",sans-serif}
-:root[data-fonts="b"] body{font-weight:300}
-:root[data-fonts="b"] .body-p,:root[data-fonts="b"] .proc-desc,:root[data-fonts="b"] .mudanca-desc,:root[data-fonts="b"] .taste-note p{font-size:clamp(.95rem,1.1vw,1.02rem);line-height:1.8}
-:root[data-fonts="b"] .tag,:root[data-fonts="b"] .spec-label,:root[data-fonts="b"] .n-links a,:root[data-fonts="b"] .btn-g,:root[data-fonts="b"] .n-cta{font-weight:400}
-:root[data-fonts="b"] .hero-manifesto,:root[data-fonts="b"] .interludio-quote,:root[data-fonts="b"] .h2 em{font-weight:500}
-/* C · Contemporânea: títulos Tenor Sans (traço fino como o logotipo), destaques Cormorant, textos Jost */
-:root[data-fonts="c"]{--f-title:"Tenor Sans",sans-serif;--f-body:"Jost",sans-serif;--f-label:"Jost",sans-serif}
-:root[data-fonts="c"] .h2,:root[data-fonts="c"] .sensorial-title{letter-spacing:.02em}
-:root[data-fonts="c"] .body-p,:root[data-fonts="c"] .proc-desc,:root[data-fonts="c"] .mudanca-desc,:root[data-fonts="c"] .taste-note p{font-size:clamp(.95rem,1.1vw,1.02rem);line-height:1.8}
-:root[data-fonts="c"] .hero-manifesto,:root[data-fonts="c"] .interludio-quote,:root[data-fonts="c"] .h2 em{font-weight:500}
-#fontPick{position:fixed;left:16px;bottom:16px;z-index:9800;display:flex;gap:6px;align-items:center;padding:8px 10px;border-radius:999px;
-  background:rgba(14,20,13,.92);border:1px solid rgba(201,154,58,.5);font:500 12px/1 "Jost",sans-serif;color:#e9dfc6;letter-spacing:.08em}
-#fontPick button{all:unset;cursor:pointer;padding:6px 10px;border-radius:999px;border:1px solid rgba(201,154,58,.35)}
-#fontPick button[aria-pressed="true"]{background:#C99A3A;color:#141b12;border-color:#C99A3A}
-/* Manifesto: coluna mais estreita para não invadir os cajus da foto */
-
-#produto .prod-left .produto-header{margin-bottom:1.8rem}
-/* ── Cada tela cabe na área visível (altura da janela menos o menu fixo) ── */
-@media(min-width:1025px){
-  .manifesto-band{min-height:100vh;padding-top:calc(72px + 3vh);padding-bottom:4vh}
-  .manifesto-inner{max-width:720px}
-  #manifesto .manifesto-text{line-height:1.75}
-  .manifesto-inner .foil-crest{width:54px;margin-bottom:1.1rem}
-  .manifesto-cta{margin-top:1.6rem}
-  #processo{padding-top:2rem;padding-bottom:2rem}
-  .proc-card{aspect-ratio:3/4.3;height:auto;max-height:calc(100vh - 290px)}
-  .proc-cards{grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1300px}
-  #galeria{padding-top:2.6rem;padding-bottom:2rem}
-}
-/* Atmosfera: destaque suave na foto sob o mouse (só computador) */
-@media(min-width:1025px) and (hover:hover){
-  #slider .slide-item{transition:transform .6s cubic-bezier(.16,1,.3,1),filter .6s ease,outline-color .6s ease,box-shadow .6s ease}
-  #slider .slide-item img{transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
-  #slider:hover .slide-item:not(:hover){filter:brightness(.72) saturate(.85)}
-  #slider .slide-item:hover{transform:translateY(-6px);outline-color:rgba(240,212,138,.9);box-shadow:0 36px 70px rgba(0,0,0,.7),0 0 40px rgba(201,154,58,.18)}
-  #slider .slide-item:hover img{transform:scale(1.05)}
-}
-/* Menu: some ao rolar para baixo; volta ao rolar para cima ou com o mouse no topo */
-nav.nav-hide{transform:translateY(-110%);pointer-events:none}
+/* ── Tipografia: Marcellus (títulos), Cormorant Garamond (destaques em itálico), Jost (textos e etiquetas) ── */
+:root{--f-title:"Marcellus",serif;--f-accent:"Cormorant Garamond",serif;--f-body:"Jost",sans-serif;--f-label:"Jost",sans-serif}
+.body-p,.proc-desc,.mudanca-desc,.taste-note p{font-size:clamp(.95rem,1.1vw,1.02rem);line-height:1.8}
+.tag,.spec-label,.n-links a,.btn-g,.n-cta{font-weight:400}
+.hero-manifesto,.interludio-quote,.h2 em{font-weight:500}
 </style>
 </head>
 <body>
-<script>(function(){try{var q=new URLSearchParams(location.search).get('fontes');if(q)localStorage.setItem('akaiu_fontes',q);var f=localStorage.getItem('akaiu_fontes');if(f&&f!=='a')document.documentElement.dataset.fonts=f;}catch(e){}})();</script>
 
 <!-- SPRITE: ÍCONES TEMÁTICOS DE CAJU -->
 <svg style="display:none" aria-hidden="true">
@@ -2708,6 +2670,5 @@ function submitForm(btn) {
   }, 3000);
 }
 </script>
-<script>(function(){var f;try{f=localStorage.getItem('akaiu_fontes')}catch(e){}if(!f)return;var d=document.createElement('div');d.id='fontPick';d.innerHTML='Fontes '+['a','b','c'].map(function(k){return '<button data-k="'+k+'" aria-pressed="'+(k===(f||'a'))+'">'+k.toUpperCase()+'</button>'}).join('')+'<button data-k="x" title="Fechar">×</button>';d.addEventListener('click',function(e){var k=e.target.dataset.k;if(!k)return;if(k==='x'){try{localStorage.removeItem('akaiu_fontes')}catch(_){}delete document.documentElement.dataset.fonts;d.remove();return;}try{localStorage.setItem('akaiu_fontes',k)}catch(_){}if(k==='a')delete document.documentElement.dataset.fonts;else document.documentElement.dataset.fonts=k;d.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.k===k)})});document.body.appendChild(d);})();</script>
 </body>
 </html>
