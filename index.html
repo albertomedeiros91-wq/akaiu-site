@@ -1047,13 +1047,27 @@ footer{background:var(--verde-deep)}
 .manifesto-inner .chapter{margin-bottom:.8rem}
 #galeria .chapter,.proc-header .chapter,.parcerias-header .chapter,#parceiros .chapter{text-align:center}
 .interludio-note{max-width:640px;margin:1.2rem auto 1.4rem;font-size:clamp(.92rem,1.2vw,1.02rem);line-height:1.75;color:var(--text);opacity:.92}
-.sensorial-specs{grid-template-columns:1.15fr .8fr .85fr 1fr 1.3fr}
-.sensorial-specs .spec-row{padding-left:.6rem;padding-right:.6rem}
 /* Atmosfera: contorno dourado por fora das fotos, como nos cards do Processo */
 .slide-item,.slide-item.focused{outline:1px solid rgba(201,154,58,.55);outline-offset:7px}
 /* Perfil Sensorial: medalhão do brasão no alto do arco, fora da área da taça */
 .sensorial-seal{top:-56px;bottom:auto}
 @media(max-width:768px){.sensorial-seal{top:-48px;bottom:auto}}
+/* Perfil Sensorial: sem linhas soltas; quadro de informações como faixa de rótulo (filetes dourados + losangos) */
+.taste-note{border-top:none;padding-top:0}
+.sensorial-specs{display:flex;align-items:flex-start;justify-content:space-between;position:relative;border:none;border-radius:0;background:none;padding:1.5rem 0}
+.sensorial-specs::before,.sensorial-specs::after{content:"";position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,154,58,.75) 18%,rgba(201,154,58,.75) 82%,transparent)}
+.sensorial-specs::before{top:0}.sensorial-specs::after{bottom:0}
+.sensorial-specs .spec-row{flex:1 1 0;position:relative;border:none;padding:0 .9rem}
+.sensorial-specs .spec-row:last-child{flex-grow:1.5}
+.sensorial-specs .spec-row+.spec-row::before{content:"";position:absolute;left:-3px;top:50%;width:6px;height:6px;transform:translateY(-50%) rotate(45deg);background:var(--gold);opacity:.75}
+@media(max-width:768px){
+  .sensorial-specs{display:grid;grid-template-columns:1fr 1fr;row-gap:1.2rem;padding:1.4rem 0}
+  .sensorial-specs .spec-row{border:none;padding:0 .5rem}
+  .sensorial-specs .spec-row:last-child{grid-column:1/-1}
+  .sensorial-specs .spec-row+.spec-row::before{display:none}
+}
+/* A Marca: sem o bloco da frase; respiro entre o texto e os cards */
+#marca .mudanca-grid{margin-top:clamp(3rem,8vh,5rem)}
 </style>
 </head>
 <body>
@@ -1424,13 +1438,6 @@ footer{background:var(--verde-deep)}
         <img class="marca-garrafa" src="images/MARCA-GARRAFA.webp" alt="Garrafa do espumante AKAÎU">
         <div class="marca-garrafa-sombra" aria-hidden="true"></div>
       </div>
-    </div>
-
-    <div class="manif-top">
-      <span class="manif-crest foil foil-crest reveal" aria-hidden="true"></span>
-      <h2 class="manif-headline reveal d1" data-i18n="marca.manifHeadline">Colocar o Rio Grande do Norte e o Nordeste no mapa mundial da enogastronomia.</h2>
-      <div class="manif-rule-v reveal d2"></div>
-      <p class="manif-body reveal d2" data-i18n="marca.manifBody">Pelas microfermentações da YeastFarm e pelo minucioso Método Champenoise, engarrafamos a resiliência do semiárido nordestino e a elevamos à categoria de arte.</p>
     </div>
 
     <!-- TODO: Missão, Visão e Valores - aguardando texto definitivo do usuário -->
