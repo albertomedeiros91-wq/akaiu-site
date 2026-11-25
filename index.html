@@ -1042,6 +1042,22 @@ footer{background:var(--verde-deep)}
 @media (hover:none){.mudanca-card .mudanca-desc{max-height:12rem;opacity:1;margin-top:.6rem}.mudanca-card::before{opacity:1}}
 /* ícones do Processo sem o círculo em volta */
 .proc-icon,.proc-card .proc-icon{border:none;background:none;border-radius:0;justify-content:flex-start}
+/* ── Fase 2: capítulos, legenda do pedúnculo e ficha técnica ── */
+.chapter{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;letter-spacing:.12em;color:var(--gold);opacity:.85;margin-bottom:.5rem}
+.manifesto-inner .chapter{margin-bottom:.8rem}
+#galeria .chapter,.proc-header .chapter,.parcerias-header .chapter,#parceiros .chapter{text-align:center}
+.interludio-note{max-width:640px;margin:1.2rem auto 1.4rem;font-size:clamp(.92rem,1.2vw,1.02rem);line-height:1.75;color:var(--text);opacity:.92}
+.ficha{max-width:980px;margin:clamp(3rem,7vh,5rem) auto 0;padding:clamp(1.8rem,4vw,2.8rem) clamp(1.4rem,4vw,3.2rem);
+  border:1px solid rgba(201,154,58,.35);border-radius:18px;background:rgba(14,20,13,.55);backdrop-filter:blur(2px)}
+.ficha-head{text-align:center;margin-bottom:1.6rem}
+.ficha-head .tag{margin-bottom:.4rem}
+.ficha-title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(1.7rem,3vw,2.3rem);color:var(--text-lt,#f3ead8)}
+.ficha-title em{color:var(--gold-lt)}
+.ficha-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:3rem;margin:0}
+.ficha-row{display:grid;grid-template-columns:minmax(140px,.9fr) 1.4fr;gap:1rem;align-items:baseline;padding:.85rem 0;border-bottom:1px solid rgba(201,154,58,.18)}
+.ficha-row dt{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt)}
+.ficha-row dd{margin:0;color:var(--text);font-size:.98rem;line-height:1.5}
+@media(max-width:768px){.ficha-grid{grid-template-columns:1fr}.ficha-row{grid-template-columns:1fr;gap:.25rem}}
 </style>
 </head>
 <body>
@@ -1163,9 +1179,10 @@ footer{background:var(--verde-deep)}
 <section id="manifesto" class="manifesto-band">
   <div class="manifesto-bg" aria-hidden="true"></div>
   <div class="manifesto-inner reveal">
+    <span class="chapter" data-i18n="chapter.terra">I · Terra</span>
     <span class="foil foil-crest" aria-hidden="true"></span>
     <div class="hero-manifesto manifesto-text">
-    <p data-i18n-html="hero.manifesto">Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera. Unimos ciência e tradição, campo e arte,<br>para transformar o que antes era desperdício em um símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há tempo e talento. Há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é mais que um espumante, é uma celebração que nasce do povo e volta para o povo.<br>Um brinde à terra, ao tempo e ao talento de quem acredita que sofisticação também pode ser partilha.<br><br><em>Porque da terra fértil, o tempo colhe. E com talento, brindamos!</em></p>
+    <p data-i18n-html="hero.manifesto">Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera.<br>Unimos ciência e tradição, campo e arte, para transformar uma parte desse fruto por muito tempo subvalorizada em símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é uma celebração que nasce do povo e volta para o povo.<br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em></p>
   </div>
     <div class="hero-cta manifesto-cta">
       <a href="#produto" class="btn-g" data-i18n="hero.cta">Conheça o Produto</a>
@@ -1177,15 +1194,16 @@ footer{background:var(--verde-deep)}
 <section class="sec" id="produto" data-leaves>
   <div class="sec-inner">
     <div class="produto-header reveal">
+      <span class="chapter" data-i18n="chapter.terra">I · Terra</span>
       <span class="tag" data-i18n="produto.tag">— O Produto</span>
       <div class="rule"></div>
     </div>
     <div class="prod-inner">
       <div class="prod-left">
         <div class="prod-feature reveal">
-          <p class="prod-story-text" data-i18n-html="produto.p1">AKAÎU tem alma brasileira e espírito elegante! Produzida a partir do pedúnculo do caju, fruta nativa brasileira, esta bebida segue o Método Tradicional de elaboração de espumante (champenoise), com uma segunda fermentação na própria garrafa, permanecendo <em>Sur Lie Nature</em>, sem adição de licor de expedição.</p>
-          <p class="prod-story-text" style="margin-top:1.2rem" data-i18n="produto.p2">É um produto para fazer parte de grandes momentos de celebração. É uma marca autêntica, elegante, criativa e consciente, que combina o requinte das bebidas premium com a riqueza da força do campo.</p>
-          <p class="prod-story-text" style="margin-top:1.2rem" data-i18n-html="produto.p3">Traz a energia do sol, o frescor das frutas tropicais e o brilho de quem transforma os desafios da subvalorização de uma riqueza do nosso bioma brasileiro em <strong>arte líquida</strong>.</p>
+          <p class="prod-story-text" data-i18n-html="produto.p1">Nascido no Nordeste do Brasil, AKAÎU transforma o caju, fruto nativo e símbolo de resistência, em um espumante singular. É elaborado a partir do pedúnculo do caju pelo Método Tradicional (Champenoise): a segunda fermentação acontece na própria garrafa, onde o espumante descansa sobre as leveduras (<em>sur lie</em>) e chega à taça <em>Nature</em>, sem adição de licor de expedição.</p>
+          <p class="prod-story-text" style="margin-top:1.2rem" data-i18n-html="produto.p2">Os cajus vêm do Rio Grande do Norte, no coração do Nordeste brasileiro, terra onde o cajueiro é nativo e faz parte da cultura e da economia de muitas famílias.</p>
+          <p class="prod-story-text" style="margin-top:1.2rem" data-i18n-html="produto.p3">Mais que uma bebida, AKAÎU é um brinde à cultura brasileira, à inovação e ao impacto socioambiental positivo: valoriza produtores locais, contribui com a sustentabilidade e celebra o talento de quem transforma a terra e o tempo em sabor.</p>
         </div>
       </div>
 
@@ -1195,7 +1213,7 @@ footer{background:var(--verde-deep)}
           <img src="images/HERO-2.webp" class="bottle-real-img bottles-trio" alt="Três garrafas do espumante AKAÎU">
         </div>
         <div class="bottle-shadow" aria-hidden="true"></div>
-        <div class="bottle-label-text" data-i18n="produto.bottleLabel">Nature · 750ml · 9%vol</div>
+        <div class="bottle-label-text" data-i18n="produto.bottleLabel">Nature · 750ml · 9% vol</div>
       </div>
     </div>
 
@@ -1208,7 +1226,7 @@ footer{background:var(--verde-deep)}
       <div class="sensorial-content reveal d1">
         <span class="tag" data-i18n="sensorial.tag">— Notas de Degustação</span>
         <h3 class="sensorial-title" data-i18n="sensorial.title">Perfil Sensorial</h3>
-        <p class="sensorial-desc-text" data-i18n="sensorial.lead">De raízes genuinamente brasileiras, é ideal para celebrar — de encontros simples a grandes momentos.</p>
+        <p class="sensorial-desc-text" data-i18n="sensorial.lead">De raízes genuinamente brasileiras, é ideal para celebrar, de encontros simples a grandes momentos.</p>
         <div class="taste-notes">
           <div class="taste-note">
             <svg class="taste-ico" aria-hidden="true"><use href="#icon-eye"/></svg>
@@ -1223,17 +1241,17 @@ footer{background:var(--verde-deep)}
           <div class="taste-note">
             <svg class="taste-ico" aria-hidden="true"><use href="#icon-flute"/></svg>
             <span class="taste-label" data-i18n="sensorial.boca_label">Boca</span>
-            <p data-i18n="sensorial.boca_val">Seco e refrescante, de acidez equilibrada, toque mineral e final prolongado.</p>
+            <p data-i18n="sensorial.boca_val">Seco e refrescante, de acidez equilibrada, toque mineral e final prolongado, que convida a um novo gole.</p>
           </div>
         </div>
         <div class="sensorial-specs">
           <div class="spec-row">
             <span class="spec-label" data-i18n="sensorial.classificacao_label">CLASSIFICAÇÃO</span>
-            <span class="spec-val" data-i18n="sensorial.classificacao_val">Nature (Apenas 15 calorias por taça)</span>
+            <span class="spec-val" data-i18n="sensorial.classificacao_val">Nature</span>
           </div>
           <div class="spec-row">
             <span class="spec-label" data-i18n="sensorial.harmonizacao_label">HARMONIZAÇÃO</span>
-            <span class="spec-val" data-i18n="sensorial.harmonizacao_val">Pratos leves, frutos do mar e clima tropical</span>
+            <span class="spec-val" data-i18n="sensorial.harmonizacao_val">Pratos leves, peixes e frutos do mar</span>
           </div>
           <div class="spec-row">
             <span class="spec-label" data-i18n="sensorial.temperatura_label">TEMPERATURA DE SERVIÇO</span>
@@ -1248,6 +1266,7 @@ footer{background:var(--verde-deep)}
 <!-- GALERIA / ATMOSFERA -->
 <section id="galeria">
   <div class="galeria-header reveal">
+    <span class="chapter" data-i18n="chapter.tempo">II · Tempo</span>
     <span class="tag" data-i18n="galeria.tag">— Atmosfera</span>
     <h2 class="h2" data-i18n-html="galeria.title">A Arte de <em>Brindar</em></h2>
     <div class="rule"></div>
@@ -1287,10 +1306,11 @@ footer{background:var(--verde-deep)}
 <section class="sec" id="processo" data-leaves>
   <div class="sec-inner">
     <div class="proc-header">
+      <span class="chapter" data-i18n="chapter.tempo">II · Tempo</span>
       <span class="tag reveal" data-i18n="processo.tag">— O Processo</span>
       <h2 class="h2 reveal d1" data-i18n-html="processo.title">Do Campo à <em>Taça</em></h2>
       <div class="rule reveal d2"></div>
-      <p class="body-p reveal d2" style="margin:0 auto;text-align:center;max-width:500px" data-i18n="processo.desc">Cada garrafa de AKAÎU é resultado de uma sequência de decisões cuidadosas, desde a seleção dos pedúnculos até o dégorgement final. Um processo que valoriza a fruta, respeita o tempo e busca a excelência em cada detalhe.</p>
+      <p class="body-p reveal d2" style="margin:0 auto;text-align:center;max-width:500px" data-i18n="processo.desc">Cada garrafa de AKAÎU é resultado de escolhas cuidadosas, da seleção dos pedúnculos ao dégorgement. Um processo que valoriza o fruto, respeita o tempo e busca a excelência em cada detalhe.</p>
     </div>
 
     <!-- Etapas: foto e texto no mesmo card (desktop/tablet) -->
@@ -1300,7 +1320,7 @@ footer{background:var(--verde-deep)}
         <div class="proc-card-body">
           <div class="proc-icon"><svg class="cashew-icon"><use href="#icon-cashew"/></svg></div>
           <h3 class="proc-title" data-i18n="processo.step1.title">Colheita Seletiva</h3>
-          <p class="proc-desc" data-i18n="processo.step1.desc">Os pedúnculos de caju são cuidadosamente selecionados, respeitando o ponto ideal de maturação e expressão aromática.</p>
+          <p class="proc-desc" data-i18n="processo.step1.desc">Os pedúnculos são selecionados no ponto ideal de maturação, quando o caju expressa todo o seu aroma.</p>
         </div>
       </article>
       <article class="proc-card reveal d1" tabindex="0">
@@ -1308,7 +1328,7 @@ footer{background:var(--verde-deep)}
         <div class="proc-card-body">
           <div class="proc-icon"><svg class="cashew-icon"><use href="#icon-cashew"/></svg></div>
           <h3 class="proc-title" data-i18n="processo.step2.title">Fermentação Base</h3>
-          <p class="proc-desc" data-i18n="processo.step2.desc">O suco é transformado em vinho base, revelando equilíbrio, frescor e a estrutura necessária para a elaboração do espumante.</p>
+          <p class="proc-desc" data-i18n="processo.step2.desc">O suco do caju se transforma em vinho base, com o equilíbrio, o frescor e a estrutura que o espumante pede.</p>
         </div>
       </article>
       <article class="proc-card reveal d2" tabindex="0">
@@ -1316,15 +1336,15 @@ footer{background:var(--verde-deep)}
         <div class="proc-card-body">
           <div class="proc-icon"><svg class="cashew-icon"><use href="#icon-cashew"/></svg></div>
           <h3 class="proc-title" data-i18n="processo.step3.title">Método Champenoise</h3>
-          <p class="proc-desc" data-i18n="processo.step3.desc">A segunda fermentação ocorre na própria garrafa, desenvolvendo perlage delicada e maior complexidade sensorial.</p>
+          <p class="proc-desc" data-i18n="processo.step3.desc">A segunda fermentação acontece na própria garrafa. Ali o espumante descansa sobre as leveduras por, no mínimo, dois meses, ganhando perlage fina e mais complexidade.</p>
         </div>
       </article>
       <article class="proc-card reveal d3" tabindex="0">
         <img src="images/PROCESSO-4.webp" alt="Remuage e dégorgement do espumante AKAÎU" loading="lazy" style="object-position:50% 45%">
         <div class="proc-card-body">
           <div class="proc-icon"><svg class="cashew-icon"><use href="#icon-cashew"/></svg></div>
-          <h3 class="proc-title" data-i18n="processo.step4.title">Remuage & Dégorgement</h3>
-          <p class="proc-desc" data-i18n="processo.step4.desc">Etapas conduzidas com precisão para remover os sedimentos e revelar a limpidez, o brilho e a elegância do espumante.</p>
+          <h3 class="proc-title" data-i18n="processo.step4.title">Remuage &amp; Dégorgement</h3>
+          <p class="proc-desc" data-i18n="processo.step4.desc">As garrafas são giradas e inclinadas aos poucos até os sedimentos se reunirem no gargalo (remuage). Depois eles são retirados (dégorgement), revelando um espumante límpido e brilhante.</p>
         </div>
       </article>
     </div>
@@ -1336,7 +1356,7 @@ footer{background:var(--verde-deep)}
         <div class="proc-slide-info">
           <div class="proc-icon"><svg class="cashew-icon" style="transform:rotate(-8deg)"><use href="#icon-cashew"/></svg></div>
           <div class="proc-title" data-i18n="processo.step1.title">Colheita Seletiva</div>
-          <div class="proc-desc" data-i18n="processo.step1.desc">Os pedúnculos de caju são cuidadosamente selecionados, respeitando o ponto ideal de maturação e expressão aromática.</div>
+          <div class="proc-desc" data-i18n="processo.step1.desc">Os pedúnculos são selecionados no ponto ideal de maturação, quando o caju expressa todo o seu aroma.</div>
         </div>
       </div>
       <div class="proc-slide">
@@ -1344,7 +1364,7 @@ footer{background:var(--verde-deep)}
         <div class="proc-slide-info">
           <div class="proc-icon"><svg class="cashew-icon" style="transform:rotate(6deg) scaleX(-1)"><use href="#icon-cashew"/></svg></div>
           <div class="proc-title" data-i18n="processo.step2.title">Fermentação Base</div>
-          <div class="proc-desc" data-i18n="processo.step2.desc">O suco é transformado em vinho base, revelando equilíbrio, frescor e a estrutura necessária para a elaboração do espumante.</div>
+          <div class="proc-desc" data-i18n="processo.step2.desc">O suco do caju se transforma em vinho base, com o equilíbrio, o frescor e a estrutura que o espumante pede.</div>
         </div>
       </div>
       <div class="proc-slide">
@@ -1352,15 +1372,15 @@ footer{background:var(--verde-deep)}
         <div class="proc-slide-info">
           <div class="proc-icon"><svg class="cashew-icon" style="transform:rotate(14deg)"><use href="#icon-cashew"/></svg></div>
           <div class="proc-title" data-i18n="processo.step3.title">Método Champenoise</div>
-          <div class="proc-desc" data-i18n="processo.step3.desc">A segunda fermentação ocorre na própria garrafa, desenvolvendo perlage delicada e maior complexidade sensorial.</div>
+          <div class="proc-desc" data-i18n="processo.step3.desc">A segunda fermentação acontece na própria garrafa. Ali o espumante descansa sobre as leveduras por, no mínimo, dois meses, ganhando perlage fina e mais complexidade.</div>
         </div>
       </div>
       <div class="proc-slide">
         <img src="images/PROCESSO-4.webp" alt="Remuage e dégorgement do espumante AKAÎU" loading="lazy">
         <div class="proc-slide-info">
           <div class="proc-icon"><svg class="cashew-icon" style="transform:rotate(-14deg) scaleX(-1)"><use href="#icon-cashew"/></svg></div>
-          <div class="proc-title" data-i18n="processo.step4.title">Remuage & Dégorgement</div>
-          <div class="proc-desc" data-i18n="processo.step4.desc">Etapas conduzidas com precisão para remover os sedimentos e revelar a limpidez, o brilho e a elegância do espumante.</div>
+          <div class="proc-title" data-i18n="processo.step4.title">Remuage &amp; Dégorgement</div>
+          <div class="proc-desc" data-i18n="processo.step4.desc">As garrafas são giradas e inclinadas aos poucos até os sedimentos se reunirem no gargalo (remuage). Depois eles são retirados (dégorgement), revelando um espumante límpido e brilhante.</div>
         </div>
       </div>
     </div>
@@ -1368,6 +1388,25 @@ footer{background:var(--verde-deep)}
     <div class="swipe-hint" aria-hidden="true">
       <span data-i18n="aria.swipe">Deslize para ver mais</span>
       <span class="swipe-arrow">⟩</span>
+    </div>
+
+    <!-- Ficha técnica: O Espumante -->
+    <div class="ficha reveal">
+      <div class="ficha-head">
+        <span class="tag" data-i18n="ficha.tag">— O Espumante</span>
+        <h3 class="ficha-title" data-i18n-html="ficha.title">Ficha <em>Técnica</em></h3>
+      </div>
+      <dl class="ficha-grid">
+        <div class="ficha-row"><dt data-i18n="ficha.materia_l">Matéria-prima</dt><dd data-i18n="ficha.materia_v">Pedúnculo do caju</dd></div>
+        <div class="ficha-row"><dt data-i18n="ficha.origem_l">Origem</dt><dd data-i18n="ficha.origem_v">Rio Grande do Norte, Nordeste do Brasil</dd></div>
+        <div class="ficha-row"><dt data-i18n="ficha.metodo_l">Método</dt><dd data-i18n="ficha.metodo_v">Tradicional (Champenoise), segunda fermentação na garrafa</dd></div>
+        <div class="ficha-row"><dt data-i18n="ficha.leveduras_l">Tempo sobre as leveduras</dt><dd data-i18n="ficha.leveduras_v">Mínimo de 2 meses</dd></div>
+        <div class="ficha-row"><dt data-i18n="ficha.classif_l">Classificação</dt><dd data-i18n="ficha.classif_v">Nature, sem licor de expedição</dd></div>
+        <div class="ficha-row"><dt data-i18n="ficha.teor_l">Teor alcoólico</dt><dd data-i18n="ficha.teor_v">9% vol</dd></div>
+        <div class="ficha-row"><dt data-i18n="ficha.volume_l">Volume</dt><dd data-i18n="ficha.volume_v">750 ml</dd></div>
+        <div class="ficha-row"><dt data-i18n="ficha.temp_l">Temperatura de serviço</dt><dd data-i18n="ficha.temp_v">4 °C a 6 °C</dd></div>
+        <div class="ficha-row"><dt data-i18n="ficha.harm_l">Harmonização</dt><dd data-i18n="ficha.harm_v">Pratos leves, peixes e frutos do mar</dd></div>
+      </dl>
     </div>
   </div>
 </section>
@@ -1377,7 +1416,8 @@ footer{background:var(--verde-deep)}
   <div class="interludio-bg" role="img" aria-label="Cajus maduros no pé, com o pedúnculo vermelho e a castanha"></div>
   <div class="interludio-inner reveal">
     <span class="foil foil-crest" aria-hidden="true"></span>
-    <p class="interludio-quote" data-i18n="interludio.quote">O caju é símbolo de potencial, não de desperdício.</p>
+    <p class="interludio-quote" data-i18n="interludio.quote">No caju, vemos potencial onde poucos enxergavam valor.</p>
+    <p class="interludio-note" data-i18n="interludio.note">O caju tem duas partes. A castanha, conhecida no mundo inteiro, é o fruto verdadeiro. Unido a ela está o pedúnculo, o chamado falso fruto: a parte suculenta e perfumada, por muito tempo pouco aproveitada. É dele que nasce o AKAÎU.</p>
     <span class="interludio-sign" data-i18n="interludio.sign">Terra, tempo e talento.</span>
   </div>
 </section>
@@ -1387,11 +1427,12 @@ footer{background:var(--verde-deep)}
   <div class="sec-inner">
     <div class="sobre-intro">
       <div class="sobre-intro-text">
+        <span class="chapter" data-i18n="chapter.talento">III · Talento</span>
         <span class="tag reveal" data-i18n="marca.tag">— A Marca</span>
         <h2 class="h2 reveal d1" data-i18n-html="marca.title">Mais que um espumante. <em>Um novo olhar sobre o caju brasileiro.</em></h2>
         <div class="rule reveal d2"></div>
-        <p class="body-p reveal d2" data-i18n="marca.p1">O AKAÎU nasceu para revelar um potencial que por muito tempo permaneceu invisível. Transformamos o caju, fruto nativo do semiárido brasileiro, em uma experiência capaz de gerar valor para o território, orgulho para suas origens e novas possibilidades para quem vive do seu cultivo.</p>
-        <p class="body-p reveal d3" style="margin-top:1.2rem;" data-i18n="marca.p2">Unimos ciência, tradição e sensibilidade para criar bebidas de excelência que respeitam a terra, valorizam as pessoas e demonstram que inovação e impacto positivo podem caminhar lado a lado.</p>
+        <p class="body-p reveal d2" data-i18n="marca.p1">AKAÎU nasceu para revelar um potencial que por muito tempo permaneceu pouco reconhecido. Transformamos o caju, fruto nativo brasileiro, em uma experiência que gera valor para o território, orgulho para suas origens e novas possibilidades para quem vive do seu cultivo.</p>
+        <p class="body-p reveal d3" style="margin-top:1.2rem;" data-i18n="marca.p2">Unimos saberes do campo e ciência contemporânea para criar bebidas de excelência, que respeitam a terra, valorizam as pessoas e provam que sofisticação também pode ser partilha.</p>
       </div>
       <div class="sobre-image reveal d3">
         <img class="marca-garrafa" src="images/MARCA-GARRAFA.webp" alt="Garrafa do espumante AKAÎU">
@@ -1401,13 +1442,9 @@ footer{background:var(--verde-deep)}
 
     <div class="manif-top">
       <span class="manif-crest foil foil-crest reveal" aria-hidden="true"></span>
-      <h2 class="manif-headline reveal d1" data-i18n="marca.manifHeadline">
-        Transformar o caju em um símbolo brasileiro de inovação, sustentabilidade e celebração.
-      </h2>
+      <h2 class="manif-headline reveal d1" data-i18n="marca.manifHeadline">Colocar o Rio Grande do Norte e o Nordeste no mapa mundial da enogastronomia.</h2>
       <div class="manif-rule-v reveal d2"></div>
-      <p class="manif-body reveal d2" data-i18n="marca.manifBody">
-        Através de microfermentações da YeastFarm e do minucioso método Champenoise, nós engarrafamos a resiliência do semiárido nordestino e a elevamos à categoria de arte de alto valor agregado.
-      </p>
+      <p class="manif-body reveal d2" data-i18n="marca.manifBody">Pelas microfermentações da YeastFarm e pelo minucioso Método Champenoise, engarrafamos a resiliência do semiárido nordestino e a elevamos à categoria de arte.</p>
     </div>
 
     <!-- TODO: Missão, Visão e Valores - aguardando texto definitivo do usuário -->
@@ -1418,7 +1455,7 @@ footer{background:var(--verde-deep)}
         <div class="mudanca-content">
           <span class="mudanca-icon"><svg class="cashew-icon" style="transform:rotate(-6deg)"><use href="#icon-cashew"/></svg></span>
           <h3 class="mudanca-title" data-i18n="marca.impact1.title">Impacto Social</h3>
-          <p class="mudanca-desc" data-i18n="marca.impact1.desc">Valorizamos produtores, fortalecemos comunidades rurais, criando oportunidades a partir de uma cadeia produtiva mais justa e inclusiva.</p>
+          <p class="mudanca-desc" data-i18n="marca.impact1.desc">Valorizamos produtores e fortalecemos comunidades rurais, com uma cadeia produtiva mais justa e inclusiva.</p>
         </div>
       </div>
       <div tabindex="0" class="mudanca-card reveal d2">
@@ -1426,7 +1463,7 @@ footer{background:var(--verde-deep)}
         <div class="mudanca-content">
           <span class="mudanca-icon"><svg class="cashew-icon" style="transform:rotate(8deg) scaleX(-1)"><use href="#icon-cashew"/></svg></span>
           <h3 class="mudanca-title" data-i18n="marca.impact2.title">Impacto Ambiental</h3>
-          <p class="mudanca-desc" data-i18n="marca.impact2.desc">Transformamos um recurso historicamente desperdiçado em valor, reduzindo perdas e promovendo o aproveitamento integral do caju.</p>
+          <p class="mudanca-desc" data-i18n="marca.impact2.desc">Damos valor a um recurso historicamente subutilizado, reduzindo perdas e promovendo o aproveitamento integral do caju.</p>
         </div>
       </div>
       <div tabindex="0" class="mudanca-card reveal d3">
@@ -1434,7 +1471,7 @@ footer{background:var(--verde-deep)}
         <div class="mudanca-content">
           <span class="mudanca-icon"><svg class="cashew-icon" style="transform:rotate(-16deg)"><use href="#icon-cashew"/></svg></span>
           <h3 class="mudanca-title" data-i18n="marca.impact3.title">Impacto Cultural</h3>
-          <p class="mudanca-desc" data-i18n="marca.impact3.desc">Colocar o Nordeste de forma definitiva no mapa mundial da enogastronomia, atraindo chefs e formadores de opinião.</p>
+          <p class="mudanca-desc" data-i18n="marca.impact3.desc">Levamos o Nordeste à mesa da alta gastronomia, com um brinde que celebra a diversidade de pessoas, lugares e momentos.</p>
         </div>
       </div>
     </div>
@@ -1450,6 +1487,7 @@ footer{background:var(--verde-deep)}
 <section class="sec" id="parceiros" data-leaves>
   <div class="sec-inner">
     <div class="parcerias-section reveal d2">
+      <span class="chapter" data-i18n="chapter.talento">III · Talento</span>
       <span class="tag" style="margin-bottom:0.5rem" data-i18n="parceiros.tag">— Ecossistema</span>
       <h3 class="h2" data-i18n-html="parceiros.title">Nossos <em>Parceiros</em></h3>
       <div class="rule" style="margin: 1.5rem auto;"></div>
@@ -1479,10 +1517,11 @@ footer{background:var(--verde-deep)}
   <div class="cont-inner">
     <div class="cont-left">
       <div class="cont-text">
+        <span class="chapter" data-i18n="chapter.talento">III · Talento</span>
         <span class="tag reveal" data-i18n="contato.tag">— Fale Conosco</span>
         <h2 class="h2 reveal d1" data-i18n-html="contato.title">Fale <em>Conosco</em></h2>
         <div class="rule reveal d2"></div>
-        <p class="body-p reveal d2" data-i18n="contato.desc">Seja para dúvidas, parcerias comerciais, distribuição ou eventos, nossa equipe está sempre à disposição para ouvir você.</p>
+        <p class="body-p reveal d2" data-i18n="contato.desc">Para dúvidas, parcerias comerciais, distribuição ou eventos, nossa equipe está à disposição para ouvir você.</p>
       </div>
 
       <div class="cont-channels">
@@ -1563,14 +1602,10 @@ footer{background:var(--verde-deep)}
     <div class="footer-brand">
       <a href="#" class="footer-logo" aria-label="AKAÎU — início"><span class="footer-crest foil foil-crest" aria-hidden="true"></span><span class="footer-wordmark foil foil-logo"></span></a>
       <p class="footer-sign">Terra, tempo e talento.</p>
-      <p style="margin-top:1rem;color:var(--muted);font-size:.8rem;" data-i18n="footer.responsabilidade">Beba com responsabilidade · Proibida a venda a menores de 18 anos</p>
+      <p style="margin-top:1rem;color:var(--muted);font-size:.8rem;" data-i18n="footer.responsabilidade">Evite o consumo excessivo de álcool. Proibida a venda para menores de 18 anos.</p>
     </div>
     <div class="footer-info">
-      <p style="color:var(--muted);font-size:.75rem;line-height:1.8;" data-i18n-html="footer.fabricado">
-        Fabricado por: YeastFarm Microfermentações LTDA.<br>
-        Rua Alameda de Santo Antônio, S/N, Zona de Expansão Urbana Sul, Macaíba – RN - Brasil.<br>
-        CEP: 59.281-720
-      </p>
+      <p style="color:var(--muted);font-size:.75rem;line-height:1.8;" data-i18n-html="footer.fabricado">YeastFarm Microfermentações Ltda. · Macaíba/RN · Brasil</p>
     </div>
   </div>
 </footer>
@@ -1581,348 +1616,712 @@ footer{background:var(--verde-deep)}
 // ════════════════════════════════════════════
 const translations = {
   pt: {
-    meta: { title: "AKAÎU — Espumante de Caju", desc: "AKAÎU é um espumante de caju, genuinamente brasileiro, elaborado pelo método tradicional, unindo sabor, ciência e sustentabilidade." },
-    nav: { manifesto:"Manifesto", produto:"O Produto", atmosfera:"Atmosfera", processo:"Processo", marca:"A Marca", parceiros:"Parceiros", cta:"Fale Conosco" },
-    gate: { tag:"Verificação de Idade", p:"Esta é uma experiência para adultos. Para continuar, confirme sua idade.", yes:"Tenho 18 anos ou mais", no:"Sou menor de idade" },
+    meta: {
+      title: "AKAÎU — Espumante de Caju",
+      desc: "AKAÎU é um espumante de caju, genuinamente brasileiro, elaborado pelo método tradicional, unindo sabor, ciência e sustentabilidade."
+    },
+    nav: {
+      manifesto: "Manifesto",
+      produto: "O Produto",
+      atmosfera: "Atmosfera",
+      processo: "Processo",
+      marca: "A Marca",
+      parceiros: "Parceiros",
+      cta: "Fale Conosco"
+    },
+    gate: {
+      tag: "Verificação de Idade",
+      p: "Esta é uma experiência para adultos. Para continuar, confirme sua idade.",
+      yes: "Tenho 18 anos ou mais",
+      no: "Sou menor de idade"
+    },
     hero: {
-      pretitle:"Espumante de Caju · Nature · Método Champenoise",
-      tagline:"Terra, Tempo e Talento",
-      sub:"Rio Grande do Norte · Brasil · 750ml · 9% vol",
-      manifesto:"Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera. Unimos ciência e tradição, campo e arte,<br>para transformar o que antes era desperdício em um símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há tempo e talento. Há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é mais que um espumante, é uma celebração que nasce do povo e volta para o povo.<br>Um brinde à terra, ao tempo e ao talento de quem acredita que sofisticação também pode ser partilha.<br><br><em>Porque da terra fértil, o tempo colhe. E com talento, brindamos!</em>",
-      cta:"Conheça o Produto"
+      pretitle: "Espumante de Caju · Nature · Método Champenoise",
+      tagline: "Terra, Tempo e Talento",
+      sub: "Rio Grande do Norte · Brasil · 750ml · 9% vol",
+      manifesto: "Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera.<br>Unimos ciência e tradição, campo e arte, para transformar uma parte desse fruto por muito tempo subvalorizada em símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é uma celebração que nasce do povo e volta para o povo.<br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em>",
+      cta: "Conheça o Produto"
     },
     produto: {
-      tag:"— O Produto",
-      p1:"AKAÎU tem alma brasileira e espírito elegante! Produzida a partir do pedúnculo do caju, fruta nativa brasileira, esta bebida segue o Método Tradicional de elaboração de espumante (champenoise), com uma segunda fermentação na própria garrafa, permanecendo <em>Sur Lie Nature</em>, sem adição de licor de expedição.",
-      p2:"É um produto para fazer parte de grandes momentos de celebração. É uma marca autêntica, elegante, criativa e consciente, que combina o requinte das bebidas premium com a riqueza da força do campo.",
-      p3:"Traz a energia do sol, o frescor das frutas tropicais e o brilho de quem transforma os desafios da subvalorização de uma riqueza do nosso bioma brasileiro em <strong>arte líquida</strong>.",
-      bottleLabel:"Nature · 750ml · 9%vol"
+      tag: "— O Produto",
+      p1: "Nascido no Nordeste do Brasil, AKAÎU transforma o caju, fruto nativo e símbolo de resistência, em um espumante singular. É elaborado a partir do pedúnculo do caju pelo Método Tradicional (Champenoise): a segunda fermentação acontece na própria garrafa, onde o espumante descansa sobre as leveduras (<em>sur lie</em>) e chega à taça <em>Nature</em>, sem adição de licor de expedição.",
+      p2: "Os cajus vêm do Rio Grande do Norte, no coração do Nordeste brasileiro, terra onde o cajueiro é nativo e faz parte da cultura e da economia de muitas famílias.",
+      p3: "Mais que uma bebida, AKAÎU é um brinde à cultura brasileira, à inovação e ao impacto socioambiental positivo: valoriza produtores locais, contribui com a sustentabilidade e celebra o talento de quem transforma a terra e o tempo em sabor.",
+      bottleLabel: "Nature · 750ml · 9% vol"
     },
     sensorial: {
-      title:"Perfil Sensorial",
-      desc:"Brilhante e delicado, apresenta coloração amarelo-clara e perlage fina e abundante. Seus aromas remetem à cajuína artesanal, às compotas e aos doces de caju, traduzindo com elegância a identidade singular da fruta brasileira. Em boca, destaca-se pelo frescor, leveza e equilíbrio, sustentados por uma agradável mineralidade que persiste no retrogosto e prolonga a experiência sensorial.",
-      tag:"— Notas de Degustação", lead:"De raízes genuinamente brasileiras, é ideal para celebrar — de encontros simples a grandes momentos.",
-      visual_label:"Visual", visual_val:"Amarelo-claro e brilhante, com perlage fina, viva e persistente.",
-      aroma_label:"Aroma", aroma_val:"Fresco e delicado, com notas adocicadas de cajuína e compota.",
-      boca_label:"Boca", boca_val:"Seco e refrescante, de acidez equilibrada, toque mineral e final prolongado.",
-      classificacao_label:"CLASSIFICAÇÃO", classificacao_val:"Nature (Apenas 15 calorias por taça)",
-      harmonizacao_label:"HARMONIZAÇÃO", harmonizacao_val:"Pratos leves, frutos do mar e clima tropical",
-      temperatura_label:"TEMPERATURA DE SERVIÇO", temperatura_val:"4°C a 6°C"
+      title: "Perfil Sensorial",
+      desc: "Brilhante e delicado, apresenta coloração amarelo-clara e perlage fina e abundante. Seus aromas remetem à cajuína artesanal, às compotas e aos doces de caju, traduzindo com elegância a identidade singular da fruta brasileira. Em boca, destaca-se pelo frescor, leveza e equilíbrio, sustentados por uma agradável mineralidade que persiste no retrogosto e prolonga a experiência sensorial.",
+      tag: "— Notas de Degustação",
+      lead: "De raízes genuinamente brasileiras, é ideal para celebrar, de encontros simples a grandes momentos.",
+      visual_label: "Visual",
+      visual_val: "Amarelo-claro e brilhante, com perlage fina, viva e persistente.",
+      aroma_label: "Aroma",
+      aroma_val: "Fresco e delicado, com notas adocicadas de cajuína e compota.",
+      boca_label: "Boca",
+      boca_val: "Seco e refrescante, de acidez equilibrada, toque mineral e final prolongado, que convida a um novo gole.",
+      classificacao_label: "CLASSIFICAÇÃO",
+      classificacao_val: "Nature",
+      harmonizacao_label: "HARMONIZAÇÃO",
+      harmonizacao_val: "Pratos leves, peixes e frutos do mar",
+      temperatura_label: "TEMPERATURA DE SERVIÇO",
+      temperatura_val: "4°C a 6°C"
     },
-    interludio: { quote:"O caju é símbolo de potencial, não de desperdício.", sign:"Terra, tempo e talento." },
+    interludio: {
+      quote: "No caju, vemos potencial onde poucos enxergavam valor.",
+      sign: "Terra, tempo e talento.",
+      note: "O caju tem duas partes. A castanha, conhecida no mundo inteiro, é o fruto verdadeiro. Unido a ela está o pedúnculo, o chamado falso fruto: a parte suculenta e perfumada, por muito tempo pouco aproveitada. É dele que nasce o AKAÎU."
+    },
     galeria: {
-      tag:"— Atmosfera",
-      title:"A Arte de <em>Brindar</em>",
-      sub:"O AKAÎU é um convite para celebrar encontros, paisagens, sabores e histórias que merecem ser brindadas."
+      tag: "— Atmosfera",
+      title: "A Arte de <em>Brindar</em>",
+      sub: "O AKAÎU é um convite para celebrar encontros, paisagens, sabores e histórias que merecem ser brindadas."
     },
     processo: {
-      tag:"— O Processo",
-      title:"Do Campo à <em>Taça</em>",
-      desc:"Cada garrafa de AKAÎU é resultado de uma sequência de decisões cuidadosas, desde a seleção dos pedúnculos até o dégorgement final. Um processo que valoriza a fruta, respeita o tempo e busca a excelência em cada detalhe.",
-      step1:{title:"Colheita Seletiva", desc:"Os pedúnculos de caju são cuidadosamente selecionados, respeitando o ponto ideal de maturação e expressão aromática."},
-      step2:{title:"Fermentação Base", desc:"O suco é transformado em vinho base, revelando equilíbrio, frescor e a estrutura necessária para a elaboração do espumante."},
-      step3:{title:"Método Champenoise", desc:"A segunda fermentação ocorre na própria garrafa, desenvolvendo perlage delicada e maior complexidade sensorial."},
-      step4:{title:"Remuage & Dégorgement", desc:"Etapas conduzidas com precisão para remover os sedimentos e revelar a limpidez, o brilho e a elegância do espumante."}
+      tag: "— O Processo",
+      title: "Do Campo à <em>Taça</em>",
+      desc: "Cada garrafa de AKAÎU é resultado de escolhas cuidadosas, da seleção dos pedúnculos ao dégorgement. Um processo que valoriza o fruto, respeita o tempo e busca a excelência em cada detalhe.",
+      step1: {
+        title: "Colheita Seletiva",
+        desc: "Os pedúnculos são selecionados no ponto ideal de maturação, quando o caju expressa todo o seu aroma."
+      },
+      step2: {
+        title: "Fermentação Base",
+        desc: "O suco do caju se transforma em vinho base, com o equilíbrio, o frescor e a estrutura que o espumante pede."
+      },
+      step3: {
+        title: "Método Champenoise",
+        desc: "A segunda fermentação acontece na própria garrafa. Ali o espumante descansa sobre as leveduras por, no mínimo, dois meses, ganhando perlage fina e mais complexidade."
+      },
+      step4: {
+        title: "Remuage & Dégorgement",
+        desc: "As garrafas são giradas e inclinadas aos poucos até os sedimentos se reunirem no gargalo (remuage). Depois eles são retirados (dégorgement), revelando um espumante límpido e brilhante."
+      }
     },
     marca: {
-      tag:"— A Marca",
-      title:"Mais que um espumante. <em>Um novo olhar sobre o caju brasileiro.</em>",
-      p1:"O AKAÎU nasceu para revelar um potencial que por muito tempo permaneceu invisível. Transformamos o caju, fruto nativo do semiárido brasileiro, em uma experiência capaz de gerar valor para o território, orgulho para suas origens e novas possibilidades para quem vive do seu cultivo.",
-      p2:"Unimos ciência, tradição e sensibilidade para criar bebidas de excelência que respeitam a terra, valorizam as pessoas e demonstram que inovação e impacto positivo podem caminhar lado a lado.",
-      manifHeadline:"Transformar o caju em um símbolo brasileiro de inovação, sustentabilidade e celebração.",
-      manifBody:"Através de microfermentações da YeastFarm e do minucioso método Champenoise, nós engarrafamos a resiliência do semiárido nordestino e a elevamos à categoria de arte de alto valor agregado.",
-      impact1:{title:"Impacto Social", desc:"Valorizamos produtores, fortalecemos comunidades rurais, criando oportunidades a partir de uma cadeia produtiva mais justa e inclusiva."},
-      impact2:{title:"Impacto Ambiental", desc:"Transformamos um recurso historicamente desperdiçado em valor, reduzindo perdas e promovendo o aproveitamento integral do caju."},
-      impact3:{title:"Impacto Cultural", desc:"Colocar o Nordeste de forma definitiva no mapa mundial da enogastronomia, atraindo chefs e formadores de opinião."}
+      tag: "— A Marca",
+      title: "Mais que um espumante. <em>Um novo olhar sobre o caju brasileiro.</em>",
+      p1: "AKAÎU nasceu para revelar um potencial que por muito tempo permaneceu pouco reconhecido. Transformamos o caju, fruto nativo brasileiro, em uma experiência que gera valor para o território, orgulho para suas origens e novas possibilidades para quem vive do seu cultivo.",
+      p2: "Unimos saberes do campo e ciência contemporânea para criar bebidas de excelência, que respeitam a terra, valorizam as pessoas e provam que sofisticação também pode ser partilha.",
+      manifHeadline: "Colocar o Rio Grande do Norte e o Nordeste no mapa mundial da enogastronomia.",
+      manifBody: "Pelas microfermentações da YeastFarm e pelo minucioso Método Champenoise, engarrafamos a resiliência do semiárido nordestino e a elevamos à categoria de arte.",
+      impact1: {
+        title: "Impacto Social",
+        desc: "Valorizamos produtores e fortalecemos comunidades rurais, com uma cadeia produtiva mais justa e inclusiva."
+      },
+      impact2: {
+        title: "Impacto Ambiental",
+        desc: "Damos valor a um recurso historicamente subutilizado, reduzindo perdas e promovendo o aproveitamento integral do caju."
+      },
+      impact3: {
+        title: "Impacto Cultural",
+        desc: "Levamos o Nordeste à mesa da alta gastronomia, com um brinde que celebra a diversidade de pessoas, lugares e momentos."
+      }
     },
     parceiros: {
-      tag:"— Ecossistema",
-      title:"Nossos <em>Parceiros</em>",
-      desc:"Por trás de cada garrafa existe uma rede de parceiros que compartilha nossa visão de inovação, excelência e valorização da biodiversidade brasileira."
+      tag: "— Ecossistema",
+      title: "Nossos <em>Parceiros</em>",
+      desc: "Por trás de cada garrafa existe uma rede de parceiros que compartilha nossa visão de inovação, excelência e valorização da biodiversidade brasileira."
     },
     contato: {
-      tag:"— Fale Conosco",
-      title:"Fale <em>Conosco</em>",
-      desc:"Seja para dúvidas, parcerias comerciais, distribuição ou eventos, nossa equipe está sempre à disposição para ouvir você.",
-      email_label:"E-mail Comercial",
-      whatsapp_label:"WhatsApp Corporativo (Alberto Medeiros)",
-      instagram_label:"Instagram Oficial",
-      sede_label:"Sede e Origem",
-      sede_val:"Natal/RN · Brasil"
+      tag: "— Fale Conosco",
+      title: "Fale <em>Conosco</em>",
+      desc: "Para dúvidas, parcerias comerciais, distribuição ou eventos, nossa equipe está à disposição para ouvir você.",
+      email_label: "E-mail Comercial",
+      whatsapp_label: "WhatsApp Corporativo (Alberto Medeiros)",
+      instagram_label: "Instagram Oficial",
+      sede_label: "Sede e Origem",
+      sede_val: "Natal/RN · Brasil"
     },
     form: {
-      nome_label:"Nome Completo", nome_placeholder:"Seu nome",
-      empresa_label:"Empresa", empresa_placeholder:"Nome da empresa (opcional)",
-      email_label:"E-mail", email_placeholder:"seu@email.com",
-      assunto_label:"Assunto",
-      assunto_opt0:"Selecione um assunto", assunto_opt1:"Dúvidas / Informações Gerais", assunto_opt2:"Distribuição e Parcerias",
-      assunto_opt3:"Eventos e Casamentos", assunto_opt4:"Restaurantes e Empórios", assunto_opt5:"Imprensa e Mídia", assunto_opt6:"Outros",
-      mensagem_label:"Sua Mensagem", mensagem_placeholder:"Como podemos te ajudar?",
-      btn:"Enviar Mensagem", btn_sent:"Mensagem Enviada ✓"
+      nome_label: "Nome Completo",
+      nome_placeholder: "Seu nome",
+      empresa_label: "Empresa",
+      empresa_placeholder: "Nome da empresa (opcional)",
+      email_label: "E-mail",
+      email_placeholder: "seu@email.com",
+      assunto_label: "Assunto",
+      assunto_opt0: "Selecione um assunto",
+      assunto_opt1: "Dúvidas / Informações Gerais",
+      assunto_opt2: "Distribuição e Parcerias",
+      assunto_opt3: "Eventos e Casamentos",
+      assunto_opt4: "Restaurantes e Empórios",
+      assunto_opt5: "Imprensa e Mídia",
+      assunto_opt6: "Outros",
+      mensagem_label: "Sua Mensagem",
+      mensagem_placeholder: "Como podemos te ajudar?",
+      btn: "Enviar Mensagem",
+      btn_sent: "Mensagem Enviada ✓"
     },
     footer: {
-      responsabilidade:"Beba com responsabilidade · Proibida a venda a menores de 18 anos",
-      fabricado:"Fabricado por: YeastFarm Microfermentações LTDA.<br>Rua Alameda de Santo Antônio, S/N, Zona de Expansão Urbana Sul, Macaíba – RN - Brasil.<br>CEP: 59.281-720"
+      responsabilidade: "Evite o consumo excessivo de álcool. Proibida a venda para menores de 18 anos.",
+      fabricado: "YeastFarm Microfermentações Ltda. · Macaíba/RN · Brasil"
     },
-    aria: { backToTop:"Voltar ao topo", openMenu:"Abrir menu", prev:"Anterior", next:"Próximo", swipe:"Deslize para ver mais" }
+    aria: {
+      backToTop: "Voltar ao topo",
+      openMenu: "Abrir menu",
+      prev: "Anterior",
+      next: "Próximo",
+      swipe: "Deslize para ver mais"
+    },
+    chapter: {
+      terra: "I · Terra",
+      tempo: "II · Tempo",
+      talento: "III · Talento"
+    },
+    ficha: {
+      tag: "— O Espumante",
+      title: "Ficha <em>Técnica</em>",
+      materia_l: "Matéria-prima",
+      materia_v: "Pedúnculo do caju",
+      origem_l: "Origem",
+      origem_v: "Rio Grande do Norte, Nordeste do Brasil",
+      metodo_l: "Método",
+      metodo_v: "Tradicional (Champenoise), segunda fermentação na garrafa",
+      leveduras_l: "Tempo sobre as leveduras",
+      leveduras_v: "Mínimo de 2 meses",
+      classif_l: "Classificação",
+      classif_v: "Nature, sem licor de expedição",
+      teor_l: "Teor alcoólico",
+      teor_v: "9% vol",
+      volume_l: "Volume",
+      volume_v: "750 ml",
+      temp_l: "Temperatura de serviço",
+      temp_v: "4 °C a 6 °C",
+      harm_l: "Harmonização",
+      harm_v: "Pratos leves, peixes e frutos do mar"
+    }
   },
   en: {
-    meta: { title: "AKAÎU — Cashew Sparkling Wine", desc: "AKAÎU is a genuinely Brazilian cashew sparkling wine, made by the traditional method, combining flavor, science and sustainability." },
-    nav: { manifesto:"Manifesto", produto:"The Product", atmosfera:"Atmosphere", processo:"Process", marca:"The Brand", parceiros:"Partners", cta:"Contact Us" },
-    gate: { tag:"Age Verification", p:"This is an adult experience. To continue, please confirm your age.", yes:"I am 18 or older", no:"I am under 18" },
+    meta: {
+      title: "AKAÎU — Cashew Sparkling Wine",
+      desc: "AKAÎU is a genuinely Brazilian cashew sparkling wine, made by the traditional method, combining flavor, science and sustainability."
+    },
+    nav: {
+      manifesto: "Manifesto",
+      produto: "The Product",
+      atmosfera: "Atmosphere",
+      processo: "Process",
+      marca: "The Brand",
+      parceiros: "Partners",
+      cta: "Contact Us"
+    },
+    gate: {
+      tag: "Age Verification",
+      p: "This is an adult experience. To continue, please confirm your age.",
+      yes: "I am 18 or older",
+      no: "I am under 18"
+    },
     hero: {
-      pretitle:"Cashew Sparkling Wine · Nature · Champenoise Method",
-      tagline:"Land, Time and Talent",
-      sub:"Rio Grande do Norte · Brazil · 750ml · 9% vol",
-      manifesto:"We are fruit of the sun and the tropical breeze.<br>From a land that teaches patience and turns resilience into flavor.<br>In the cashew, we see more than a fruit: we see origin, culture and power.<br>We see a Northeast that innovates, creates and thrives. We unite science and tradition, field and art,<br>to turn what was once waste into a symbol of pride, sophistication and positive impact.<br>In every bottle, there is time and talent. There is the work of those who cultivate, research and dream.<br>There is the golden glow of the sun and the freshness of the cashew.<br>AKAÎU is more than a sparkling wine, it is a celebration born from the people and returning to the people.<br>A toast to the land, to the time and to the talent of those who believe sophistication can also be shared.<br><br><em>Because from fertile land, time harvests. And with talent, we toast!</em>",
-      cta:"Discover the Product"
+      pretitle: "Cashew Sparkling Wine · Nature · Champenoise Method",
+      tagline: "Land, Time and Talent",
+      sub: "Rio Grande do Norte · Brazil · 750ml · 9% vol",
+      manifesto: "We are born of the sun and the tropical breeze.<br>Of a land that teaches patience and turns resilience into flavor.<br>In the cashew we see more than a fruit: we see origin, culture and strength.<br>We see a Northeast that innovates, creates and thrives.<br>We bring together science and tradition, field and art, to turn a long-undervalued part of this fruit into a symbol of pride, sophistication and positive impact.<br>In every bottle lies the work of those who grow, research and dream.<br>The golden glow of the sun and the freshness of the cashew.<br>AKAÎU is a celebration born of the people that returns to the people.<br><br><em>From fertile land, time harvests. With talent, we toast.</em>",
+      cta: "Discover the Product"
     },
     produto: {
-      tag:"— The Product",
-      p1:"AKAÎU has Brazilian soul and elegant spirit! Made from the cashew apple, a native Brazilian fruit, this drink follows the Traditional Method of sparkling wine production (champenoise), with a second fermentation in the bottle itself, remaining <em>Sur Lie Nature</em>, with no added dosage liqueur.",
-      p2:"It's a product to be part of great moments of celebration. It's an authentic, elegant, creative and conscious brand, combining the refinement of premium drinks with the richness of the strength of the countryside.",
-      p3:"It brings the energy of the sun, the freshness of tropical fruits and the brilliance of those who turn the challenges of undervaluing one of the riches of our Brazilian biome into <strong>liquid art</strong>.",
-      bottleLabel:"Nature · 750ml · 9%vol"
+      tag: "— The Product",
+      p1: "Born in Northeast Brazil, AKAÎU turns the cashew, a native fruit and a symbol of resilience, into a singular sparkling wine. It is made from the cashew apple using the Traditional Method (Champenoise): the second fermentation takes place in the bottle itself, where the wine rests on its lees (<em>sur lie</em>) and reaches the glass as a <em>Nature</em>, with no added dosage.",
+      p2: "Our cashews come from Rio Grande do Norte, in the heart of Brazil’s Northeast, where the cashew tree is native and part of the culture and livelihood of many families.",
+      p3: "More than a drink, AKAÎU is a toast to Brazilian culture, to innovation and to positive social and environmental impact: it values local growers, supports sustainability and celebrates the talent of those who turn land and time into flavor.",
+      bottleLabel: "Nature · 750ml · 9% vol"
     },
     sensorial: {
-      title:"Sensory Profile",
-      desc:"Bright and delicate, it presents a pale yellow color and fine, abundant perlage. Its aromas evoke artisanal cajuína, cashew preserves and sweets, elegantly translating the unique identity of the Brazilian fruit. On the palate, it stands out for its freshness, lightness and balance, sustained by a pleasant minerality that lingers in the aftertaste and prolongs the sensory experience.",
-      tag:"— Tasting Notes", lead:"With genuinely Brazilian roots, it is made for celebrating — from simple gatherings to grand occasions.",
-      visual_label:"Appearance", visual_val:"Pale yellow and bright, with fine, lively and persistent perlage.",
-      aroma_label:"Aroma", aroma_val:"Fresh and delicate, with sweet notes of cajuína and cashew preserves.",
-      boca_label:"Palate", boca_val:"Dry and refreshing, with balanced acidity, a mineral touch and a long finish.",
-      classificacao_label:"CLASSIFICATION", classificacao_val:"Nature (Only 15 calories per glass)",
-      harmonizacao_label:"PAIRING", harmonizacao_val:"Light dishes, seafood and tropical settings",
-      temperatura_label:"SERVING TEMPERATURE", temperatura_val:"4°C to 6°C"
+      title: "Sensory Profile",
+      desc: "Bright and delicate, it presents a pale yellow color and fine, abundant perlage. Its aromas evoke artisanal cajuína, cashew preserves and sweets, elegantly translating the unique identity of the Brazilian fruit. On the palate, it stands out for its freshness, lightness and balance, sustained by a pleasant minerality that lingers in the aftertaste and prolongs the sensory experience.",
+      tag: "— Tasting Notes",
+      lead: "With genuinely Brazilian roots, it is made for celebrating, from simple gatherings to grand occasions.",
+      visual_label: "Appearance",
+      visual_val: "Pale yellow and bright, with fine, lively and persistent perlage.",
+      aroma_label: "Aroma",
+      aroma_val: "Fresh and delicate, with sweet notes of cajuína and cashew preserves.",
+      boca_label: "Palate",
+      boca_val: "Dry and refreshing, with balanced acidity, a mineral touch and a long finish that invites another sip.",
+      classificacao_label: "CLASSIFICATION",
+      classificacao_val: "Nature",
+      harmonizacao_label: "PAIRING",
+      harmonizacao_val: "Light dishes, fish and seafood",
+      temperatura_label: "SERVING TEMPERATURE",
+      temperatura_val: "4°C to 6°C"
     },
-    interludio: { quote:"Cashew is a symbol of potential, not of waste.", sign:"Land, time and talent." },
+    interludio: {
+      quote: "In the cashew, we see potential where few saw value.",
+      sign: "Land, time and talent.",
+      note: "The cashew has two parts. The nut, known all over the world, is the true fruit. Attached to it is the cashew apple, the so-called false fruit: the juicy, fragrant part that was long overlooked. That is where AKAÎU comes from."
+    },
     galeria: {
-      tag:"— Atmosphere",
-      title:"The Art of <em>Toasting</em>",
-      sub:"AKAÎU is an invitation to celebrate encounters, landscapes, flavors and stories worth toasting to."
+      tag: "— Atmosphere",
+      title: "The Art of <em>Toasting</em>",
+      sub: "AKAÎU is an invitation to celebrate encounters, landscapes, flavors and stories worth toasting to."
     },
     processo: {
-      tag:"— The Process",
-      title:"From Field to <em>Glass</em>",
-      desc:"Each bottle of AKAÎU is the result of a sequence of careful decisions, from the selection of the cashew apples to the final dégorgement. A process that values the fruit, respects time and seeks excellence in every detail.",
-      step1:{title:"Selective Harvest", desc:"The cashew apples are carefully selected, respecting the ideal point of ripeness and aromatic expression."},
-      step2:{title:"Base Fermentation", desc:"The juice is transformed into base wine, revealing balance, freshness and the structure needed to produce the sparkling wine."},
-      step3:{title:"Champenoise Method", desc:"The second fermentation takes place in the bottle itself, developing a delicate perlage and greater sensory complexity."},
-      step4:{title:"Riddling & Disgorgement", desc:"Steps carried out with precision to remove sediment and reveal the clarity, brilliance and elegance of the sparkling wine."}
+      tag: "— The Process",
+      title: "From Field to <em>Glass</em>",
+      desc: "Every bottle of AKAÎU is the result of careful choices, from selecting the cashew apples to the final disgorging. A process that honors the fruit, respects time and pursues excellence in every detail.",
+      step1: {
+        title: "Selective Harvest",
+        desc: "The cashew apples are picked at the ideal point of ripeness, when the fruit expresses its full aroma."
+      },
+      step2: {
+        title: "Base Fermentation",
+        desc: "The cashew juice becomes a base wine, with the balance, freshness and structure a sparkling wine needs."
+      },
+      step3: {
+        title: "Champenoise Method",
+        desc: "The second fermentation takes place in the bottle itself. There the wine rests on its lees for at least two months, gaining fine bubbles and greater complexity."
+      },
+      step4: {
+        title: "Riddling & Disgorgement",
+        desc: "The bottles are gradually turned and tilted until the sediment gathers in the neck (riddling). It is then removed (disgorging), revealing a clear, brilliant sparkling wine."
+      }
     },
     marca: {
-      tag:"— The Brand",
-      title:"More than a sparkling wine. <em>A new look at the Brazilian cashew.</em>",
-      p1:"AKAÎU was born to reveal a potential that remained invisible for a long time. We transform the cashew, a native fruit of the Brazilian semi-arid region, into an experience capable of generating value for the territory, pride for its origins and new possibilities for those who live from its cultivation.",
-      p2:"We combine science, tradition and sensitivity to create excellent beverages that respect the land, value people and demonstrate that innovation and positive impact can go hand in hand.",
-      manifHeadline:"Turning the cashew into a Brazilian symbol of innovation, sustainability and celebration.",
-      manifBody:"Through YeastFarm's microfermentations and the meticulous Champenoise method, we bottle the resilience of the Northeastern semi-arid region and elevate it to the category of high-value art.",
-      impact1:{title:"Social Impact", desc:"We value producers and strengthen rural communities, creating opportunities through a fairer and more inclusive production chain."},
-      impact2:{title:"Environmental Impact", desc:"We turn a historically wasted resource into value, reducing losses and promoting the full use of the cashew."},
-      impact3:{title:"Cultural Impact", desc:"Putting the Northeast firmly on the world map of food and wine culture, attracting chefs and opinion leaders."}
+      tag: "— The Brand",
+      title: "More than a sparkling wine. <em>A new look at the Brazilian cashew.</em>",
+      p1: "AKAÎU was born to reveal a potential that went unrecognized for a long time. We turn the cashew, a native Brazilian fruit, into an experience that creates value for the region, pride in its origins and new possibilities for those who live from its cultivation.",
+      p2: "We combine the knowledge of the field with contemporary science to create drinks of excellence that respect the land, value people and prove that sophistication can also be shared.",
+      manifHeadline: "Putting Rio Grande do Norte and Brazil’s Northeast on the world map of food and wine.",
+      manifBody: "Through YeastFarm’s microfermentation and the meticulous Champenoise Method, we bottle the resilience of the northeastern semi-arid region and elevate it to an art.",
+      impact1: {
+        title: "Social Impact",
+        desc: "We value growers and strengthen rural communities through a fairer, more inclusive supply chain."
+      },
+      impact2: {
+        title: "Environmental Impact",
+        desc: "We give value to a historically underused resource, reducing losses and making full use of the cashew."
+      },
+      impact3: {
+        title: "Cultural Impact",
+        desc: "We bring the Northeast to the table of fine dining, with a toast that celebrates the diversity of people, places and moments."
+      }
     },
     parceiros: {
-      tag:"— Ecosystem",
-      title:"Our <em>Partners</em>",
-      desc:"Behind every bottle there is a network of partners who share our vision of innovation, excellence and appreciation of Brazilian biodiversity."
+      tag: "— Ecosystem",
+      title: "Our <em>Partners</em>",
+      desc: "Behind every bottle there is a network of partners who share our vision of innovation, excellence and appreciation of Brazilian biodiversity."
     },
     contato: {
-      tag:"— Contact",
-      title:"Get in <em>Touch</em>",
-      desc:"Whether for questions, business partnerships, distribution or events, our team is always available to listen to you.",
-      email_label:"Business Email",
-      whatsapp_label:"Corporate WhatsApp (Alberto Medeiros)",
-      instagram_label:"Official Instagram",
-      sede_label:"Headquarters & Origin",
-      sede_val:"Natal/RN · Brazil"
+      tag: "— Contact",
+      title: "Get in <em>Touch</em>",
+      desc: "For questions, business partnerships, distribution or events, our team is always happy to hear from you.",
+      email_label: "Business Email",
+      whatsapp_label: "Corporate WhatsApp (Alberto Medeiros)",
+      instagram_label: "Official Instagram",
+      sede_label: "Headquarters & Origin",
+      sede_val: "Natal/RN · Brazil"
     },
     form: {
-      nome_label:"Full Name", nome_placeholder:"Your name",
-      empresa_label:"Company", empresa_placeholder:"Company name (optional)",
-      email_label:"Email", email_placeholder:"your@email.com",
-      assunto_label:"Subject",
-      assunto_opt0:"Select a subject", assunto_opt1:"Questions / General Information", assunto_opt2:"Distribution and Partnerships",
-      assunto_opt3:"Events and Weddings", assunto_opt4:"Restaurants and Specialty Stores", assunto_opt5:"Press and Media", assunto_opt6:"Other",
-      mensagem_label:"Your Message", mensagem_placeholder:"How can we help you?",
-      btn:"Send Message", btn_sent:"Message Sent ✓"
+      nome_label: "Full Name",
+      nome_placeholder: "Your name",
+      empresa_label: "Company",
+      empresa_placeholder: "Company name (optional)",
+      email_label: "Email",
+      email_placeholder: "your@email.com",
+      assunto_label: "Subject",
+      assunto_opt0: "Select a subject",
+      assunto_opt1: "Questions / General Information",
+      assunto_opt2: "Distribution and Partnerships",
+      assunto_opt3: "Events and Weddings",
+      assunto_opt4: "Restaurants and Specialty Stores",
+      assunto_opt5: "Press and Media",
+      assunto_opt6: "Other",
+      mensagem_label: "Your Message",
+      mensagem_placeholder: "How can we help you?",
+      btn: "Send Message",
+      btn_sent: "Message Sent ✓"
     },
     footer: {
-      responsabilidade:"Drink responsibly · Sale prohibited to persons under 18",
-      fabricado:"Manufactured by: YeastFarm Microfermentações LTDA.<br>Rua Alameda de Santo Antônio, S/N, Zona de Expansão Urbana Sul, Macaíba – RN - Brazil.<br>ZIP Code: 59.281-720"
+      responsabilidade: "Drink responsibly. Sale prohibited to persons under 18.",
+      fabricado: "YeastFarm Microfermentações Ltda. · Macaíba/RN · Brazil"
     },
-    aria: { backToTop:"Back to top", openMenu:"Open menu", prev:"Previous", next:"Next", swipe:"Swipe to see more" }
+    aria: {
+      backToTop: "Back to top",
+      openMenu: "Open menu",
+      prev: "Previous",
+      next: "Next",
+      swipe: "Swipe to see more"
+    },
+    chapter: {
+      terra: "I · Land",
+      tempo: "II · Time",
+      talento: "III · Talent"
+    },
+    ficha: {
+      tag: "— The Sparkling Wine",
+      title: "Technical <em>Sheet</em>",
+      materia_l: "Raw material",
+      materia_v: "Cashew apple",
+      origem_l: "Origin",
+      origem_v: "Rio Grande do Norte, Northeast Brazil",
+      metodo_l: "Method",
+      metodo_v: "Traditional (Champenoise), second fermentation in the bottle",
+      leveduras_l: "Time on lees",
+      leveduras_v: "At least 2 months",
+      classif_l: "Style",
+      classif_v: "Nature, no added dosage",
+      teor_l: "Alcohol",
+      teor_v: "9% vol",
+      volume_l: "Volume",
+      volume_v: "750 ml",
+      temp_l: "Serving temperature",
+      temp_v: "4 °C to 6 °C",
+      harm_l: "Pairing",
+      harm_v: "Light dishes, fish and seafood"
+    }
   },
   es: {
-    meta: { title: "AKAÎU — Espumante de Anacardo", desc: "AKAÎU es un espumante de anacardo, genuinamente brasileño, elaborado por el método tradicional, uniendo sabor, ciencia y sostenibilidad." },
-    nav: { manifesto:"Manifiesto", produto:"El Producto", atmosfera:"Atmósfera", processo:"Proceso", marca:"La Marca", parceiros:"Socios", cta:"Hablemos" },
-    gate: { tag:"Verificación de Edad", p:"Esta es una experiencia para adultos. Para continuar, confirme su edad.", yes:"Tengo 18 años o más", no:"Soy menor de edad" },
+    meta: {
+      title: "AKAÎU — Espumante de Anacardo",
+      desc: "AKAÎU es un espumante de anacardo, genuinamente brasileño, elaborado por el método tradicional, uniendo sabor, ciencia y sostenibilidad."
+    },
+    nav: {
+      manifesto: "Manifiesto",
+      produto: "El Producto",
+      atmosfera: "Atmósfera",
+      processo: "Proceso",
+      marca: "La Marca",
+      parceiros: "Socios",
+      cta: "Hablemos"
+    },
+    gate: {
+      tag: "Verificación de Edad",
+      p: "Esta es una experiencia para adultos. Para continuar, confirme su edad.",
+      yes: "Tengo 18 años o más",
+      no: "Soy menor de edad"
+    },
     hero: {
-      pretitle:"Espumante de Anacardo · Nature · Método Champenoise",
-      tagline:"Tierra, Tiempo y Talento",
-      sub:"Río Grande do Norte · Brasil · 750ml · 9% vol",
-      manifesto:"Somos fruto del sol y de la brisa tropical.<br>De la tierra que enseña paciencia y transforma resiliencia en sabor.<br>En el anacardo, vemos más que una fruta: vemos origen, cultura y potencia.<br>Vemos el Nordeste que innova, crea y prospera. Unimos ciencia y tradición, campo y arte,<br>para transformar lo que antes era desperdicio en un símbolo de orgullo, sofisticación e impacto positivo.<br>En cada botella, hay tiempo y talento. Hay el trabajo de quienes cultivan, investigan y sueñan.<br>Hay el brillo dorado del sol y el frescor del anacardo.<br>AKAÎU es más que un espumante, es una celebración que nace del pueblo y vuelve al pueblo.<br>Un brindis a la tierra, al tiempo y al talento de quienes creen que la sofisticación también puede compartirse.<br><br><em>Porque de la tierra fértil, el tiempo cosecha. ¡Y con talento, brindamos!</em>",
-      cta:"Descubre el Producto"
+      pretitle: "Espumante de Anacardo · Nature · Método Champenoise",
+      tagline: "Tierra, Tiempo y Talento",
+      sub: "Río Grande do Norte · Brasil · 750ml · 9% vol",
+      manifesto: "Somos fruto del sol y de la brisa tropical.<br>De una tierra que enseña paciencia y transforma la resiliencia en sabor.<br>En el anacardo vemos más que un fruto: vemos origen, cultura y fuerza.<br>Vemos un Nordeste que innova, crea y prospera.<br>Unimos ciencia y tradición, campo y arte, para transformar una parte de este fruto, por mucho tiempo poco valorada, en símbolo de orgullo, sofisticación e impacto positivo.<br>En cada botella está el trabajo de quien cultiva, investiga y sueña.<br>El brillo dorado del sol y la frescura del anacardo.<br>AKAÎU es una celebración que nace del pueblo y vuelve al pueblo.<br><br><em>De la tierra fértil, el tiempo cosecha. Con talento, brindamos.</em>",
+      cta: "Descubre el Producto"
     },
     produto: {
-      tag:"— El Producto",
-      p1:"¡AKAÎU tiene alma brasileña y espíritu elegante! Elaborado a partir del pseudofruto del anacardo, fruta nativa de Brasil, esta bebida sigue el Método Tradicional de elaboración de espumantes (champenoise), con una segunda fermentación en la propia botella, permaneciendo <em>Sur Lie Nature</em>, sin adición de licor de expedición.",
-      p2:"Es un producto para formar parte de grandes momentos de celebración. Es una marca auténtica, elegante, creativa y consciente, que combina el refinamiento de las bebidas premium con la riqueza de la fuerza del campo.",
-      p3:"Aporta la energía del sol, el frescor de las frutas tropicales y el brillo de quienes transforman los desafíos de la subvaloración de una riqueza de nuestro bioma brasileño en <strong>arte líquido</strong>.",
-      bottleLabel:"Nature · 750ml · 9%vol"
+      tag: "— El Producto",
+      p1: "Nacido en el Nordeste de Brasil, AKAÎU transforma el anacardo, fruto nativo y símbolo de resistencia, en un espumoso singular. Se elabora a partir de la manzana de anacardo por el Método Tradicional (Champenoise): la segunda fermentación ocurre en la propia botella, donde el espumoso reposa sobre sus lías (<em>sur lie</em>) y llega a la copa como <em>Nature</em>, sin licor de expedición.",
+      p2: "Nuestros anacardos vienen de Rio Grande do Norte, en el corazón del Nordeste brasileño, tierra donde el anacardo es nativo y forma parte de la cultura y del sustento de muchas familias.",
+      p3: "Más que una bebida, AKAÎU es un brindis por la cultura brasileña, la innovación y el impacto socioambiental positivo: valora a los productores locales, contribuye a la sostenibilidad y celebra el talento de quienes transforman la tierra y el tiempo en sabor.",
+      bottleLabel: "Nature · 750ml · 9% vol"
     },
     sensorial: {
-      title:"Perfil Sensorial",
-      desc:"Brillante y delicado, presenta una coloración amarillo claro y un perlage fino y abundante. Sus aromas remiten a la cajuína artesanal, a las compotas y dulces de anacardo, traduciendo con elegancia la identidad singular de la fruta brasileña. En boca, destaca por su frescura, ligereza y equilibrio, sostenidos por una agradable mineralidad que persiste en el retrogusto y prolonga la experiencia sensorial.",
-      tag:"— Notas de Cata", lead:"De raíces genuinamente brasileñas, es ideal para celebrar — de encuentros sencillos a grandes momentos.",
-      visual_label:"Vista", visual_val:"Amarillo claro y brillante, con perlage fino, vivo y persistente.",
-      aroma_label:"Aroma", aroma_val:"Fresco y delicado, con notas dulces de cajuína y compota.",
-      boca_label:"Boca", boca_val:"Seco y refrescante, de acidez equilibrada, toque mineral y final prolongado.",
-      classificacao_label:"CLASIFICACIÓN", classificacao_val:"Nature (Solo 15 calorías por copa)",
-      harmonizacao_label:"MARIDAJE", harmonizacao_val:"Platos ligeros, mariscos y clima tropical",
-      temperatura_label:"TEMPERATURA DE SERVICIO", temperatura_val:"4°C a 6°C"
+      title: "Perfil Sensorial",
+      desc: "Brillante y delicado, presenta una coloración amarillo claro y un perlage fino y abundante. Sus aromas remiten a la cajuína artesanal, a las compotas y dulces de anacardo, traduciendo con elegancia la identidad singular de la fruta brasileña. En boca, destaca por su frescura, ligereza y equilibrio, sostenidos por una agradable mineralidad que persiste en el retrogusto y prolonga la experiencia sensorial.",
+      tag: "— Notas de Cata",
+      lead: "De raíces genuinamente brasileñas, es ideal para celebrar, desde encuentros sencillos hasta grandes momentos.",
+      visual_label: "Vista",
+      visual_val: "Amarillo claro y brillante, con perlage fino, vivo y persistente.",
+      aroma_label: "Aroma",
+      aroma_val: "Fresco y delicado, con notas dulces de cajuína y compota.",
+      boca_label: "Boca",
+      boca_val: "Seco y refrescante, de acidez equilibrada, toque mineral y final prolongado, que invita a un nuevo sorbo.",
+      classificacao_label: "CLASIFICACIÓN",
+      classificacao_val: "Nature",
+      harmonizacao_label: "MARIDAJE",
+      harmonizacao_val: "Platos ligeros, pescados y mariscos",
+      temperatura_label: "TEMPERATURA DE SERVICIO",
+      temperatura_val: "4°C a 6°C"
     },
-    interludio: { quote:"El anacardo es símbolo de potencial, no de desperdicio.", sign:"Tierra, tiempo y talento." },
+    interludio: {
+      quote: "En el anacardo vemos potencial donde pocos veían valor.",
+      sign: "Tierra, tiempo y talento.",
+      note: "El anacardo tiene dos partes. La nuez, conocida en todo el mundo, es el fruto verdadero. Unida a ella está la manzana de anacardo (o de marañón), el llamado falso fruto: la parte jugosa y perfumada, por mucho tiempo poco aprovechada. De ella nace AKAÎU."
+    },
     galeria: {
-      tag:"— Atmósfera",
-      title:"El Arte de <em>Brindar</em>",
-      sub:"AKAÎU es una invitación a celebrar encuentros, paisajes, sabores e historias que merecen ser brindadas."
+      tag: "— Atmósfera",
+      title: "El Arte de <em>Brindar</em>",
+      sub: "AKAÎU es una invitación a celebrar encuentros, paisajes, sabores e historias que merecen ser brindadas."
     },
     processo: {
-      tag:"— El Proceso",
-      title:"Del Campo a la <em>Copa</em>",
-      desc:"Cada botella de AKAÎU es el resultado de una secuencia de decisiones cuidadosas, desde la selección de los pseudofrutos hasta el dégorgement final. Un proceso que valora la fruta, respeta el tiempo y busca la excelencia en cada detalle.",
-      step1:{title:"Cosecha Selectiva", desc:"Los pseudofrutos del anacardo son cuidadosamente seleccionados, respetando el punto ideal de maduración y expresión aromática."},
-      step2:{title:"Fermentación Base", desc:"El jugo se transforma en vino base, revelando equilibrio, frescura y la estructura necesaria para la elaboración del espumante."},
-      step3:{title:"Método Champenoise", desc:"La segunda fermentación ocurre en la propia botella, desarrollando un perlage delicado y mayor complejidad sensorial."},
-      step4:{title:"Removido y Degüelle", desc:"Etapas realizadas con precisión para eliminar los sedimentos y revelar la limpidez, el brillo y la elegancia del espumante."}
+      tag: "— El Proceso",
+      title: "Del Campo a la <em>Copa</em>",
+      desc: "Cada botella de AKAÎU es el resultado de decisiones cuidadosas, desde la selección de las manzanas de anacardo hasta el degüelle. Un proceso que valora el fruto, respeta el tiempo y busca la excelencia en cada detalle.",
+      step1: {
+        title: "Cosecha Selectiva",
+        desc: "Las manzanas de anacardo se seleccionan en su punto ideal de madurez, cuando el fruto expresa todo su aroma."
+      },
+      step2: {
+        title: "Fermentación Base",
+        desc: "El jugo de anacardo se transforma en vino base, con el equilibrio, la frescura y la estructura que pide el espumoso."
+      },
+      step3: {
+        title: "Método Champenoise",
+        desc: "La segunda fermentación ocurre en la propia botella. Allí el espumoso reposa sobre sus lías durante al menos dos meses, ganando burbuja fina y mayor complejidad."
+      },
+      step4: {
+        title: "Removido y Degüelle",
+        desc: "Las botellas se giran e inclinan poco a poco hasta que los sedimentos se reúnen en el cuello (removido). Luego se retiran (degüelle), revelando un espumoso límpido y brillante."
+      }
     },
     marca: {
-      tag:"— La Marca",
-      title:"Más que un espumante. <em>Una nueva mirada sobre el anacardo brasileño.</em>",
-      p1:"AKAÎU nació para revelar un potencial que durante mucho tiempo permaneció invisible. Transformamos el anacardo, fruto nativo del semiárido brasileño, en una experiencia capaz de generar valor para el territorio, orgullo para sus orígenes y nuevas posibilidades para quienes viven de su cultivo.",
-      p2:"Unimos ciencia, tradición y sensibilidad para crear bebidas de excelencia que respetan la tierra, valoran a las personas y demuestran que la innovación y el impacto positivo pueden ir de la mano.",
-      manifHeadline:"Transformar el anacardo en un símbolo brasileño de innovación, sostenibilidad y celebración.",
-      manifBody:"A través de las microfermentaciones de YeastFarm y del minucioso método Champenoise, embotellamos la resiliencia del semiárido nordestino y la elevamos a la categoría de arte de alto valor agregado.",
-      impact1:{title:"Impacto Social", desc:"Valoramos a los productores, fortalecemos a las comunidades rurales, creando oportunidades a partir de una cadena productiva más justa e inclusiva."},
-      impact2:{title:"Impacto Ambiental", desc:"Transformamos un recurso históricamente desperdiciado en valor, reduciendo pérdidas y promoviendo el aprovechamiento integral del anacardo."},
-      impact3:{title:"Impacto Cultural", desc:"Colocar al Nordeste de forma definitiva en el mapa mundial de la enogastronomía, atrayendo a chefs y formadores de opinión."}
+      tag: "— La Marca",
+      title: "Más que un espumante. <em>Una nueva mirada sobre el anacardo brasileño.</em>",
+      p1: "AKAÎU nació para revelar un potencial que durante mucho tiempo fue poco reconocido. Transformamos el anacardo, fruto nativo de Brasil, en una experiencia que genera valor para el territorio, orgullo por sus orígenes y nuevas posibilidades para quienes viven de su cultivo.",
+      p2: "Unimos los saberes del campo y la ciencia contemporánea para crear bebidas de excelencia, que respetan la tierra, valoran a las personas y demuestran que la sofisticación también puede ser compartida.",
+      manifHeadline: "Poner a Rio Grande do Norte y al Nordeste en el mapa mundial de la enogastronomía.",
+      manifBody: "Con las microfermentaciones de YeastFarm y el minucioso Método Champenoise, embotellamos la resiliencia del semiárido nordestino y la elevamos a la categoría de arte.",
+      impact1: {
+        title: "Impacto Social",
+        desc: "Valoramos a los productores y fortalecemos las comunidades rurales, con una cadena productiva más justa e inclusiva."
+      },
+      impact2: {
+        title: "Impacto Ambiental",
+        desc: "Damos valor a un recurso históricamente poco aprovechado, reduciendo pérdidas y promoviendo el aprovechamiento integral del anacardo."
+      },
+      impact3: {
+        title: "Impacto Cultural",
+        desc: "Llevamos el Nordeste a la mesa de la alta gastronomía, con un brindis que celebra la diversidad de personas, lugares y momentos."
+      }
     },
     parceiros: {
-      tag:"— Ecosistema",
-      title:"Nuestros <em>Socios</em>",
-      desc:"Detrás de cada botella hay una red de socios que comparte nuestra visión de innovación, excelencia y valorización de la biodiversidad brasileña."
+      tag: "— Ecosistema",
+      title: "Nuestros <em>Socios</em>",
+      desc: "Detrás de cada botella hay una red de socios que comparte nuestra visión de innovación, excelencia y valorización de la biodiversidad brasileña."
     },
     contato: {
-      tag:"— Contáctanos",
-      title:"Hablemos <em>con Nosotros</em>",
-      desc:"Ya sea por dudas, alianzas comerciales, distribución o eventos, nuestro equipo está siempre disponible para escucharte.",
-      email_label:"Correo Comercial",
-      whatsapp_label:"WhatsApp Corporativo (Alberto Medeiros)",
-      instagram_label:"Instagram Oficial",
-      sede_label:"Sede y Origen",
-      sede_val:"Natal/RN · Brasil"
+      tag: "— Contáctanos",
+      title: "Hablemos <em>con Nosotros</em>",
+      desc: "Para dudas, alianzas comerciales, distribución o eventos, nuestro equipo está a su disposición para escucharle.",
+      email_label: "Correo Comercial",
+      whatsapp_label: "WhatsApp Corporativo (Alberto Medeiros)",
+      instagram_label: "Instagram Oficial",
+      sede_label: "Sede y Origen",
+      sede_val: "Natal/RN · Brasil"
     },
     form: {
-      nome_label:"Nombre Completo", nome_placeholder:"Tu nombre",
-      empresa_label:"Empresa", empresa_placeholder:"Nombre de la empresa (opcional)",
-      email_label:"Correo Electrónico", email_placeholder:"tu@email.com",
-      assunto_label:"Asunto",
-      assunto_opt0:"Selecciona un asunto", assunto_opt1:"Dudas / Información General", assunto_opt2:"Distribución y Alianzas",
-      assunto_opt3:"Eventos y Bodas", assunto_opt4:"Restaurantes y Tiendas Gourmet", assunto_opt5:"Prensa y Medios", assunto_opt6:"Otro",
-      mensagem_label:"Tu Mensaje", mensagem_placeholder:"¿Cómo podemos ayudarte?",
-      btn:"Enviar Mensaje", btn_sent:"Mensaje Enviado ✓"
+      nome_label: "Nombre Completo",
+      nome_placeholder: "Tu nombre",
+      empresa_label: "Empresa",
+      empresa_placeholder: "Nombre de la empresa (opcional)",
+      email_label: "Correo Electrónico",
+      email_placeholder: "tu@email.com",
+      assunto_label: "Asunto",
+      assunto_opt0: "Selecciona un asunto",
+      assunto_opt1: "Dudas / Información General",
+      assunto_opt2: "Distribución y Alianzas",
+      assunto_opt3: "Eventos y Bodas",
+      assunto_opt4: "Restaurantes y Tiendas Gourmet",
+      assunto_opt5: "Prensa y Medios",
+      assunto_opt6: "Otro",
+      mensagem_label: "Tu Mensaje",
+      mensagem_placeholder: "¿Cómo podemos ayudarte?",
+      btn: "Enviar Mensaje",
+      btn_sent: "Mensaje Enviado ✓"
     },
     footer: {
-      responsabilidade:"Bebe con responsabilidad · Prohibida la venta a menores de 18 años",
-      fabricado:"Fabricado por: YeastFarm Microfermentações LTDA.<br>Rua Alameda de Santo Antônio, S/N, Zona de Expansão Urbana Sul, Macaíba – RN - Brasil.<br>CP: 59.281-720"
+      responsabilidade: "Evite el consumo excesivo de alcohol. Prohibida la venta a menores de 18 años.",
+      fabricado: "YeastFarm Microfermentações Ltda. · Macaíba/RN · Brasil"
     },
-    aria: { backToTop:"Volver arriba", openMenu:"Abrir menú", prev:"Anterior", next:"Siguiente", swipe:"Desliza para ver más" }
+    aria: {
+      backToTop: "Volver arriba",
+      openMenu: "Abrir menú",
+      prev: "Anterior",
+      next: "Siguiente",
+      swipe: "Desliza para ver más"
+    },
+    chapter: {
+      terra: "I · Tierra",
+      tempo: "II · Tiempo",
+      talento: "III · Talento"
+    },
+    ficha: {
+      tag: "— El Espumoso",
+      title: "Ficha <em>Técnica</em>",
+      materia_l: "Materia prima",
+      materia_v: "Manzana de anacardo",
+      origem_l: "Origen",
+      origem_v: "Rio Grande do Norte, Nordeste de Brasil",
+      metodo_l: "Método",
+      metodo_v: "Tradicional (Champenoise), segunda fermentación en botella",
+      leveduras_l: "Tiempo sobre lías",
+      leveduras_v: "Mínimo 2 meses",
+      classif_l: "Clasificación",
+      classif_v: "Nature, sin licor de expedición",
+      teor_l: "Graduación",
+      teor_v: "9% vol",
+      volume_l: "Volumen",
+      volume_v: "750 ml",
+      temp_l: "Temperatura de servicio",
+      temp_v: "4 °C a 6 °C",
+      harm_l: "Maridaje",
+      harm_v: "Platos ligeros, pescados y mariscos"
+    }
   },
   zh: {
-    meta: { title: "AKAÎU — 腰果气泡酒", desc: "AKAÎU是一款地道的巴西腰果气泡酒，采用传统工艺酿造，融合风味、科学与可持续发展理念。" },
-    nav: { manifesto:"宣言", produto:"产品", atmosfera:"氛围", processo:"工艺", marca:"品牌", parceiros:"合作伙伴", cta:"联系我们" },
-    gate: { tag:"年龄验证", p:"这是一项成人体验。请确认您的年龄以继续。", yes:"我已年满18岁", no:"我未满18岁" },
+    meta: {
+      title: "AKAÎU — 腰果气泡酒",
+      desc: "AKAÎU是一款地道的巴西腰果气泡酒，采用传统工艺酿造，融合风味、科学与可持续发展理念。"
+    },
+    nav: {
+      manifesto: "宣言",
+      produto: "产品",
+      atmosfera: "氛围",
+      processo: "工艺",
+      marca: "品牌",
+      parceiros: "合作伙伴",
+      cta: "联系我们"
+    },
+    gate: {
+      tag: "年龄验证",
+      p: "这是一项成人体验。请确认您的年龄以继续。",
+      yes: "我已年满18岁",
+      no: "我未满18岁"
+    },
     hero: {
-      pretitle:"腰果气泡酒 · 天然 · 香槟法",
-      tagline:"土地、时间与才华",
-      sub:"北里奥格兰德州 · 巴西 · 750毫升 · 酒精度9%",
-      manifesto:"我们是阳光与热带微风的果实。<br>这片土地教会我们耐心，将坚韧化为风味。<br>在腰果中，我们看到的不仅是一种水果：更是起源、文化与力量。<br>我们看到一个不断创新、创造和繁荣的东北巴西。我们将科学与传统、田野与艺术相结合，<br>把曾经被浪费的资源转化为骄傲、精致与正向影响的象征。<br>每一瓶酒中，都蕴含着时间与才华，凝聚着耕耘者、研究者与追梦人的心血。<br>有阳光的金色光辉，也有腰果的清新气息。<br>AKAÎU不仅仅是一款气泡酒，更是一场源于人民、回馈人民的庆典。<br>致敬土地、时间与才华——致那些相信精致也能被分享的人们。<br><br><em>因为肥沃的土地孕育时光，凭借才华，我们举杯庆祝！</em>",
-      cta:"了解产品"
+      pretitle: "腰果气泡酒 · 天然 · 香槟法",
+      tagline: "土地、时间与才华",
+      sub: "北里奥格兰德州 · 巴西 · 750毫升 · 酒精度9%",
+      manifesto: "我们孕育于阳光与热带微风。<br>这片土地教会我们耐心，把坚韧化为风味。<br>在腰果中，我们看到的不只是果实：而是起源、文化与力量。<br>我们看到一个不断创新、创造与繁荣的巴西东北部。<br>我们融合科学与传统、田野与艺术，让这颗果实中长期被低估的部分，成为骄傲、优雅与积极影响的象征。<br>每一瓶酒，都凝聚着耕种者、研究者与追梦人的心血。<br>有阳光的金色光芒，也有腰果的清新。<br>AKAÎU 是一场源于人民、回馈人民的庆典。<br><br><em>沃土育果，时光采撷。以匠心，共举杯。</em>",
+      cta: "了解产品"
     },
     produto: {
-      tag:"— 产品",
-      p1:"AKAÎU拥有巴西的灵魂与优雅的气质！这款酒以巴西本土水果——腰果苹果为原料，采用传统起泡酒酿造法（香槟法），在瓶内进行二次发酵，保持<em>Sur Lie Nature</em>（带酒泥陈酿、未添加补液）的纯净风格。",
-      p2:"这是一款适合见证重要庆祝时刻的产品。它是一款真实、优雅、富有创意且具有责任意识的品牌，将高端饮品的精致与田野的质朴力量完美结合。",
-      p3:"它带来阳光的能量、热带水果的清新，以及将巴西生物群落中被低估的资源所面临的挑战转化为<strong>液态艺术</strong>的智慧光芒。",
-      bottleLabel:"Nature · 750ml · 9%vol"
+      tag: "— 产品",
+      p1: "AKAÎU 诞生于巴西东北部，将腰果这一原生果实与坚韧的象征，酿成独一无二的起泡酒。它以腰果苹果为原料，采用传统法（香槟法）酿造：二次发酵在瓶中进行，酒液与酒泥一同陈酿（<em>sur lie</em>），以 <em>Nature</em> 风格呈现，不添加补液。",
+      p2: "我们的腰果来自巴西东北部腹地的北里奥格兰德州。腰果树原生于此，是许多家庭文化与生计的一部分。",
+      p3: "AKAÎU 不只是一款饮品，更是向巴西文化、创新与积极社会环境影响的致敬：它重视当地种植者，推动可持续发展，并颂扬将土地与时间化为风味的人们。",
+      bottleLabel: "Nature · 750ml · 9% vol"
     },
     sensorial: {
-      title:"感官特征",
-      desc:"酒体明亮细腻，呈淡黄色，气泡细腻丰富。香气令人联想到手工腰果汁、腰果蜜饯与甜品，优雅地展现了这款巴西水果独特的个性。入口清新轻盈、平衡感佳，伴随宜人的矿物感，余味悠长，延展整体的感官体验。",
-      tag:"— 品鉴笔记", lead:"源自地道的巴西风土，适合各种庆祝时刻——从简单相聚到盛大场合。",
-      visual_label:"外观", visual_val:"淡黄明亮，气泡细腻、活跃而持久。",
-      aroma_label:"香气", aroma_val:"清新细腻，带有腰果汁与腰果蜜饯的甜美气息。",
-      boca_label:"口感", boca_val:"干爽清新，酸度平衡，带有矿物感，余味悠长。",
-      classificacao_label:"分类", classificacao_val:"天然型（每杯仅15卡路里）",
-      harmonizacao_label:"搭配建议", harmonizacao_val:"清淡菜肴、海鲜及热带氛围",
-      temperatura_label:"饮用温度", temperatura_val:"4°C 至 6°C"
+      title: "感官特征",
+      desc: "酒体明亮细腻，呈淡黄色，气泡细腻丰富。香气令人联想到手工腰果汁、腰果蜜饯与甜品，优雅地展现了这款巴西水果独特的个性。入口清新轻盈、平衡感佳，伴随宜人的矿物感，余味悠长，延展整体的感官体验。",
+      tag: "— 品鉴笔记",
+      lead: "源自地道的巴西，适合每一个值得庆祝的时刻，从简单的相聚到盛大的场合。",
+      visual_label: "外观",
+      visual_val: "淡黄明亮，气泡细腻、活跃而持久。",
+      aroma_label: "香气",
+      aroma_val: "清新细腻，带有腰果汁与腰果蜜饯的甜美气息。",
+      boca_label: "口感",
+      boca_val: "干爽清新，酸度平衡，带有矿物气息，余味悠长，让人忍不住再饮一口。",
+      classificacao_label: "分类",
+      classificacao_val: "Nature",
+      harmonizacao_label: "搭配建议",
+      harmonizacao_val: "清淡菜肴、鱼类与海鲜",
+      temperatura_label: "饮用温度",
+      temperatura_val: "4°C 至 6°C"
     },
-    interludio: { quote:"腰果是潜力的象征，而非浪费。", sign:"土地、时光与匠心。" },
+    interludio: {
+      quote: "在腰果中，我们看到了少有人发现的价值与潜力。",
+      sign: "土地、时光与匠心。",
+      note: "腰果由两部分组成。举世闻名的腰果仁才是真正的果实；与它相连的是腰果苹果，即所谓的“假果”，多汁而芬芳，却长期未被重视。AKAÎU 正是由它酿成。"
+    },
     galeria: {
-      tag:"— 氛围",
-      title:"<em>举杯</em>的艺术",
-      sub:"AKAÎU诚邀您庆祝那些值得举杯的相遇、风景、风味与故事。"
+      tag: "— 氛围",
+      title: "<em>举杯</em>的艺术",
+      sub: "AKAÎU诚邀您庆祝那些值得举杯的相遇、风景、风味与故事。"
     },
     processo: {
-      tag:"— 工艺",
-      title:"从田野到<em>酒杯</em>",
-      desc:"每一瓶AKAÎU都是一系列精心决策的成果，从腰果苹果的筛选到最终的吐泥工序，无一不体现对水果的珍视、对时间的尊重，以及对每一个细节追求卓越的态度。",
-      step1:{title:"精选采摘", desc:"腰果苹果经过精心挑选，确保其达到理想的成熟度与香气表现。"},
-      step2:{title:"基酒发酵", desc:"果汁被转化为基酒，展现出平衡感、清新度以及酿造起泡酒所需的结构。"},
-      step3:{title:"香槟法", desc:"二次发酵在瓶内进行，形成细腻的气泡并赋予更丰富的感官层次。"},
-      step4:{title:"转瓶与吐泥", desc:"这些工序以精准的手法去除沉淀物，呈现出起泡酒的澄澈、光泽与优雅。"}
+      tag: "— 工艺",
+      title: "从田野到<em>酒杯</em>",
+      desc: "每一瓶 AKAÎU 都源于一系列用心的选择，从挑选腰果苹果到最后的除渣。这一过程珍视果实、尊重时间，并在每个细节中追求卓越。",
+      step1: {
+        title: "精选采摘",
+        desc: "在最佳成熟度时精选腰果苹果，此时果实香气最为饱满。"
+      },
+      step2: {
+        title: "基酒发酵",
+        desc: "腰果汁被酿成基酒，具备起泡酒所需的平衡、清新与结构。"
+      },
+      step3: {
+        title: "香槟法",
+        desc: "二次发酵在瓶中进行。酒液与酒泥一同陈酿至少两个月，形成细腻的气泡与更丰富的层次。"
+      },
+      step4: {
+        title: "转瓶与吐泥",
+        desc: "酒瓶被逐步转动并倾斜，使沉淀物聚集到瓶颈（转瓶），随后将其除去（除渣），呈现清澈明亮的起泡酒。"
+      }
     },
     marca: {
-      tag:"— 品牌",
-      title:"不仅是一款气泡酒。<em>一种重新审视巴西腰果的视角。</em>",
-      p1:"AKAÎU的诞生，是为了揭示长期以来被忽视的潜力。我们将腰果——这种巴西半干旱地区的本土水果——转化为一种能为当地创造价值、为其起源带来自豪感，并为以种植为生的人们带来新机遇的体验。",
-      p2:"我们将科学、传统与敏锐感知相结合，打造出尊重土地、重视人本，并证明创新与正向影响可以并行不悖的卓越饮品。",
-      manifHeadline:"将腰果打造成巴西创新、可持续与庆典精神的象征。",
-      manifBody:"通过YeastFarm的微发酵工艺与精细的香槟法，我们将巴西东北部半干旱地区的坚韧精神封存于瓶中，并将其升华为具有高附加值的艺术。",
-      impact1:{title:"社会影响", desc:"我们重视生产者，扶持乡村社区，通过更公平、更具包容性的生产链创造发展机遇。"},
-      impact2:{title:"环境影响", desc:"我们将历史上被浪费的资源转化为价值，减少损耗并推动腰果的全面利用。"},
-      impact3:{title:"文化影响", desc:"让巴西东北部牢牢占据世界美食与美酒版图，吸引名厨与意见领袖的关注。"}
+      tag: "— 品牌",
+      title: "不仅是一款气泡酒。<em>一种重新审视巴西腰果的视角。</em>",
+      p1: "AKAÎU 的诞生，是为了展现一种长期未被认识的潜力。我们将巴西原生果实腰果，转化为一种体验：为土地创造价值，为本源带来骄傲，也为以种植腰果为生的人们开辟新的可能。",
+      p2: "我们融合田野的智慧与当代科学，打造卓越的饮品：尊重土地、珍视人们，并证明优雅也可以分享。",
+      manifHeadline: "让北里奥格兰德州与巴西东北部登上世界美食美酒地图。",
+      manifBody: "凭借 YeastFarm 的微发酵技术与严谨的香槟法，我们把东北部半干旱地区的坚韧装进瓶中，并将其升华为艺术。",
+      impact1: {
+        title: "社会影响",
+        desc: "我们重视种植者，壮大乡村社区，打造更公平、更包容的产业链。"
+      },
+      impact2: {
+        title: "环境影响",
+        desc: "我们让长期未被充分利用的资源焕发价值，减少损耗，推动腰果的全果利用。"
+      },
+      impact3: {
+        title: "文化影响",
+        desc: "我们把巴西东北部带上高级餐饮的餐桌，以一杯美酒颂扬人、地方与时刻的多样性。"
+      }
     },
     parceiros: {
-      tag:"— 生态系统",
-      title:"我们的<em>合作伙伴</em>",
-      desc:"每一瓶酒的背后，都有一个与我们共享创新、卓越与巴西生物多样性价值理念的合作伙伴网络。"
+      tag: "— 生态系统",
+      title: "我们的<em>合作伙伴</em>",
+      desc: "每一瓶酒的背后，都有一个与我们共享创新、卓越与巴西生物多样性价值理念的合作伙伴网络。"
     },
     contato: {
-      tag:"— 联系我们",
-      title:"联系<em>我们</em>",
-      desc:"无论是咨询、商业合作、分销还是活动洽谈，我们的团队随时乐意为您服务。",
-      email_label:"商务邮箱",
-      whatsapp_label:"企业WhatsApp（Alberto Medeiros）",
-      instagram_label:"官方Instagram",
-      sede_label:"总部与产地",
-      sede_val:"纳塔尔/北里奥格兰德州 · 巴西"
+      tag: "— 联系我们",
+      title: "联系<em>我们</em>",
+      desc: "无论是咨询、商务合作、分销还是活动，我们的团队都乐意倾听您的需求。",
+      email_label: "商务邮箱",
+      whatsapp_label: "企业WhatsApp（Alberto Medeiros）",
+      instagram_label: "官方Instagram",
+      sede_label: "总部与产地",
+      sede_val: "纳塔尔/北里奥格兰德州 · 巴西"
     },
     form: {
-      nome_label:"姓名", nome_placeholder:"您的姓名",
-      empresa_label:"公司", empresa_placeholder:"公司名称（选填）",
-      email_label:"电子邮箱", email_placeholder:"your@email.com",
-      assunto_label:"主题",
-      assunto_opt0:"请选择主题", assunto_opt1:"咨询/一般信息", assunto_opt2:"分销与合作",
-      assunto_opt3:"活动与婚礼", assunto_opt4:"餐厅与精品商店", assunto_opt5:"新闻媒体", assunto_opt6:"其他",
-      mensagem_label:"留言内容", mensagem_placeholder:"我们可以如何帮助您？",
-      btn:"发送信息", btn_sent:"信息已发送 ✓"
+      nome_label: "姓名",
+      nome_placeholder: "您的姓名",
+      empresa_label: "公司",
+      empresa_placeholder: "公司名称（选填）",
+      email_label: "电子邮箱",
+      email_placeholder: "your@email.com",
+      assunto_label: "主题",
+      assunto_opt0: "请选择主题",
+      assunto_opt1: "咨询/一般信息",
+      assunto_opt2: "分销与合作",
+      assunto_opt3: "活动与婚礼",
+      assunto_opt4: "餐厅与精品商店",
+      assunto_opt5: "新闻媒体",
+      assunto_opt6: "其他",
+      mensagem_label: "留言内容",
+      mensagem_placeholder: "我们可以如何帮助您？",
+      btn: "发送信息",
+      btn_sent: "信息已发送 ✓"
     },
     footer: {
-      responsabilidade:"理性饮酒 · 禁止向未满18岁人士销售",
-      fabricado:"生产商：YeastFarm Microfermentações LTDA.<br>地址：Rua Alameda de Santo Antônio, S/N, Zona de Expansão Urbana Sul, Macaíba – RN - 巴西。<br>邮编：59.281-720"
+      responsabilidade: "请理性饮酒。禁止向未满18岁人士销售。",
+      fabricado: "YeastFarm Microfermentações Ltda. · 巴西北里奥格兰德州马卡伊巴"
     },
-    aria: { backToTop:"返回顶部", openMenu:"打开菜单", prev:"上一张", next:"下一张", swipe:"滑动查看更多" }
+    aria: {
+      backToTop: "返回顶部",
+      openMenu: "打开菜单",
+      prev: "上一张",
+      next: "下一张",
+      swipe: "滑动查看更多"
+    },
+    chapter: {
+      terra: "壹 · 土地",
+      tempo: "贰 · 时间",
+      talento: "叁 · 才华"
+    },
+    ficha: {
+      tag: "— 起泡酒",
+      title: "技术<em>参数</em>",
+      materia_l: "原料",
+      materia_v: "腰果苹果",
+      origem_l: "产地",
+      origem_v: "巴西东北部 · 北里奥格兰德州",
+      metodo_l: "工艺",
+      metodo_v: "传统法（香槟法），瓶中二次发酵",
+      leveduras_l: "酒泥陈酿时间",
+      leveduras_v: "至少 2 个月",
+      classif_l: "类型",
+      classif_v: "Nature，不添加补液",
+      teor_l: "酒精度",
+      teor_v: "9% vol",
+      volume_l: "容量",
+      volume_v: "750 ml",
+      temp_l: "饮用温度",
+      temp_v: "4 °C 至 6 °C",
+      harm_l: "餐酒搭配",
+      harm_v: "清淡菜肴、鱼类与海鲜"
+    }
   }
 };
 
