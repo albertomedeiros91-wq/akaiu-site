@@ -1100,8 +1100,8 @@ footer{background:var(--verde-deep)}
   .manifesto-inner .foil-crest{width:54px;margin-bottom:1.1rem}
   .manifesto-cta{margin-top:1.6rem}
   #processo{padding-top:2rem;padding-bottom:2rem}
-  .proc-card{max-height:calc(100vh - 410px);min-height:280px}
-  .proc-cards{justify-content:center;grid-template-columns:repeat(4,minmax(0,calc((100vh - 410px) / 1.43)))}
+  .proc-card{aspect-ratio:auto;height:calc(100vh - 410px);min-height:280px;max-height:520px}
+  .proc-cards{grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1300px}
   #galeria{padding-top:2.6rem;padding-bottom:2rem}
 }
 </style>
