@@ -1104,27 +1104,6 @@ footer{background:var(--verde-deep)}
   .proc-cards{grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1300px}
   #galeria{padding-top:2.6rem;padding-bottom:2rem}
 }
-/* ── Atmosfera: "O Ritual do Brinde" ── */
-.slide-item{position:relative}
-.ritual{position:absolute;left:0;right:0;bottom:0;padding:1.4rem 1.4rem 1.5rem;z-index:2;text-align:left;
-  background:linear-gradient(to top,rgba(14,18,12,.96) 0%,rgba(14,18,12,.82) 55%,rgba(14,18,12,0) 100%)}
-.ritual-n{display:block;font-family:var(--f-accent);font-style:italic;font-size:1rem;color:var(--gold-lt);margin-bottom:.15rem}
-.ritual-t{font-family:var(--f-title);font-weight:400;font-size:1.25rem;color:var(--cream);line-height:1.2}
-.ritual-d{margin-top:.5rem;font-size:.9rem;line-height:1.6;color:var(--text)}
-@media(min-width:1025px){
-  #slider{gap:1.1rem;padding:1rem 4vw 1.2rem;max-width:1500px;margin:0 auto}
-  #slider .slide-item,#slider .slide-item.focused{flex:1 1 0;max-width:none;height:max(300px,min(calc(100vh - 420px),460px));aspect-ratio:auto;cursor:default;
-    transition:flex-grow .7s cubic-bezier(.16,1,.3,1),box-shadow .5s}
-  #slider .slide-item img{transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
-  #slider .ritual{padding:1.6rem 1.8rem 1.7rem}
-  #slider .ritual-d{max-width:30ch;max-height:0;opacity:0;overflow:hidden;transition:max-height .6s cubic-bezier(.16,1,.3,1),opacity .4s}
-  /* aberto: o card sob o mouse (ou o primeiro, quando ninguém está passando) */
-  #slider .slide-item:hover,#slider:not(:hover) .slide-item:first-child{flex-grow:2.6}
-  #slider .slide-item:hover .ritual-d,#slider:not(:hover) .slide-item:first-child .ritual-d{max-height:9rem;opacity:1;transition-delay:.15s}
-  #slider .slide-item:hover img{transform:scale(1.04)}
-  #slider .slide-item:not(:hover) .ritual-t{font-size:1.05rem}
-  #slider:hover .slide-item:not(:hover) .ritual-n{opacity:.6}
-}
 </style>
 </head>
 <body>
@@ -1346,17 +1325,17 @@ footer{background:var(--verde-deep)}
     <span class="tag" data-i18n="galeria.tag">— Atmosfera</span>
     <h2 class="h2" data-i18n-html="galeria.title">A Arte de <em>Brindar</em></h2>
     <div class="rule"></div>
-    <p class="galeria-sub" data-i18n="galeria.sub">Pequenos gestos fazem um grande brinde. Descubra o ritual de servir AKAÎU.</p>
+    <p class="galeria-sub" data-i18n="galeria.sub">O AKAÎU é um convite para celebrar encontros, paisagens, sabores e histórias que merecem ser brindadas.</p>
   </div>
 
   <div class="slider-frame">
     <div class="slider-wrapper" id="slider">
       <!-- Imagens ATMOSFERA-1 a ATMOSFERA-7 -->
-      <div class="slide-item"><img src="images/ATMOSFERA-1.webp" alt="Rótulo do espumante AKAÎU em close, entre cajus" loading="lazy"><div class="ritual"><span class="ritual-n">01</span><h3 class="ritual-t" data-i18n="galeria.r1.t">Leia o rótulo</h3><p class="ritual-d" data-i18n="galeria.r1.d">Nature é o estilo mais seco de espumante: nenhum açúcar é adicionado depois da fermentação. Assim, o caju chega puro à taça.</p></div></div>
-      <div class="slide-item"><img src="images/ATMOSFERA-5.webp" alt="Gargalo da garrafa AKAÎU com a gravata Terra, tempo e talento" loading="lazy"><div class="ritual"><span class="ritual-n">02</span><h3 class="ritual-t" data-i18n="galeria.r2.t">Abra sem estouro</h3><p class="ritual-d" data-i18n="galeria.r2.d">Solte a gaiola mantendo o polegar sobre a rolha. Incline a garrafa e gire a garrafa, não a rolha. O som ideal é um suspiro.</p></div></div>
-      <div class="slide-item"><img src="images/ATMOSFERA-7.webp" alt="Espumante AKAÎU sendo servido na taça" loading="lazy"><div class="ritual"><span class="ritual-n">03</span><h3 class="ritual-t" data-i18n="galeria.r3.t">Sirva em dois tempos</h3><p class="ritual-d" data-i18n="galeria.r3.d">Encha um terço da taça, espere a espuma assentar e complete até dois terços. Segure pela haste, para não aquecer o espumante.</p></div></div>
-      <div class="slide-item"><img src="images/ATMOSFERA-4.webp" alt="Duas taças de espumante ao lado da garrafa AKAÎU" loading="lazy"><div class="ritual"><span class="ritual-n">04</span><h3 class="ritual-t" data-i18n="galeria.r4.t">Escolha a taça</h3><p class="ritual-d" data-i18n="galeria.r4.d">Taças tulipa, de bojo amplo e boca mais fechada, concentram os aromas e mantêm a perlage viva por mais tempo.</p></div></div>
-      <div class="slide-item"><img src="images/ATMOSFERA-2.webp" alt="Garrafa AKAÎU sobre pedestal dourado, com cajus" loading="lazy"><div class="ritual"><span class="ritual-n">05</span><h3 class="ritual-t" data-i18n="galeria.r5.t">Guarde bem</h3><p class="ritual-d" data-i18n="galeria.r5.d">Antes de abrir, em local fresco e longe da luz. Depois de aberto, use uma tampa própria para espumantes e aproveite em até dois dias.</p></div></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-1.webp" alt="Rótulo do espumante AKAÎU em close, entre cajus" loading="lazy"></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-5.webp" alt="Gargalo da garrafa AKAÎU com a gravata Terra, tempo e talento" loading="lazy"></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-7.webp" alt="Espumante AKAÎU sendo servido na taça" loading="lazy"></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-4.webp" alt="Duas taças de espumante ao lado da garrafa AKAÎU" loading="lazy"></div>
+      <div class="slide-item"><img src="images/ATMOSFERA-2.webp" alt="Garrafa AKAÎU sobre pedestal dourado, com cajus" loading="lazy"></div>
     </div>
     <button class="slider-btn prev" aria-label="Anterior" data-i18n-aria="aria.prev">⟨</button>
     <button class="slider-btn next" aria-label="Próximo" data-i18n-aria="aria.next">⟩</button>
@@ -1729,27 +1708,7 @@ const translations = {
     galeria: {
       tag: "— Atmosfera",
       title: "A Arte de <em>Brindar</em>",
-      sub: "Pequenos gestos fazem um grande brinde. Descubra o ritual de servir AKAÎU.",
-      r1: {
-        t: "Leia o rótulo",
-        d: "Nature é o estilo mais seco de espumante: nenhum açúcar é adicionado depois da fermentação. Assim, o caju chega puro à taça."
-      },
-      r2: {
-        t: "Abra sem estouro",
-        d: "Solte a gaiola mantendo o polegar sobre a rolha. Incline a garrafa e gire a garrafa, não a rolha. O som ideal é um suspiro."
-      },
-      r3: {
-        t: "Sirva em dois tempos",
-        d: "Encha um terço da taça, espere a espuma assentar e complete até dois terços. Segure pela haste, para não aquecer o espumante."
-      },
-      r4: {
-        t: "Escolha a taça",
-        d: "Taças tulipa, de bojo amplo e boca mais fechada, concentram os aromas e mantêm a perlage viva por mais tempo."
-      },
-      r5: {
-        t: "Guarde bem",
-        d: "Antes de abrir, em local fresco e longe da luz. Depois de aberto, use uma tampa própria para espumantes e aproveite em até dois dias."
-      }
+      sub: "O AKAÎU é um convite para celebrar encontros, paisagens, sabores e histórias que merecem ser brindadas."
     },
     processo: {
       tag: "— O Processo",
@@ -1908,27 +1867,7 @@ const translations = {
     galeria: {
       tag: "— Atmosphere",
       title: "The Art of <em>Toasting</em>",
-      sub: "Small gestures make a great toast. Discover the ritual of serving AKAÎU.",
-      r1: {
-        t: "Read the label",
-        d: "Nature is the driest style of sparkling wine: no sugar is added after fermentation. That is how the cashew reaches the glass in its purest form."
-      },
-      r2: {
-        t: "Open without a pop",
-        d: "Loosen the cage while keeping your thumb on the cork. Tilt the bottle and turn the bottle, not the cork. The ideal sound is a gentle sigh."
-      },
-      r3: {
-        t: "Pour in two steps",
-        d: "Fill a third of the glass, let the foam settle, then top up to two thirds. Hold the glass by the stem so the wine stays cool."
-      },
-      r4: {
-        t: "Choose the glass",
-        d: "Tulip glasses, with a wide bowl and a narrower rim, concentrate the aromas and keep the bubbles lively for longer."
-      },
-      r5: {
-        t: "Store it well",
-        d: "Before opening, keep it somewhere cool and away from light. Once open, use a sparkling wine stopper and enjoy within two days."
-      }
+      sub: "AKAÎU is an invitation to celebrate encounters, landscapes, flavors and stories worth toasting to."
     },
     processo: {
       tag: "— The Process",
@@ -2087,27 +2026,7 @@ const translations = {
     galeria: {
       tag: "— Atmósfera",
       title: "El Arte de <em>Brindar</em>",
-      sub: "Pequeños gestos hacen un gran brindis. Descubra el ritual de servir AKAÎU.",
-      r1: {
-        t: "Lea la etiqueta",
-        d: "Nature es el estilo más seco de espumoso: no se añade azúcar después de la fermentación. Así, el anacardo llega puro a la copa."
-      },
-      r2: {
-        t: "Abra sin estallido",
-        d: "Suelte el bozal manteniendo el pulgar sobre el corcho. Incline la botella y gire la botella, no el corcho. El sonido ideal es un suspiro."
-      },
-      r3: {
-        t: "Sirva en dos tiempos",
-        d: "Llene un tercio de la copa, espere a que baje la espuma y complete hasta dos tercios. Sujétela por el tallo para no calentar el espumoso."
-      },
-      r4: {
-        t: "Elija la copa",
-        d: "Las copas tulipa, de cuerpo amplio y boca más cerrada, concentran los aromas y mantienen la burbuja viva por más tiempo."
-      },
-      r5: {
-        t: "Guárdelo bien",
-        d: "Antes de abrirlo, en un lugar fresco y lejos de la luz. Una vez abierto, use un tapón para espumosos y disfrútelo en un máximo de dos días."
-      }
+      sub: "AKAÎU es una invitación a celebrar encuentros, paisajes, sabores e historias que merecen ser brindadas."
     },
     processo: {
       tag: "— El Proceso",
@@ -2266,27 +2185,7 @@ const translations = {
     galeria: {
       tag: "— 氛围",
       title: "<em>举杯</em>的艺术",
-      sub: "细微的仪式，成就美好的举杯。来了解 AKAÎU 的侍酒之道。",
-      r1: {
-        t: "读懂酒标",
-        d: "Nature 是最干型的起泡酒：发酵后不再添加任何糖分，让腰果以最纯粹的样子进入杯中。"
-      },
-      r2: {
-        t: "安静开瓶",
-        d: "用拇指按住瓶塞，再松开铁丝帽。倾斜酒瓶，转动瓶身而不是瓶塞。理想的声音是一声轻叹。"
-      },
-      r3: {
-        t: "分两次斟酒",
-        d: "先倒至杯子的三分之一，待泡沫落下，再补至三分之二。握住杯脚，避免手温让酒变暖。"
-      },
-      r4: {
-        t: "选对酒杯",
-        d: "郁金香杯杯肚宽、杯口收窄，能聚拢香气，让气泡持续更久。"
-      },
-      r5: {
-        t: "妥善保存",
-        d: "开瓶前置于阴凉避光处。开瓶后使用起泡酒专用瓶塞，并在两天内饮用完毕。"
-      }
+      sub: "AKAÎU诚邀您庆祝那些值得举杯的相遇、风景、风味与故事。"
     },
     processo: {
       tag: "— 工艺",
