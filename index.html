@@ -1112,6 +1112,8 @@ footer{background:var(--verde-deep)}
   #slider .slide-item:hover{transform:translateY(-6px);outline-color:rgba(240,212,138,.9);box-shadow:0 36px 70px rgba(0,0,0,.7),0 0 40px rgba(201,154,58,.18)}
   #slider .slide-item:hover img{transform:scale(1.05)}
 }
+/* Menu: some ao rolar para baixo; volta ao rolar para cima ou com o mouse no topo */
+nav.nav-hide{transform:translateY(-110%);pointer-events:none}
 </style>
 </head>
 <body>
@@ -2574,6 +2576,22 @@ function enterSite() {
   setTimeout(() => gate.style.display = 'none', REDUCED_MOTION ? 50 : 850);
 }
 
+// Menu que se recolhe durante a leitura
+(function () {
+  const nav = document.getElementById('nav'), menu = document.getElementById('navMobileMenu');
+  let lastY = scrollY;
+  const show = () => nav.classList.remove('nav-hide');
+  const canHide = () => scrollY > innerHeight * .6 && !(menu && menu.classList.contains('open')) && !nav.matches(':hover, :focus-within');
+  addEventListener('scroll', () => {
+    const y = scrollY, dy = y - lastY;
+    if (Math.abs(dy) < 6) return;
+    if (dy > 0 && canHide()) nav.classList.add('nav-hide');
+    else if (dy < 0 || y < innerHeight * .6) show();
+    lastY = y;
+  }, { passive: true });
+  addEventListener('mousemove', e => { if (e.clientY < 90) show(); }, { passive: true });
+  nav.addEventListener('focusin', show);
+})();
 // Botão Voltar ao Topo
 const btt = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
