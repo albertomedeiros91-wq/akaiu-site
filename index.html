@@ -1104,6 +1104,14 @@ footer{background:var(--verde-deep)}
   .proc-cards{grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1300px}
   #galeria{padding-top:2.6rem;padding-bottom:2rem}
 }
+/* Atmosfera: destaque suave na foto sob o mouse (só computador) */
+@media(min-width:1025px) and (hover:hover){
+  #slider .slide-item{transition:transform .6s cubic-bezier(.16,1,.3,1),filter .6s ease,outline-color .6s ease,box-shadow .6s ease}
+  #slider .slide-item img{transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+  #slider:hover .slide-item:not(:hover){filter:brightness(.72) saturate(.85)}
+  #slider .slide-item:hover{transform:translateY(-6px);outline-color:rgba(240,212,138,.9);box-shadow:0 36px 70px rgba(0,0,0,.7),0 0 40px rgba(201,154,58,.18)}
+  #slider .slide-item:hover img{transform:scale(1.05)}
+}
 </style>
 </head>
 <body>
