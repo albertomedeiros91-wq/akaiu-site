@@ -1125,6 +1125,14 @@ section,footer{scroll-margin-top:64px}
   /* botão voltar ao topo menor, para não cobrir textos */
   #backToTop{width:44px;height:44px;right:14px;bottom:14px;font-size:1rem;opacity:.9}
 }
+/* Capítulos (Terra, Tempo, Talento) mais nítidos: Marcellus, dourado claro, com filetes */
+.chapter{font-family:var(--f-title);font-style:normal;font-size:1.05rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt);opacity:1;
+  display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem}
+.chapter::before,.chapter::after{content:"";height:1px;width:28px;background:linear-gradient(90deg,transparent,rgba(240,212,138,.8))}
+.chapter::after{background:linear-gradient(90deg,rgba(240,212,138,.8),transparent)}
+#galeria .chapter,.proc-header .chapter,#parceiros .chapter{justify-content:center}
+@media(max-width:900px){.manifesto-inner .chapter{justify-content:center}}
+@media(max-width:768px){.chapter{justify-content:center}}
 </style>
 </head>
 <body>
@@ -1238,7 +1246,7 @@ section,footer{scroll-margin-top:64px}
     <span class="hero-crest foil foil-crest" aria-hidden="true"></span>
     <h1 class="hero-title"><span class="foil foil-logo" role="img" aria-label="AKAÎU"></span></h1>
     <p class="hero-tagline" data-i18n="hero.tagline">Terra, Tempo e Talento</p>
-    <span class="hero-sub" data-i18n="hero.sub">Rio Grande do Norte · Brasil · 750ml · 9% vol</span>
+    <span class="hero-sub" data-i18n="hero.sub">Rio Grande do Norte · Brasil</span>
   </div>
 </section>
 
@@ -1280,7 +1288,7 @@ section,footer{scroll-margin-top:64px}
           <img src="images/HERO-2.webp" class="bottle-real-img bottles-trio" alt="Três garrafas do espumante AKAÎU">
         </div>
         <div class="bottle-shadow" aria-hidden="true"></div>
-        <div class="bottle-label-text" data-i18n="produto.bottleLabel">Nature · 750ml · 9% vol</div>
+        <div class="bottle-label-text" data-i18n="produto.bottleLabel">Nature</div>
       </div>
     </div>
 
@@ -1687,7 +1695,7 @@ const translations = {
     hero: {
       pretitle: "Espumante de Caju · Nature · Método Champenoise",
       tagline: "Terra, Tempo e Talento",
-      sub: "Rio Grande do Norte · Brasil · 750ml · 9% vol",
+      sub: "Rio Grande do Norte · Brasil",
       manifesto: "Somos fruto do sol e da brisa tropical. <br>Da terra que ensina paciência e transforma resiliência em sabor. <br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência. <br>Vemos o Nordeste que inova, cria e prospera. <br>Unimos ciência e tradição, campo e arte, para transformar uma parte desse fruto, <br>por muito tempo subvalorizada, em símbolo de orgulho, sofisticação e impacto positivo. <br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha. <br>Há o brilho dourado do sol e o frescor do caju. <br>AKAÎU é uma celebração que nasce do povo e volta para o povo. <br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em>",
       cta: "Conheça o Produto"
     },
@@ -1696,7 +1704,7 @@ const translations = {
       p1: "Nascido no Nordeste do Brasil, AKAÎU transforma o caju, fruto nativo e símbolo de resistência, em um espumante singular. É elaborado a partir do pedúnculo do caju pelo Método Tradicional (Champenoise): a segunda fermentação acontece na própria garrafa, onde o espumante descansa sobre as leveduras (<em>sur lie</em>) e chega à taça <em>Nature</em>, sem adição de licor de expedição.",
       p2: "Os cajus vêm do Rio Grande do Norte, no coração do Nordeste brasileiro, terra onde o cajueiro é nativo e faz parte da cultura e da economia de muitas famílias.",
       p3: "Mais que uma bebida, AKAÎU é um brinde à cultura brasileira, à inovação e ao impacto socioambiental positivo: valoriza produtores locais, contribui com a sustentabilidade e celebra o talento de quem transforma a terra e o tempo em sabor.",
-      bottleLabel: "Nature · 750ml · 9% vol"
+      bottleLabel: "Nature"
     },
     sensorial: {
       title: "Perfil Sensorial",
@@ -1846,7 +1854,7 @@ const translations = {
     hero: {
       pretitle: "Cashew Sparkling Wine · Nature · Champenoise Method",
       tagline: "Land, Time and Talent",
-      sub: "Rio Grande do Norte · Brazil · 750ml · 9% vol",
+      sub: "Rio Grande do Norte · Brazil",
       manifesto: "We are born of the sun and the tropical breeze. <br>Of a land that teaches patience and turns resilience into flavor. <br>In the cashew we see more than a fruit: we see origin, culture and strength. <br>We see a Northeast that innovates, creates and thrives. <br>We bring together science and tradition, field and art, to turn a long-undervalued part of this fruit into a symbol of pride, sophistication and positive impact. <br>In every bottle lies the work of those who grow, research and dream. <br>The golden glow of the sun and the freshness of the cashew. <br>AKAÎU is a celebration born of the people that returns to the people. <br><br><em>From fertile land, time harvests. With talent, we toast.</em>",
       cta: "Discover the Product"
     },
@@ -1855,7 +1863,7 @@ const translations = {
       p1: "Born in Northeast Brazil, AKAÎU turns the cashew, a native fruit and a symbol of resilience, into a singular sparkling wine. It is made from the cashew apple using the Traditional Method (Champenoise): the second fermentation takes place in the bottle itself, where the wine rests on its lees (<em>sur lie</em>) and reaches the glass as a <em>Nature</em>, with no added dosage.",
       p2: "Our cashews come from Rio Grande do Norte, in the heart of Brazil’s Northeast, where the cashew tree is native and part of the culture and livelihood of many families.",
       p3: "More than a drink, AKAÎU is a toast to Brazilian culture, to innovation and to positive social and environmental impact: it values local growers, supports sustainability and celebrates the talent of those who turn land and time into flavor.",
-      bottleLabel: "Nature · 750ml · 9% vol"
+      bottleLabel: "Nature"
     },
     sensorial: {
       title: "Sensory Profile",
@@ -2005,7 +2013,7 @@ const translations = {
     hero: {
       pretitle: "Espumante de Anacardo · Nature · Método Champenoise",
       tagline: "Tierra, Tiempo y Talento",
-      sub: "Río Grande do Norte · Brasil · 750ml · 9% vol",
+      sub: "Río Grande do Norte · Brasil",
       manifesto: "Somos fruto del sol y de la brisa tropical. <br>De una tierra que enseña paciencia y transforma la resiliencia en sabor. <br>En el anacardo vemos más que un fruto: vemos origen, cultura y fuerza. <br>Vemos un Nordeste que innova, crea y prospera. <br>Unimos ciencia y tradición, campo y arte, para transformar una parte de este fruto, por mucho tiempo poco valorada, en símbolo de orgullo, sofisticación e impacto positivo. <br>En cada botella está el trabajo de quien cultiva, investiga y sueña. <br>El brillo dorado del sol y la frescura del anacardo. <br>AKAÎU es una celebración que nace del pueblo y vuelve al pueblo. <br><br><em>De la tierra fértil, el tiempo cosecha. Con talento, brindamos.</em>",
       cta: "Descubre el Producto"
     },
@@ -2014,7 +2022,7 @@ const translations = {
       p1: "Nacido en el Nordeste de Brasil, AKAÎU transforma el anacardo, fruto nativo y símbolo de resistencia, en un espumoso singular. Se elabora a partir de la manzana de anacardo por el Método Tradicional (Champenoise): la segunda fermentación ocurre en la propia botella, donde el espumoso reposa sobre sus lías (<em>sur lie</em>) y llega a la copa como <em>Nature</em>, sin licor de expedición.",
       p2: "Nuestros anacardos vienen de Rio Grande do Norte, en el corazón del Nordeste brasileño, tierra donde el anacardo es nativo y forma parte de la cultura y del sustento de muchas familias.",
       p3: "Más que una bebida, AKAÎU es un brindis por la cultura brasileña, la innovación y el impacto socioambiental positivo: valora a los productores locales, contribuye a la sostenibilidad y celebra el talento de quienes transforman la tierra y el tiempo en sabor.",
-      bottleLabel: "Nature · 750ml · 9% vol"
+      bottleLabel: "Nature"
     },
     sensorial: {
       title: "Perfil Sensorial",
@@ -2164,7 +2172,7 @@ const translations = {
     hero: {
       pretitle: "腰果气泡酒 · 天然 · 香槟法",
       tagline: "土地、时间与才华",
-      sub: "北里奥格兰德州 · 巴西 · 750毫升 · 酒精度9%",
+      sub: "北里奥格兰德州 · 巴西",
       manifesto: "我们孕育于阳光与热带微风。 <br>这片土地教会我们耐心，把坚韧化为风味。 <br>在腰果中，我们看到的不只是果实：而是起源、文化与力量。 <br>我们看到一个不断创新、创造与繁荣的巴西东北部。 <br>我们融合科学与传统、田野与艺术，让这颗果实中长期被低估的部分，成为骄傲、优雅与积极影响的象征。 <br>每一瓶酒，都凝聚着耕种者、研究者与追梦人的心血。 <br>有阳光的金色光芒，也有腰果的清新。 <br>AKAÎU 是一场源于人民、回馈人民的庆典。 <br><br><em>沃土育果，时光采撷。以匠心，共举杯。</em>",
       cta: "了解产品"
     },
@@ -2173,7 +2181,7 @@ const translations = {
       p1: "AKAÎU 诞生于巴西东北部，将腰果这一原生果实与坚韧的象征，酿成独一无二的起泡酒。它以腰果苹果为原料，采用传统法（香槟法）酿造：二次发酵在瓶中进行，酒液与酒泥一同陈酿（<em>sur lie</em>），以 <em>Nature</em> 风格呈现，不添加补液。",
       p2: "我们的腰果来自巴西东北部腹地的北里奥格兰德州。腰果树原生于此，是许多家庭文化与生计的一部分。",
       p3: "AKAÎU 不只是一款饮品，更是向巴西文化、创新与积极社会环境影响的致敬：它重视当地种植者，推动可持续发展，并颂扬将土地与时间化为风味的人们。",
-      bottleLabel: "Nature · 750ml · 9% vol"
+      bottleLabel: "Nature"
     },
     sensorial: {
       title: "感官特征",
