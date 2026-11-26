@@ -1140,6 +1140,25 @@ section,footer{scroll-margin-top:64px}
 .galeria-sub,.sensorial-desc-text{font-size:clamp(.95rem,1.1vw,1.02rem);line-height:1.8}
 .prod-story-text{font-size:clamp(.95rem,1.1vw,1.02rem);line-height:1.85}
 .prod-story-text em{font-family:var(--f-accent);font-style:italic;font-size:1.1em}
+/* ── Menu: espaçamento equilibrado e seletor de idiomas compacto ── */
+nav{gap:clamp(1rem,2.2vw,2.4rem)}
+.n-links{margin:0 auto;gap:clamp(1.1rem,2.1vw,2.4rem)}
+.n-links a{letter-spacing:.2em;white-space:nowrap}
+.n-cta{white-space:nowrap;padding:.6rem 1.4rem}
+.lang-drop{position:relative}
+.lang-cur{background:none;border:1px solid rgba(201,154,58,.45);border-radius:999px;color:var(--gold-lt);cursor:none;
+  font:500 .66rem/1 var(--f-label);letter-spacing:.16em;padding:.55rem .8rem .55rem .95rem;display:flex;align-items:center;gap:.45rem}
+.lang-cur::after{content:"";width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .3s}
+.lang-drop .lang-switch{position:absolute;top:calc(100% + 10px);left:50%;translate:-50% 0;flex-direction:column;gap:.3rem;padding:.5rem;
+  background:rgba(14,20,13,.97);border:1px solid rgba(201,154,58,.35);border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.45);
+  opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .25s,transform .25s,visibility .25s}
+.lang-drop .lang-btn{width:3rem;text-align:center;padding:.5rem 0}
+.lang-drop:hover .lang-switch,.lang-drop:focus-within .lang-switch,.lang-drop.open .lang-switch{opacity:1;visibility:visible;transform:none}
+.lang-drop:hover .lang-cur::after,.lang-drop.open .lang-cur::after{transform:translateY(1px) rotate(225deg)}
+@media(max-width:1100px){.lang-drop{display:none}}
+#langSwitchGate{flex-wrap:wrap;justify-content:center}
+.n-mobile-menu .lang-switch{flex-wrap:nowrap;justify-content:flex-start;gap:.4rem}
+.n-mobile-menu .lang-btn{padding:.5rem .6rem}
 </style>
 </head>
 <body>
@@ -1193,6 +1212,8 @@ section,footer{scroll-margin-top:64px}
     <button class="lang-btn" data-lang="pt" aria-label="Português" title="Português">PT</button>
     <button class="lang-btn" data-lang="en" aria-label="English" title="English">EN</button>
     <button class="lang-btn" data-lang="es" aria-label="Español" title="Español">ES</button>
+    <button class="lang-btn" data-lang="fr" aria-label="Français" title="Français">FR</button>
+    <button class="lang-btn" data-lang="it" aria-label="Italiano" title="Italiano">IT</button>
     <button class="lang-btn" data-lang="zh" aria-label="中文" title="中文">中</button>
   </div>
   <div class="gate-line"></div>
@@ -1218,11 +1239,16 @@ section,footer{scroll-margin-top:64px}
     <li><a href="#marca" data-i18n="nav.marca">A Marca</a></li>
     <li><a href="#parceiros" data-i18n="nav.parceiros">Parceiros</a></li>
   </ul>
+  <div class="lang-drop" id="langDrop">
+  <button class="lang-cur" id="langCur" aria-haspopup="true" aria-expanded="false">PT</button>
   <div class="lang-switch" id="langSwitchDesktop">
     <button class="lang-btn" data-lang="pt" aria-label="Português" title="Português">PT</button>
     <button class="lang-btn" data-lang="en" aria-label="English" title="English">EN</button>
     <button class="lang-btn" data-lang="es" aria-label="Español" title="Español">ES</button>
+    <button class="lang-btn" data-lang="fr" aria-label="Français" title="Français">FR</button>
+    <button class="lang-btn" data-lang="it" aria-label="Italiano" title="Italiano">IT</button>
     <button class="lang-btn" data-lang="zh" aria-label="中文" title="中文">中</button>
+  </div>
   </div>
   <a href="#contato" class="n-cta" data-i18n="nav.cta">Fale Conosco</a>
   <button class="n-burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false" data-i18n-aria="aria.openMenu">
@@ -1243,6 +1269,8 @@ section,footer{scroll-margin-top:64px}
     <button class="lang-btn" data-lang="pt" aria-label="Português" title="Português">PT</button>
     <button class="lang-btn" data-lang="en" aria-label="English" title="English">EN</button>
     <button class="lang-btn" data-lang="es" aria-label="Español" title="Español">ES</button>
+    <button class="lang-btn" data-lang="fr" aria-label="Français" title="Français">FR</button>
+    <button class="lang-btn" data-lang="it" aria-label="Italiano" title="Italiano">IT</button>
     <button class="lang-btn" data-lang="zh" aria-label="中文" title="中文">中</button>
   </div>
 </div>
@@ -2156,6 +2184,324 @@ const translations = {
       talento: "Talento"
     }
   },
+  fr: {
+    meta: {
+      title: "AKAÎU — Vin Mousseux de Cajou",
+      desc: "AKAÎU est un vin mousseux de cajou authentiquement brésilien, élaboré selon la méthode traditionnelle, alliant saveur, science et durabilité."
+    },
+    nav: {
+      manifesto: "Manifeste",
+      produto: "Le Produit",
+      atmosfera: "Atmosphère",
+      processo: "Élaboration",
+      marca: "La Marque",
+      parceiros: "Partenaires",
+      cta: "Contact"
+    },
+    gate: {
+      tag: "Vérification de l’âge",
+      p: "Cette expérience est réservée aux adultes. Pour continuer, veuillez confirmer votre âge.",
+      yes: "J’ai 18 ans ou plus",
+      no: "J’ai moins de 18 ans"
+    },
+    hero: {
+      pretitle: "Vin Mousseux de Cajou · Nature · Méthode Champenoise",
+      tagline: "Terre, Temps et Talent",
+      sub: "Rio Grande do Norte · Brésil",
+      manifesto: "Nous sommes nés du soleil et de la brise tropicale. <br>D’une terre qui enseigne la patience et transforme la résilience en saveur. <br>Dans le cajou, nous voyons plus qu’un fruit : une origine, une culture et une force. <br>Nous voyons un Nordeste qui innove, crée et prospère. <br>Nous unissons science et tradition, terroir et art, pour faire d’une partie longtemps sous-estimée de ce fruit un symbole de fierté, de raffinement et d’impact positif. <br>Chaque bouteille porte le travail de ceux qui cultivent, recherchent et rêvent. <br>L’éclat doré du soleil et la fraîcheur du cajou. <br>AKAÎU est une célébration née du peuple, qui retourne au peuple. <br><br><em>De la terre fertile, le temps récolte. Avec talent, nous trinquons.</em>",
+      cta: "Découvrir le Produit"
+    },
+    produto: {
+      tag: "— Le Produit",
+      p1: "Né dans le Nordeste du Brésil, AKAÎU transforme le cajou, fruit natif et symbole de résilience, en un vin mousseux singulier. Il est élaboré à partir de la pomme de cajou selon la Méthode Traditionnelle (Champenoise) : la seconde fermentation a lieu dans la bouteille, où le vin repose sur ses lies (<em>sur lie</em>) et arrive dans le verre en <em>Nature</em>, sans liqueur d’expédition.",
+      p2: "Nos cajous viennent du Rio Grande do Norte, au cœur du Nordeste brésilien, terre où l’anacardier est natif et fait partie de la culture et de la vie de nombreuses familles.",
+      p3: "Plus qu’une boisson, AKAÎU est un toast à la culture brésilienne, à l’innovation et à l’impact socio-environnemental positif : il valorise les producteurs locaux, soutient la durabilité et célèbre le talent de ceux qui transforment la terre et le temps en saveur.",
+      bottleLabel: "Nature"
+    },
+    sensorial: {
+      title: "Profil Sensoriel",
+      desc: "Brillant et délicat, il présente une robe jaune pâle et une bulle fine et abondante. Ses arômes évoquent la cajuína artisanale et les confitures de cajou. En bouche, il se distingue par sa fraîcheur, sa légèreté et son équilibre, portés par une agréable minéralité.",
+      tag: "— Notes de Dégustation",
+      lead: "Aux racines authentiquement brésiliennes, il est fait pour célébrer, des rencontres simples aux grands moments.",
+      visual_label: "Robe",
+      visual_val: "Jaune pâle et brillante, avec une bulle fine, vive et persistante.",
+      aroma_label: "Nez",
+      aroma_val: "Frais et délicat, avec des notes douces de cajuína et de confiture.",
+      boca_label: "Bouche",
+      boca_val: "Sec et rafraîchissant, à l’acidité équilibrée, avec une touche minérale et une longue finale qui invite à une nouvelle gorgée.",
+      metodo_label: "MÉTHODE",
+      metodo_val: "Traditionnelle (Champenoise)",
+      teor_label: "ALCOOL",
+      teor_val: "9% vol",
+      classificacao_label: "CLASSIFICATION",
+      classificacao_val: "Nature",
+      harmonizacao_label: "ACCORDS",
+      harmonizacao_val: "Plats légers, poissons et fruits de mer",
+      temperatura_label: "TEMPÉRATURE DE SERVICE",
+      temperatura_val: "4°C à 6°C"
+    },
+    interludio: {
+      quote: "Dans le cajou, nous voyons un potentiel là où peu voyaient de la valeur.",
+      sign: "Terre, temps et talent.",
+      note: "Le cajou a deux parties. La noix, connue dans le monde entier, est le vrai fruit. Unie à elle se trouve la pomme de cajou, le faux fruit : la partie juteuse et parfumée, longtemps délaissée. C’est d’elle que naît AKAÎU."
+    },
+    galeria: {
+      tag: "— Atmosphère",
+      title: "L’Art de <em>Trinquer</em>",
+      sub: "AKAÎU est une invitation à célébrer les rencontres, les paysages, les saveurs et les histoires qui méritent un toast."
+    },
+    processo: {
+      tag: "— L’Élaboration",
+      title: "Du Champ au <em>Verre</em>",
+      desc: "Chaque bouteille d’AKAÎU est le fruit de choix attentifs, de la sélection des pommes de cajou au dégorgement. Un processus qui valorise le fruit, respecte le temps et recherche l’excellence dans chaque détail.",
+      step1: {
+        title: "Récolte Sélective",
+        desc: "Les pommes de cajou sont cueillies au point idéal de maturité, lorsque le fruit exprime tout son arôme."
+      },
+      step2: {
+        title: "Fermentation de Base",
+        desc: "Le jus de cajou devient un vin de base, avec l’équilibre, la fraîcheur et la structure qu’exige un mousseux."
+      },
+      step3: {
+        title: "Méthode Champenoise",
+        desc: "La seconde fermentation a lieu dans la bouteille. Le vin y repose sur ses lies au moins deux mois, gagnant une bulle fine et plus de complexité."
+      },
+      step4: {
+        title: "Remuage & Dégorgement",
+        desc: "Les bouteilles sont tournées et inclinées peu à peu jusqu’à ce que les dépôts se rassemblent dans le col (remuage). Ils sont ensuite retirés (dégorgement), révélant un mousseux limpide et brillant."
+      }
+    },
+    marca: {
+      tag: "— La Marque",
+      title: "Plus qu’un vin mousseux. <em>Un nouveau regard sur le cajou brésilien.</em>",
+      p1: "AKAÎU est né pour révéler un potentiel longtemps méconnu. Nous transformons le cajou, fruit natif du Brésil, en une expérience qui crée de la valeur pour le territoire, de la fierté pour ses origines et de nouvelles possibilités pour ceux qui vivent de sa culture.",
+      p2: "Nous unissons les savoirs de la terre et la science contemporaine pour créer des boissons d’excellence, qui respectent la terre, valorisent les personnes et prouvent que le raffinement peut aussi se partager.",
+      manifHeadline: "Placer le Rio Grande do Norte et le Nordeste sur la carte mondiale de la gastronomie et du vin.",
+      manifBody: "Grâce aux microfermentations de YeastFarm et à la méthode champenoise, nous mettons en bouteille la résilience du semi-aride brésilien.",
+      impact1: {
+        title: "Impact Social",
+        desc: "Nous valorisons les producteurs et renforçons les communautés rurales, avec une filière plus juste et inclusive."
+      },
+      impact2: {
+        title: "Impact Environnemental",
+        desc: "Nous donnons de la valeur à une ressource longtemps sous-utilisée, en réduisant les pertes et en valorisant le cajou dans son intégralité."
+      },
+      impact3: {
+        title: "Impact Culturel",
+        desc: "Nous portons le Nordeste à la table de la haute gastronomie, avec un toast qui célèbre la diversité des personnes, des lieux et des moments."
+      }
+    },
+    parceiros: {
+      tag: "— Écosystème",
+      title: "Nos <em>Partenaires</em>",
+      desc: "Derrière chaque bouteille, un réseau de partenaires partage notre vision d’innovation, d’excellence et de valorisation de la biodiversité brésilienne."
+    },
+    contato: {
+      tag: "— Contact",
+      title: "Nous <em>Contacter</em>",
+      desc: "Pour toute question, partenariat commercial, distribution ou événement, notre équipe est à votre écoute.",
+      email_label: "E-mail Commercial",
+      whatsapp_label: "WhatsApp Professionnel (Alberto Medeiros)",
+      instagram_label: "Instagram Officiel",
+      sede_label: "Siège & Origine",
+      sede_val: "Macaíba/RN · Brésil"
+    },
+    form: {
+      nome_label: "Nom complet",
+      nome_placeholder: "Votre nom",
+      empresa_label: "Entreprise",
+      empresa_placeholder: "Nom de l’entreprise (facultatif)",
+      email_label: "E-mail",
+      email_placeholder: "votre@email.com",
+      assunto_label: "Objet",
+      assunto_opt0: "Choisissez un objet",
+      assunto_opt1: "Questions / Informations générales",
+      assunto_opt2: "Distribution et partenariats",
+      assunto_opt3: "Événements et mariages",
+      assunto_opt4: "Restaurants et épiceries fines",
+      assunto_opt5: "Presse et médias",
+      assunto_opt6: "Autre",
+      mensagem_label: "Votre message",
+      mensagem_placeholder: "Comment pouvons-nous vous aider ?",
+      btn: "Envoyer le message",
+      btn_sent: "Message envoyé ✓"
+    },
+    footer: {
+      responsabilidade: "L’abus d’alcool est dangereux pour la santé. Vente interdite aux mineurs de moins de 18 ans.",
+      fabricado: "YeastFarm Microfermentações Ltda.<br>Rua Alameda de Santo Antônio, S/N, Zona de Expansão Urbana Sul<br>Macaíba/RN · CEP 59.281-720 · Brésil"
+    },
+    aria: {
+      backToTop: "Retour en haut",
+      openMenu: "Ouvrir le menu",
+      prev: "Précédent",
+      next: "Suivant",
+      swipe: "Faites glisser pour voir plus"
+    },
+    chapter: {
+      terra: "Terre",
+      tempo: "Temps",
+      talento: "Talent"
+    }
+  },
+  it: {
+    meta: {
+      title: "AKAÎU — Spumante di Anacardio",
+      desc: "AKAÎU è uno spumante di anacardio autenticamente brasiliano, prodotto con il metodo classico, che unisce gusto, scienza e sostenibilità."
+    },
+    nav: {
+      manifesto: "Manifesto",
+      produto: "Il Prodotto",
+      atmosfera: "Atmosfera",
+      processo: "Processo",
+      marca: "Il Marchio",
+      parceiros: "Partner",
+      cta: "Contatti"
+    },
+    gate: {
+      tag: "Verifica dell’età",
+      p: "Questa è un’esperienza riservata agli adulti. Per continuare, conferma la tua età.",
+      yes: "Ho 18 anni o più",
+      no: "Ho meno di 18 anni"
+    },
+    hero: {
+      pretitle: "Spumante di Anacardio · Nature · Metodo Classico",
+      tagline: "Terra, Tempo e Talento",
+      sub: "Rio Grande do Norte · Brasile",
+      manifesto: "Siamo figli del sole e della brezza tropicale. <br>Di una terra che insegna la pazienza e trasforma la resilienza in sapore. <br>Nell’anacardio vediamo più di un frutto: vediamo origine, cultura e forza. <br>Vediamo un Nordest che innova, crea e prospera. <br>Uniamo scienza e tradizione, campo e arte, per trasformare una parte di questo frutto a lungo sottovalutata in un simbolo di orgoglio, raffinatezza e impatto positivo. <br>In ogni bottiglia c’è il lavoro di chi coltiva, ricerca e sogna. <br>Il bagliore dorato del sole e la freschezza dell’anacardio. <br>AKAÎU è una celebrazione che nasce dal popolo e al popolo ritorna. <br><br><em>Dalla terra fertile, il tempo raccoglie. Con talento, brindiamo.</em>",
+      cta: "Scopri il Prodotto"
+    },
+    produto: {
+      tag: "— Il Prodotto",
+      p1: "Nato nel Nordest del Brasile, AKAÎU trasforma l’anacardio, frutto nativo e simbolo di resilienza, in uno spumante unico. È prodotto dalla mela di anacardio con il Metodo Classico (Champenoise): la seconda fermentazione avviene in bottiglia, dove il vino riposa sui lieviti (<em>sur lie</em>) e arriva nel calice come <em>Nature</em>, senza liqueur d’expédition.",
+      p2: "I nostri anacardi provengono dal Rio Grande do Norte, nel cuore del Nordest brasiliano, terra dove l’albero di anacardio è nativo e fa parte della cultura e della vita di molte famiglie.",
+      p3: "Più di una bevanda, AKAÎU è un brindisi alla cultura brasiliana, all’innovazione e all’impatto socio-ambientale positivo: valorizza i produttori locali, sostiene la sostenibilità e celebra il talento di chi trasforma la terra e il tempo in sapore.",
+      bottleLabel: "Nature"
+    },
+    sensorial: {
+      title: "Profilo Sensoriale",
+      desc: "Brillante e delicato, ha un colore giallo paglierino chiaro e un perlage fine e abbondante. I profumi ricordano la cajuína artigianale e le confetture di anacardio. In bocca si distingue per freschezza, leggerezza ed equilibrio, sostenuti da una piacevole mineralità.",
+      tag: "— Note di Degustazione",
+      lead: "Dalle radici autenticamente brasiliane, è ideale per festeggiare, dagli incontri semplici ai grandi momenti.",
+      visual_label: "Vista",
+      visual_val: "Giallo chiaro e brillante, con perlage fine, vivace e persistente.",
+      aroma_label: "Olfatto",
+      aroma_val: "Fresco e delicato, con note dolci di cajuína e confettura.",
+      boca_label: "Gusto",
+      boca_val: "Secco e rinfrescante, di acidità equilibrata, con un tocco minerale e un finale lungo che invita a un nuovo sorso.",
+      metodo_label: "METODO",
+      metodo_val: "Classico (Champenoise)",
+      teor_label: "GRADAZIONE",
+      teor_val: "9% vol",
+      classificacao_label: "CLASSIFICAZIONE",
+      classificacao_val: "Nature",
+      harmonizacao_label: "ABBINAMENTI",
+      harmonizacao_val: "Piatti leggeri, pesce e frutti di mare",
+      temperatura_label: "TEMPERATURA DI SERVIZIO",
+      temperatura_val: "4°C a 6°C"
+    },
+    interludio: {
+      quote: "Nell’anacardio vediamo potenziale dove pochi vedevano valore.",
+      sign: "Terra, tempo e talento.",
+      note: "L’anacardio ha due parti. La noce, conosciuta in tutto il mondo, è il vero frutto. Unita a essa c’è la mela di anacardio, il cosiddetto falso frutto: la parte succosa e profumata, a lungo trascurata. È da lei che nasce AKAÎU."
+    },
+    galeria: {
+      tag: "— Atmosfera",
+      title: "L’Arte del <em>Brindisi</em>",
+      sub: "AKAÎU è un invito a celebrare incontri, paesaggi, sapori e storie che meritano un brindisi."
+    },
+    processo: {
+      tag: "— Il Processo",
+      title: "Dal Campo al <em>Calice</em>",
+      desc: "Ogni bottiglia di AKAÎU è il risultato di scelte accurate, dalla selezione delle mele di anacardio alla sboccatura. Un processo che valorizza il frutto, rispetta il tempo e ricerca l’eccellenza in ogni dettaglio.",
+      step1: {
+        title: "Raccolta Selettiva",
+        desc: "Le mele di anacardio sono raccolte al punto ideale di maturazione, quando il frutto esprime tutto il suo aroma."
+      },
+      step2: {
+        title: "Fermentazione di Base",
+        desc: "Il succo di anacardio diventa vino base, con l’equilibrio, la freschezza e la struttura che uno spumante richiede."
+      },
+      step3: {
+        title: "Metodo Champenoise",
+        desc: "La seconda fermentazione avviene in bottiglia. Lì il vino riposa sui lieviti per almeno due mesi, acquisendo un perlage fine e maggiore complessità."
+      },
+      step4: {
+        title: "Remuage & Sboccatura",
+        desc: "Le bottiglie vengono ruotate e inclinate poco a poco finché i sedimenti si raccolgono nel collo (remuage). Poi vengono rimossi (sboccatura), rivelando uno spumante limpido e brillante."
+      }
+    },
+    marca: {
+      tag: "— Il Marchio",
+      title: "Più di uno spumante. <em>Uno sguardo nuovo sull’anacardio brasiliano.</em>",
+      p1: "AKAÎU è nato per rivelare un potenziale a lungo poco riconosciuto. Trasformiamo l’anacardio, frutto nativo del Brasile, in un’esperienza che crea valore per il territorio, orgoglio per le sue origini e nuove possibilità per chi vive della sua coltivazione.",
+      p2: "Uniamo i saperi della terra e la scienza contemporanea per creare bevande d’eccellenza, che rispettano la terra, valorizzano le persone e dimostrano che la raffinatezza può anche essere condivisa.",
+      manifHeadline: "Portare il Rio Grande do Norte e il Nordest sulla mappa mondiale dell’enogastronomia.",
+      manifBody: "Con le microfermentazioni di YeastFarm e il metodo champenoise, imbottigliamo la resilienza del semiarido brasiliano.",
+      impact1: {
+        title: "Impatto Sociale",
+        desc: "Valorizziamo i produttori e rafforziamo le comunità rurali, con una filiera più giusta e inclusiva."
+      },
+      impact2: {
+        title: "Impatto Ambientale",
+        desc: "Diamo valore a una risorsa storicamente poco sfruttata, riducendo gli sprechi e valorizzando l’anacardio nella sua interezza."
+      },
+      impact3: {
+        title: "Impatto Culturale",
+        desc: "Portiamo il Nordest sulla tavola dell’alta gastronomia, con un brindisi che celebra la diversità di persone, luoghi e momenti."
+      }
+    },
+    parceiros: {
+      tag: "— Ecosistema",
+      title: "I nostri <em>Partner</em>",
+      desc: "Dietro ogni bottiglia c’è una rete di partner che condivide la nostra visione di innovazione, eccellenza e valorizzazione della biodiversità brasiliana."
+    },
+    contato: {
+      tag: "— Contatti",
+      title: "Parla <em>con Noi</em>",
+      desc: "Per domande, partnership commerciali, distribuzione o eventi, il nostro team è sempre a tua disposizione.",
+      email_label: "E-mail Commerciale",
+      whatsapp_label: "WhatsApp Aziendale (Alberto Medeiros)",
+      instagram_label: "Instagram Ufficiale",
+      sede_label: "Sede & Origine",
+      sede_val: "Macaíba/RN · Brasile"
+    },
+    form: {
+      nome_label: "Nome e cognome",
+      nome_placeholder: "Il tuo nome",
+      empresa_label: "Azienda",
+      empresa_placeholder: "Nome dell’azienda (facoltativo)",
+      email_label: "E-mail",
+      email_placeholder: "tua@email.com",
+      assunto_label: "Oggetto",
+      assunto_opt0: "Seleziona un oggetto",
+      assunto_opt1: "Domande / Informazioni generali",
+      assunto_opt2: "Distribuzione e partnership",
+      assunto_opt3: "Eventi e matrimoni",
+      assunto_opt4: "Ristoranti ed enoteche",
+      assunto_opt5: "Stampa e media",
+      assunto_opt6: "Altro",
+      mensagem_label: "Il tuo messaggio",
+      mensagem_placeholder: "Come possiamo aiutarti?",
+      btn: "Invia messaggio",
+      btn_sent: "Messaggio inviato ✓"
+    },
+    footer: {
+      responsabilidade: "Bevi responsabilmente. Vietata la vendita ai minori di 18 anni.",
+      fabricado: "YeastFarm Microfermentações Ltda.<br>Rua Alameda de Santo Antônio, S/N, Zona de Expansão Urbana Sul<br>Macaíba/RN · CEP 59.281-720 · Brasile"
+    },
+    aria: {
+      backToTop: "Torna su",
+      openMenu: "Apri il menu",
+      prev: "Precedente",
+      next: "Successivo",
+      swipe: "Scorri per vedere altro"
+    },
+    chapter: {
+      terra: "Terra",
+      tempo: "Tempo",
+      talento: "Talento"
+    }
+  },
   zh: {
     meta: {
       title: "AKAÎU — 腰果气泡酒",
@@ -2617,6 +2963,19 @@ function enterSite() {
   addEventListener('mousemove', e => { if (e.clientY < 90) show(); }, { passive: true });
   nav.addEventListener('focusin', show);
 })();
+// Seletor de idiomas compacto (menu do computador)
+(function () {
+  const drop = document.getElementById('langDrop'), cur = document.getElementById('langCur');
+  if (!drop || !cur) return;
+  const LABEL = { pt: 'PT', en: 'EN', es: 'ES', fr: 'FR', it: 'IT', zh: '中' };
+  const sync = () => { cur.textContent = LABEL[currentLang] || 'PT'; };
+  const orig = applyLanguage;
+  applyLanguage = function (l) { orig(l); sync(); drop.classList.remove('open'); cur.setAttribute('aria-expanded', 'false'); };
+  cur.addEventListener('click', e => { e.stopPropagation(); const o = drop.classList.toggle('open'); cur.setAttribute('aria-expanded', o); });
+  document.addEventListener('click', e => { if (!drop.contains(e.target)) drop.classList.remove('open'); });
+  sync();
+})();
+
 // Botão Voltar ao Topo
 const btt = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
