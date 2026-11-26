@@ -1077,6 +1077,54 @@ footer{background:var(--verde-deep)}
 .body-p,.proc-desc,.mudanca-desc,.taste-note p{font-size:clamp(.95rem,1.1vw,1.02rem);line-height:1.8}
 .tag,.spec-label,.n-links a,.btn-g,.n-cta{font-weight:400}
 .hero-manifesto,.interludio-quote,.h2 em{font-weight:500}
+#produto .prod-left .produto-header{margin-bottom:1.8rem}
+/* ── Cada tela cabe na área visível (altura da janela menos o menu fixo) ── */
+@media(min-width:1025px){
+  .manifesto-band{min-height:100vh;padding-top:calc(72px + 3vh);padding-bottom:4vh}
+  .manifesto-inner{max-width:720px}
+  #manifesto .manifesto-text{line-height:1.75}
+  .manifesto-inner .foil-crest{width:54px;margin-bottom:1.1rem}
+  .manifesto-cta{margin-top:1.6rem}
+  #processo{padding-top:2rem;padding-bottom:2rem}
+  .proc-card{aspect-ratio:3/4.3;height:auto;max-height:calc(100vh - 290px)}
+  .proc-cards{grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1300px}
+  #galeria{padding-top:2.6rem;padding-bottom:2rem}
+}
+/* Atmosfera: destaque suave na foto sob o mouse (só computador) */
+@media(min-width:1025px) and (hover:hover){
+  #slider .slide-item{transition:transform .6s cubic-bezier(.16,1,.3,1),filter .6s ease,outline-color .6s ease,box-shadow .6s ease}
+  #slider .slide-item img{transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+  #slider:hover .slide-item:not(:hover){filter:brightness(.72) saturate(.85)}
+  #slider .slide-item:hover{transform:translateY(-6px);outline-color:rgba(240,212,138,.9);box-shadow:0 36px 70px rgba(0,0,0,.7),0 0 40px rgba(201,154,58,.18)}
+  #slider .slide-item:hover img{transform:scale(1.05)}
+}
+/* Menu: some ao rolar para baixo; volta ao rolar para cima ou com o mouse no topo */
+nav.nav-hide{transform:translateY(-110%);pointer-events:none}
+/* ── Celular: aproveitamento de espaço e nada cortado ── */
+section,footer{scroll-margin-top:64px}
+@media(max-width:768px){
+  /* manifesto em texto corrido, sem quebras de linha forçadas */
+  #manifesto .manifesto-text br{display:none}
+  #manifesto .manifesto-text em{display:block;margin-top:1.1rem}
+  /* Perfil Sensorial: foto menor e notas com o ícone ao lado do título */
+  .sensorial-img{width:min(74vw,290px)}
+  .taste-notes{gap:1.1rem;margin:1.4rem 0}
+  .taste-note{display:grid;grid-template-columns:30px 1fr;column-gap:.9rem;align-items:start}
+  .taste-note .taste-ico{grid-row:1/span 2;width:28px;height:28px;margin:.15rem 0 0}
+  .taste-label{margin-bottom:.2rem}
+  /* Processo: cards do carrossel sem sobra embaixo; caju da Colheita inteiro */
+  .proc-slider-wrapper{align-items:flex-start;margin-bottom:.6rem}
+  .proc-slide img{aspect-ratio:4/4.6}
+  .proc-slider-wrapper .proc-slide:first-child img{object-position:55% 78%}
+  .proc-slide-info{padding:1.3rem 1.4rem 1.5rem}
+  .proc-slide-info .proc-icon{margin-bottom:.6rem}
+  /* "Deslize para ver mais" sem encostar no contorno das fotos */
+  .swipe-hint{margin-top:.9rem}
+  /* Fale Conosco: foto mais contida entre os contatos e o formulário */
+  .cont-mid{width:min(70vw,280px);margin:1rem auto 2rem}
+  /* botão voltar ao topo menor, para não cobrir textos */
+  #backToTop{width:44px;height:44px;right:14px;bottom:14px;font-size:1rem;opacity:.9}
+}
 </style>
 </head>
 <body>
@@ -1201,7 +1249,7 @@ footer{background:var(--verde-deep)}
     <span class="chapter" data-i18n="chapter.terra">Terra</span>
     <span class="foil foil-crest" aria-hidden="true"></span>
     <div class="hero-manifesto manifesto-text">
-    <p data-i18n-html="hero.manifesto">Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera.<br>Unimos ciência e tradição, campo e arte, para transformar uma parte desse fruto,<br>por muito tempo subvalorizada, em símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é uma celebração que nasce do povo e volta para o povo.<br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em></p>
+    <p data-i18n-html="hero.manifesto">Somos fruto do sol e da brisa tropical. <br>Da terra que ensina paciência e transforma resiliência em sabor. <br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência. <br>Vemos o Nordeste que inova, cria e prospera. <br>Unimos ciência e tradição, campo e arte, para transformar uma parte desse fruto, <br>por muito tempo subvalorizada, em símbolo de orgulho, sofisticação e impacto positivo. <br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha. <br>Há o brilho dourado do sol e o frescor do caju. <br>AKAÎU é uma celebração que nasce do povo e volta para o povo. <br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em></p>
   </div>
     <div class="hero-cta manifesto-cta">
       <a href="#produto" class="btn-g" data-i18n="hero.cta">Conheça o Produto</a>
@@ -1640,7 +1688,7 @@ const translations = {
       pretitle: "Espumante de Caju · Nature · Método Champenoise",
       tagline: "Terra, Tempo e Talento",
       sub: "Rio Grande do Norte · Brasil · 750ml · 9% vol",
-      manifesto: "Somos fruto do sol e da brisa tropical.<br>Da terra que ensina paciência e transforma resiliência em sabor.<br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência.<br>Vemos o Nordeste que inova, cria e prospera.<br>Unimos ciência e tradição, campo e arte, para transformar uma parte desse fruto,<br>por muito tempo subvalorizada, em símbolo de orgulho, sofisticação e impacto positivo.<br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha.<br>Há o brilho dourado do sol e o frescor do caju.<br>AKAÎU é uma celebração que nasce do povo e volta para o povo.<br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em>",
+      manifesto: "Somos fruto do sol e da brisa tropical. <br>Da terra que ensina paciência e transforma resiliência em sabor. <br>No caju, enxergamos mais do que um fruto: vemos origem, cultura e potência. <br>Vemos o Nordeste que inova, cria e prospera. <br>Unimos ciência e tradição, campo e arte, para transformar uma parte desse fruto, <br>por muito tempo subvalorizada, em símbolo de orgulho, sofisticação e impacto positivo. <br>Em cada garrafa, há o trabalho de quem cultiva, pesquisa e sonha. <br>Há o brilho dourado do sol e o frescor do caju. <br>AKAÎU é uma celebração que nasce do povo e volta para o povo. <br><br><em>Da terra fértil, o tempo colhe. Com talento, brindamos.</em>",
       cta: "Conheça o Produto"
     },
     produto: {
@@ -1799,7 +1847,7 @@ const translations = {
       pretitle: "Cashew Sparkling Wine · Nature · Champenoise Method",
       tagline: "Land, Time and Talent",
       sub: "Rio Grande do Norte · Brazil · 750ml · 9% vol",
-      manifesto: "We are born of the sun and the tropical breeze.<br>Of a land that teaches patience and turns resilience into flavor.<br>In the cashew we see more than a fruit: we see origin, culture and strength.<br>We see a Northeast that innovates, creates and thrives.<br>We bring together science and tradition, field and art, to turn a long-undervalued part of this fruit into a symbol of pride, sophistication and positive impact.<br>In every bottle lies the work of those who grow, research and dream.<br>The golden glow of the sun and the freshness of the cashew.<br>AKAÎU is a celebration born of the people that returns to the people.<br><br><em>From fertile land, time harvests. With talent, we toast.</em>",
+      manifesto: "We are born of the sun and the tropical breeze. <br>Of a land that teaches patience and turns resilience into flavor. <br>In the cashew we see more than a fruit: we see origin, culture and strength. <br>We see a Northeast that innovates, creates and thrives. <br>We bring together science and tradition, field and art, to turn a long-undervalued part of this fruit into a symbol of pride, sophistication and positive impact. <br>In every bottle lies the work of those who grow, research and dream. <br>The golden glow of the sun and the freshness of the cashew. <br>AKAÎU is a celebration born of the people that returns to the people. <br><br><em>From fertile land, time harvests. With talent, we toast.</em>",
       cta: "Discover the Product"
     },
     produto: {
@@ -1958,7 +2006,7 @@ const translations = {
       pretitle: "Espumante de Anacardo · Nature · Método Champenoise",
       tagline: "Tierra, Tiempo y Talento",
       sub: "Río Grande do Norte · Brasil · 750ml · 9% vol",
-      manifesto: "Somos fruto del sol y de la brisa tropical.<br>De una tierra que enseña paciencia y transforma la resiliencia en sabor.<br>En el anacardo vemos más que un fruto: vemos origen, cultura y fuerza.<br>Vemos un Nordeste que innova, crea y prospera.<br>Unimos ciencia y tradición, campo y arte, para transformar una parte de este fruto, por mucho tiempo poco valorada, en símbolo de orgullo, sofisticación e impacto positivo.<br>En cada botella está el trabajo de quien cultiva, investiga y sueña.<br>El brillo dorado del sol y la frescura del anacardo.<br>AKAÎU es una celebración que nace del pueblo y vuelve al pueblo.<br><br><em>De la tierra fértil, el tiempo cosecha. Con talento, brindamos.</em>",
+      manifesto: "Somos fruto del sol y de la brisa tropical. <br>De una tierra que enseña paciencia y transforma la resiliencia en sabor. <br>En el anacardo vemos más que un fruto: vemos origen, cultura y fuerza. <br>Vemos un Nordeste que innova, crea y prospera. <br>Unimos ciencia y tradición, campo y arte, para transformar una parte de este fruto, por mucho tiempo poco valorada, en símbolo de orgullo, sofisticación e impacto positivo. <br>En cada botella está el trabajo de quien cultiva, investiga y sueña. <br>El brillo dorado del sol y la frescura del anacardo. <br>AKAÎU es una celebración que nace del pueblo y vuelve al pueblo. <br><br><em>De la tierra fértil, el tiempo cosecha. Con talento, brindamos.</em>",
       cta: "Descubre el Producto"
     },
     produto: {
@@ -2117,7 +2165,7 @@ const translations = {
       pretitle: "腰果气泡酒 · 天然 · 香槟法",
       tagline: "土地、时间与才华",
       sub: "北里奥格兰德州 · 巴西 · 750毫升 · 酒精度9%",
-      manifesto: "我们孕育于阳光与热带微风。<br>这片土地教会我们耐心，把坚韧化为风味。<br>在腰果中，我们看到的不只是果实：而是起源、文化与力量。<br>我们看到一个不断创新、创造与繁荣的巴西东北部。<br>我们融合科学与传统、田野与艺术，让这颗果实中长期被低估的部分，成为骄傲、优雅与积极影响的象征。<br>每一瓶酒，都凝聚着耕种者、研究者与追梦人的心血。<br>有阳光的金色光芒，也有腰果的清新。<br>AKAÎU 是一场源于人民、回馈人民的庆典。<br><br><em>沃土育果，时光采撷。以匠心，共举杯。</em>",
+      manifesto: "我们孕育于阳光与热带微风。 <br>这片土地教会我们耐心，把坚韧化为风味。 <br>在腰果中，我们看到的不只是果实：而是起源、文化与力量。 <br>我们看到一个不断创新、创造与繁荣的巴西东北部。 <br>我们融合科学与传统、田野与艺术，让这颗果实中长期被低估的部分，成为骄傲、优雅与积极影响的象征。 <br>每一瓶酒，都凝聚着耕种者、研究者与追梦人的心血。 <br>有阳光的金色光芒，也有腰果的清新。 <br>AKAÎU 是一场源于人民、回馈人民的庆典。 <br><br><em>沃土育果，时光采撷。以匠心，共举杯。</em>",
       cta: "了解产品"
     },
     produto: {
