@@ -1133,6 +1133,13 @@ section,footer{scroll-margin-top:64px}
 #galeria .chapter,.proc-header .chapter,#parceiros .chapter{justify-content:center}
 @media(max-width:900px){.manifesto-inner .chapter{justify-content:center}}
 @media(max-width:768px){.chapter{justify-content:center}}
+/* Cursiva só nos destaques grandes; textos de leitura em Jost */
+.hero-manifesto,#manifesto .manifesto-text,.galeria-sub,.sensorial-desc-text,.prod-story-text{font-family:var(--f-body);font-style:normal;font-weight:300}
+#manifesto .manifesto-text{font-size:clamp(.95rem,1.05vw,1.02rem);color:rgba(243,235,217,.92)}
+#manifesto .manifesto-text em{font-family:var(--f-accent);font-style:italic;font-weight:500;font-size:1.35em}
+.galeria-sub,.sensorial-desc-text{font-size:clamp(.95rem,1.1vw,1.02rem);line-height:1.8}
+.prod-story-text{font-size:clamp(.95rem,1.1vw,1.02rem);line-height:1.85}
+.prod-story-text em{font-family:var(--f-accent);font-style:italic;font-size:1.1em}
 </style>
 </head>
 <body>
